@@ -14,7 +14,7 @@ int main(int argc, char *argv[])
     QWidget mainWidget;
     QHBoxLayout * horizontalLayout = new QHBoxLayout(&mainWidget);
     horizontalLayout->addWidget(new DragWidget);
-    horizontalLayout->addWidget(new DragWidget);
+   horizontalLayout->addWidget(new DragWidget);
 
     mainWidget.setWindowTitle(QObject::tr("Starter Testing"));
     mainWidget.show();
