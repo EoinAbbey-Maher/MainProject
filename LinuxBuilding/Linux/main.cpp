@@ -17,7 +17,8 @@ int main(int argc, char *argv[])
 
     QHBoxLayout *layout = new QHBoxLayout;
     layout->addWidget(new GameGrid);
-    //layout->addWidget(new QTableWidget(20,20));
+   // layout->addWidget(new QTableWidget(20,20));
+    layout->addWidget(new SelectableGrid);
     layout->addWidget(new DragWidget);
 
 

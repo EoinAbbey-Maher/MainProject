@@ -8,7 +8,7 @@
 
 class GameGrid : public QWidget
 {
-    Q_OBJECT
+    //Q_OBJECT
 public:
     explicit GameGrid(QWidget *parent = nullptr);
     explicit GameGrid(int t_xSize, int t_ySize, QWidget *parent = nullptr);

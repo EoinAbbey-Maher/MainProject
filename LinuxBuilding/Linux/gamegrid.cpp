@@ -10,7 +10,6 @@ GameGrid::GameGrid(QWidget *parent) : QWidget(parent)
     m_grid->verticalHeader()->hide();
     m_grid->horizontalHeader()->hide();
 
-    m_grid->show();
     m_grid->setAttribute(Qt::WA_DeleteOnClose);
 
 
@@ -30,7 +29,6 @@ GameGrid::GameGrid(int t_xSize, int t_ySize, QWidget *parent) : QWidget(parent)
 
 
 
-    m_grid->show();
     m_grid->setAttribute(Qt::WA_DeleteOnClose);
 
 }

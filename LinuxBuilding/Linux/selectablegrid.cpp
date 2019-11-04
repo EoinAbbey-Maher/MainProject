@@ -11,7 +11,7 @@ SelectableGrid::SelectableGrid(QWidget *parent) : QFrame(parent)
     m_grid->verticalHeader()->hide();
     m_grid->horizontalHeader()->hide();
 
-    m_grid->show();
+
     m_grid->setAttribute(Qt::WA_DeleteOnClose);
 
 
@@ -30,9 +30,6 @@ SelectableGrid::SelectableGrid(int t_xSize, int t_ySize, QWidget *parent) : QFra
     m_grid->setColumnCount(t_xSize);
     m_grid->setRowCount(t_ySize);
 
-
-
-    m_grid->show();
     m_grid->setAttribute(Qt::WA_DeleteOnClose);
 
 }
