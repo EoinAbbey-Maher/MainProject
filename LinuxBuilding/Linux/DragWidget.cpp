@@ -1,18 +1,22 @@
 #include "DragWidget.h"
-#include <QtWidgets>
+
 
 DragWidget::DragWidget(QWidget *parent) : QFrame(parent)
 {
-    setMinimumSize(800,800);
+    setMinimumSize(400,800);
     setFrameStyle(QFrame::Sunken | QFrame::StyledPanel);
     setAcceptDrops(true);
 
-    QLabel*FloorIcon = new QLabel(this);
-    FloorIcon->setPixmap(QPixmap(":/Images/floor.jpg"));
-    FloorIcon->move(10,10);
-    FloorIcon->show();
-    FloorIcon->setAttribute(Qt::WA_DeleteOnClose);
+    for (int i = 0 ; i  < 3; i++) {
+        m_Icons.push_back(new QLabel(this));
+        m_Icons[i]->setPixmap(QPixmap(":/Images/floor.jpg"));
+        m_Icons[i]->move(10 * i,10 * i);
+    }
 
+    for (int i = 0 ; i  < m_Icons.size(); i++) {
+        m_Icons[i]->show();
+        m_Icons[i]->setAttribute(Qt::WA_DeleteOnClose);
+    }
 }
 
 void DragWidget::dragEnterEvent(QDragEnterEvent * event)
@@ -116,7 +120,7 @@ void DragWidget::mousePressEvent(QMouseEvent *event)
 
     QPixmap tempPixmap = pixmap;
     QPainter painter;
-    painter.begin(&tempPixmap);
+    painter.begin(&tempPixmap);// m_grid->show();
     painter.fillRect(pixmap.rect(), QColor(127,127,127,127));
     painter.end();
 

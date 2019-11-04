@@ -1,9 +1,11 @@
-#include "mainwindow.h"
 
 #include <QApplication>
 #include <QHBoxLayout>
+#include <QTableWidget>
 
 #include "DragWidget.h"
+#include "selectablegrid.h"
+#include "gamegrid.h"
 
 int main(int argc, char *argv[])
 {
@@ -11,13 +13,17 @@ int main(int argc, char *argv[])
 
     QApplication a(argc, argv);
 
-    QWidget mainWidget;
-    QHBoxLayout * horizontalLayout = new QHBoxLayout(&mainWidget);
-    horizontalLayout->addWidget(new DragWidget);
-   horizontalLayout->addWidget(new DragWidget);
+    QWidget *mainWidget = new QWidget;
 
-    mainWidget.setWindowTitle(QObject::tr("Starter Testing"));
-    mainWidget.show();
+    QHBoxLayout *layout = new QHBoxLayout;
+    layout->addWidget(new GameGrid);
+    //layout->addWidget(new QTableWidget(20,20));
+    layout->addWidget(new DragWidget);
+
+
+    mainWidget->setWindowTitle(QObject::tr("Starter Testing"));
+    mainWidget->setLayout(layout);
+    mainWidget->show();
 
     return a.exec();
 }
