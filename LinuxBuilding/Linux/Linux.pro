@@ -17,14 +17,12 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
     DragWidget.cpp \
-    gamegrid.cpp \
     main.cpp \
     mainwindow.cpp \
     selectablegrid.cpp
 
 HEADERS += \
     DragWidget.h \
-    gamegrid.h \
     mainwindow.h \
     selectablegrid.h
 

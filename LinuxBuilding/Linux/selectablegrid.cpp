@@ -1,6 +1,8 @@
 #include "selectablegrid.h"
 
-
+//------------------------------------------------------------------------------
+// Grid Constructor
+// -----------------------------------------------------------------------------
 SelectableGrid::SelectableGrid(int t_xSize, int t_ySize, QWidget *parent) : QFrame(parent)
 {
     setFrameStyle(QFrame::Sunken | QFrame::StyledPanel);
@@ -16,11 +18,9 @@ SelectableGrid::SelectableGrid(int t_xSize, int t_ySize, QWidget *parent) : QFra
      //m_iconGrid->show();
 }
 
-void SelectableGrid::checkIfGameSelected()
-{
-
-}
-
+// --------------------------------------------------------------------------------------
+// Setes grid window Size
+//---------------------------------------------------------------------------------------
 void SelectableGrid::resizeToContent(QTableView * tableView)
 {
     int count = tableView->verticalHeader()->count();
@@ -50,6 +50,9 @@ void SelectableGrid::resizeToContent(QTableView * tableView)
 
 }
 
+// ------------------------------------------------------------------------------------
+// Setup Selectable Textures
+// ------------------------------------------------------------------------------------
 void SelectableGrid::setupIcons()
 {
     int rowCt = 0;
@@ -81,6 +84,9 @@ void SelectableGrid::setupIcons()
     }
 }
 
+// -------------------------------------------------------------------------------------
+//               Setup Selectable Icons to Vector
+// -------------------------------------------------------------------------------------
 void SelectableGrid::SetupIconGrid()
 {
     m_iconGrid->setSelectionMode(QAbstractItemView::SingleSelection);
@@ -95,6 +101,35 @@ void SelectableGrid::SetupIconGrid()
     resizeToContent(m_iconGrid);
 }
 
+// -----------------------------------------------------------------------------
+//                  Checking for mouse Click
+// -----------------------------------------------------------------------------
+void SelectableGrid::mouseClickEvent(QMouseEvent *t_mouseEvent)
+{
+    if(t_mouseEvent->button() == Qt::LeftButton)
+    {
+        SetSelectedTexture();
+    }
+}
+
+// ----------------------------------------------------------------------------
+//                             Set new Textures
+// ----------------------------------------------------------------------------
+void SelectableGrid::SetSelectedTexture()
+{
+    if(m_gameGrid->selectedItems().count() > 0)
+    {
+        for (int i = 0; i <m_gameGrid->selectedItems().count(); i++) {
+
+            m_gameGrid->selectedItems().at(i)->setData(Qt::DecorationRole, QPixmap::fromImage(m_iconGrid->selectedItems().at(0)->)))
+        }
+    }
+}
+
+
+// ---------------------------------------------------------------------------
+//                      Setup the Initial Game Grid
+// ---------------------------------------------------------------------------
 void SelectableGrid::setupGameGrid(int t_xSize, int t_ySize)
 {
     m_gameGrid->verticalHeader()->setDefaultSectionSize(100);

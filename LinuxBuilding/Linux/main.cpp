@@ -5,7 +5,7 @@
 
 #include "DragWidget.h"
 #include "selectablegrid.h"
-#include "gamegrid.h"
+
 
 int main(int argc, char *argv[])
 {

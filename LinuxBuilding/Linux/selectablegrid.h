@@ -6,6 +6,11 @@
 #include <QFrame>
 #include <QTableWidget>
 
+QT_BEGIN_NAMESPACE
+class QMouseEvent;
+QT_END_NAMESPACE
+
+
 class SelectableGrid : public QFrame
 {
 public:
@@ -20,7 +25,7 @@ private:
     void SetupIconGrid();
     void setupGameGrid(int t_xSize = 20, int t_ySize = 20);
 
-
+    void mouseClickEvent(QMouseEvent * t_mouseEvent );
 
     void setupIcons();
 
