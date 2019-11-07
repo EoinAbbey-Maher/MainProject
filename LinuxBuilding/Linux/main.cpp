@@ -15,12 +15,11 @@ int main(int argc, char *argv[])
 
     QWidget *mainWidget = new QWidget;
 
+    SelectableGrid * selectablegrid = new SelectableGrid();
     QHBoxLayout *layout = new QHBoxLayout;
-    layout->addWidget(new GameGrid);
-   // layout->addWidget(new QTableWidget(20,20));
-    layout->addWidget(new SelectableGrid);
-    layout->addWidget(new DragWidget);
-
+    //layout->addWidget(new GameGrid);
+    layout->addLayout(selectablegrid->layout);
+    //layout->addWidget(new DragWidget);
 
     mainWidget->setWindowTitle(QObject::tr("Starter Testing"));
     mainWidget->setLayout(layout);

@@ -9,11 +9,27 @@
 class SelectableGrid : public QFrame
 {
 public:
-    explicit SelectableGrid(QWidget *parent = nullptr);
-    explicit SelectableGrid(int t_xSize, int t_ySize, QWidget *parent = nullptr);
+    explicit SelectableGrid(int t_xSize = 20, int t_ySize = 20, QWidget *parent = nullptr);
+    QHBoxLayout * layout= new QHBoxLayout;
 
-protected:
-    QTableWidget * m_grid = new QTableWidget(5,5);
+private:
+    void update();
+
+    void checkIfGameSelected();
+    void SetSelectedTexture();
+    void SetupIconGrid();
+    void setupGameGrid(int t_xSize = 20, int t_ySize = 20);
+
+
+
+    void setupIcons();
+
+    void resizeToContent(QTableView * tableView);
+    QTableWidget * m_iconGrid = new QTableWidget(10,2);
+    QTableWidget * m_gameGrid = new QTableWidget(20,20);
+
+    QVector<QLabel*> m_Icons;
+    QLabel* m_floorIcon = nullptr;
 };
 
 #endif // SELECTABLEGRID_H
