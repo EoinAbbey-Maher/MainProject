@@ -6,7 +6,7 @@
 SelectableGrid::SelectableGrid(int t_xSize, int t_ySize, QWidget *parent) : QFrame(parent)
 {
     setFrameStyle(QFrame::Sunken | QFrame::StyledPanel);
-    setMinimumSize(100,500);
+    setMinimumSize(0,0);
 
     SetupIconGrid();
     setupGameGrid(t_xSize, t_ySize);
@@ -21,33 +21,26 @@ SelectableGrid::SelectableGrid(int t_xSize, int t_ySize, QWidget *parent) : QFra
 // --------------------------------------------------------------------------------------
 // Setes grid window Size
 //---------------------------------------------------------------------------------------
-void SelectableGrid::resizeToContent(QTableView * tableView)
+void SelectableGrid::resizeToContent(QTableWidget * table)
 {
-    int count = tableView->verticalHeader()->count();
-    int scrollBarheight = tableView->horizontalScrollBar()->height();
-    int horizontalHeaderHeight = tableView->horizontalHeader()->height();
-    int rowTotalHeight = 0;
-
-    for(int i = 0; i < count; ++i)
+        table->resizeColumnsToContents();
+        table->resizeRowsToContents();
+    QRect rect = table->geometry();
+    int tableWidth = 2 + table->verticalHeader()->width();
+    for (int i = 0;i < table->columnCount();i++)
     {
-        rowTotalHeight +=tableView->verticalHeader()->sectionSize(i);
-
+            tableWidth += table->columnWidth(i);
     }
-    tableView->setMinimumHeight(horizontalHeaderHeight+rowTotalHeight + scrollBarheight);
+    rect.setWidth(tableWidth);
 
-
-    count = tableView->horizontalHeader()->count();
-    int scrollBarWidth = tableView->verticalScrollBar()->width();
-    int horizontalHeaderWidth = tableView->horizontalHeader()->width();
-    int rowTotalWidth= 0;
-
-    for(int i = 0; i < count; ++i)
+    int tableHeight = 2 + table->horizontalHeader()->height();
+    for (int i = 0; i < table->rowCount();i++)
     {
-        rowTotalWidth +=tableView->verticalHeader()->sectionSize(i);
-
+        tableWidth += table->columnWidth(i);
     }
-    tableView->setMinimumWidth(horizontalHeaderWidth+rowTotalHeight + scrollBarWidth);
+    rect.setHeight(tableHeight);
 
+    table->setGeometry(rect);
 }
 
 // ------------------------------------------------------------------------------------
@@ -104,13 +97,22 @@ void SelectableGrid::SetupIconGrid()
 // -----------------------------------------------------------------------------
 //                  Checking for mouse Click
 // -----------------------------------------------------------------------------
-void SelectableGrid::mouseClickEvent(QMouseEvent *t_mouseEvent)
+void SelectableGrid::mousePressEvent(QMouseEvent *event)
 {
-    if(t_mouseEvent->button() == Qt::LeftButton)
+    if(event->button() == Qt::LeftButton)
     {
-        SetSelectedTexture();
+      qDebug() << "Left Button";
     }
 }
+
+void SelectableGrid::mouseDoubleClickEvent(QMouseEvent *event)
+{
+    if(event->buttons() == Qt::LeftButton)
+    {
+      qDebug() << "Double Left Button";
+    }
+}
+
 
 // ----------------------------------------------------------------------------
 //                             Set new Textures
@@ -121,7 +123,9 @@ void SelectableGrid::SetSelectedTexture()
     {
         for (int i = 0; i <m_gameGrid->selectedItems().count(); i++) {
 
-            m_gameGrid->selectedItems().at(i)->setData(Qt::DecorationRole, QPixmap::fromImage(m_iconGrid->selectedItems().at(0)->)))
+            QPixmap image = m_iconGrid->selectedItems().at(i)->data(Qt::DecorationRole).value<QPixmap>();
+
+            m_gameGrid->selectedItems().at(i)->setData(Qt::DecorationRole, image);
         }
     }
 }

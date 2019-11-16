@@ -5,6 +5,7 @@
 #include <QWidget>
 #include <QFrame>
 #include <QTableWidget>
+#include <QEvent>
 
 QT_BEGIN_NAMESPACE
 class QMouseEvent;
@@ -17,6 +18,11 @@ public:
     explicit SelectableGrid(int t_xSize = 20, int t_ySize = 20, QWidget *parent = nullptr);
     QHBoxLayout * layout= new QHBoxLayout;
 
+signals:
+    void Mouse_Pressed();
+    void Mouse_Left();
+
+
 private:
     void update();
 
@@ -25,11 +31,13 @@ private:
     void SetupIconGrid();
     void setupGameGrid(int t_xSize = 20, int t_ySize = 20);
 
-    void mouseClickEvent(QMouseEvent * t_mouseEvent );
+    void mousePressEvent(QMouseEvent *event);
+    void mouseDoubleClickEvent(QMouseEvent *event);
+
 
     void setupIcons();
 
-    void resizeToContent(QTableView * tableView);
+    void resizeToContent(QTableWidget * tableView);
     QTableWidget * m_iconGrid = new QTableWidget(10,2);
     QTableWidget * m_gameGrid = new QTableWidget(20,20);
 
