@@ -22,12 +22,14 @@ signals:
     void Mouse_Pressed();
     void Mouse_Left();
 
+private slots:
+    void SetSelectedTexture();
 
 private:
     void update();
 
     void checkIfGameSelected();
-    void SetSelectedTexture();
+
     void SetupIconGrid();
     void setupGameGrid(int t_xSize = 20, int t_ySize = 20);
 
