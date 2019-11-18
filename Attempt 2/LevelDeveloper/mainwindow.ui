@@ -113,7 +113,7 @@
      <rect>
       <x>10</x>
       <y>411</y>
-      <width>811</width>
+      <width>511</width>
       <height>111</height>
      </rect>
     </property>
@@ -159,6 +159,19 @@
     <column/>
     <column/>
     <column/>
+   </widget>
+   <widget class="QPushButton" name="m_applyButton">
+    <property name="geometry">
+     <rect>
+      <x>520</x>
+      <y>420</y>
+      <width>281</width>
+      <height>41</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string>Apply Selected Texture</string>
+    </property>
    </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">

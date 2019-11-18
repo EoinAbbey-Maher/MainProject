@@ -1,0 +1,5 @@
+<!DOCTYPE RCC><RCC version = "1.0">
+<qresource>
+    <file alias = "floor.jpg">Images/floor.jpg</file>
+</qresource>
+</RCC>

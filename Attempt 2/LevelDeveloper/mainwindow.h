@@ -16,9 +16,13 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+private slots:
+    void handleApplyButton();
+
 private:
-    QVector<QLabel*> m_icons;
+    void setTextures();
     void setupIcons();
+    void setupGameGrid();
     Ui::MainWindow *ui;
 };
 #endif // MAINWINDOW_H
