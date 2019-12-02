@@ -2,6 +2,14 @@
 #define DIAGRAMITEM_H
 
 #include <QGraphicsPolygonItem>
+#include <QtWidgets>
+
+QT_BEGIN_NAMESPACE
+class QGraphicsItem;
+class QGraphicsScene;
+class QGraphicsSceneMoveEvent;
+class QPointF;
+QT_END_NAMESPACE
 
 class DiagramItem : public QGraphicsPolygonItem
 {

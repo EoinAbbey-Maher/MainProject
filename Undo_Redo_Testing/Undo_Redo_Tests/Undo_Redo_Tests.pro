@@ -16,21 +16,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    addcommand.cpp \
-    deletecommand.cpp \
+    commands.cpp \
     diagramitem.cpp \
     diagramscene.cpp \
     main.cpp \
-    mainwindow.cpp \
-    movecommand.cpp
+    mainwindow.cpp
 
 HEADERS += \
-    addcommand.h \
-    deletecommand.h \
+    commands.h \
     diagramitem.h \
     diagramscene.h \
-    mainwindow.h \
-    movecommand.h
+    mainwindow.h
 
 FORMS += \
     mainwindow.ui
@@ -39,3 +35,5 @@ FORMS += \
 qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
+
+DISTFILES +=

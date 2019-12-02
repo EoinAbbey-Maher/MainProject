@@ -2,8 +2,15 @@
 #define DIAGRAMSCENE_H
 
 #include <QGraphicsScene>
+#include <QObject>
 #include <diagramitem.h>
 
+
+class DiagramItem;
+QT_BEGIN_NAMESPACE
+class QGraphicsSceneDragDropEvent;
+class QGraphicViewItem;
+QT_END_NAMESPACE;
 
 class DiagramScene : public QGraphicsScene
 {
@@ -17,7 +24,7 @@ signals:
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
-    void mouseReleaseEvent(QGraphicsSceneMouseEvent * event) override;
+    void mouseReleaseEvent(QGraphicsSceneMouseEvent *event) override;
 
 private:
     QGraphicsItem *movingItem;

@@ -1,5 +1,9 @@
+#include <QtWidgets>
+
 #include "mainwindow.h"
-#include "ui_mainwindow.h"
+#include "commands.h"
+#include "diagramitem.h"
+#include "diagramscene.h"
 
 MainWindow::MainWindow()
 {
@@ -36,6 +40,39 @@ void MainWindow::createUndoView()
     undoView->setAttribute(Qt::WA_QuitOnClose, false);
 }
 
+void MainWindow::createActions()
+{
+    deleteAction = new QAction(tr("&Delete Item"), this);
+    deleteAction->setShortcut(tr("Del"));
+    connect(deleteAction, &QAction::triggered, this, &MainWindow::deleteItem);
+
+    addBoxAction = new QAction(tr("Add &Box"), this);
+    addBoxAction->setShortcut(tr("CTRL+O"));
+    connect(addBoxAction, &QAction::triggered, this, &MainWindow::addBox);
+
+    addTriangleAction = new QAction(tr("add &Triangle"), this);
+    addTriangleAction->setShortcut(tr("CTRL+T"));
+    connect(addTriangleAction, &QAction::triggered, this, &MainWindow::addTriangle);
+
+    undoAction = undoStack->createUndoAction(this,tr("&Undo"));
+    undoAction->setShortcut(QKeySequence::Undo);
+
+    redoAction = undoStack->createRedoAction(this,tr("&Redo"));
+    redoAction->setShortcut(QKeySequence::Redo);
+
+    exitAction = new QAction(tr("E&xit"), this);
+    exitAction->setShortcut(QKeySequence::Quit);
+    connect(exitAction, &QAction::triggered, this, &MainWindow::exitAction);
+
+    aboutAction = new QAction(tr("&About"), this);
+    QList<QKeySequence> aboutShortcuts;
+    aboutShortcuts << tr("CTRL+A") << tr("CTRL+B");
+    aboutAction->setShortcuts(aboutShortcuts);
+    connect(aboutAction, &QAction::triggered, this, &MainWindow::about);
+
+}
+
+
 void MainWindow::createMenus()
 {
     editMenu = menuBar()->addMenu(tr("&Edit"));
@@ -66,27 +103,27 @@ void MainWindow::deleteItem()
 
 void MainWindow::itemMenuAboutToHide()
 {
-    deletAction->setEnabled(true);
+    deleteAction->setEnabled(true);
 }
 
 void MainWindow::itemMenuAboutToShow()
 {
-    deletAction->setEnabled(!diagramScene->selectedItems().isEmpty());
+    deleteAction->setEnabled(!diagramScene->selectedItems().isEmpty());
 }
 
 void MainWindow::addBox()
 {
-    QUndoCommand *addCommand = new addCommand(DiagramItem::Box, diagramScene);
+    QUndoCommand *addCommand = new AddCommand(DiagramItem::Box, diagramScene);
     undoStack->push(addCommand);
 }
 
 void MainWindow::addTriangle()
 {
-    QUndoCommand *addCommand = new AddCommand(DiagramScene::Triangle,diagramScene);
+    QUndoCommand *addCommand = new AddCommand(DiagramItem::Triangle,diagramScene);
     undoStack->push(addCommand);
 }
 
 void MainWindow::about()
 {
-    QMessageBox::about(this, tr("About Undo"), tr("This is how to Use the Undo Framework"))
+    QMessageBox::about(this, tr("About Undo"), tr("This is how to Use the Undo Framework"));
 }

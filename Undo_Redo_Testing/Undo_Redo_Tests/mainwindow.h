@@ -11,8 +11,15 @@
 #include "diagramscene.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+class QAction;
+class QToolBar;
+class QMenu;
+class QUndoStack;
+class QUndoView;
 QT_END_NAMESPACE
+
+class DiagramScene;
+class DiagramItem;
 
 class MainWindow : public QMainWindow
 {
@@ -39,7 +46,7 @@ private:
     void createMenus();
     void createUndoView();
 
-QAction *deletAction;
+QAction *deleteAction;
 QAction *addBoxAction;
 QAction *addTriangleAction;
 QAction *undoAction;
