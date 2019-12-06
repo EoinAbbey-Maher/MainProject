@@ -1,13 +1,18 @@
+
+#include <QtWidgets>
+
 #include "mainwindow.h"
 
-#include <QApplication>
-
-int main(int argc, char *argv[])
+//! [0]
+int main(int argv, char *args[])
 {
     Q_INIT_RESOURCE(Undo_Redo_Tests);
 
-    QApplication app(argc, argv);
-    MainWindow w;
-    w.show();
+    QApplication app(argv, args);
+
+    MainWindow mainWindow;
+    mainWindow.show();
+
     return app.exec();
 }
+//! [0]

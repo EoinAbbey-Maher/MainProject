@@ -1,13 +1,13 @@
+
 #ifndef DIAGRAMITEM_H
 #define DIAGRAMITEM_H
 
 #include <QGraphicsPolygonItem>
-#include <QtWidgets>
 
 QT_BEGIN_NAMESPACE
 class QGraphicsItem;
 class QGraphicsScene;
-class QGraphicsSceneMoveEvent;
+class QGraphicsSceneMouseEvent;
 class QPointF;
 QT_END_NAMESPACE
 
@@ -17,7 +17,7 @@ public:
     enum { Type = UserType + 1 };
     enum DiagramType { Box, Triangle };
 
-    explicit DiagramItem(DiagramType diagramType, QGraphicsItem *item = nullptr);
+    explicit DiagramItem(DiagramType diagramType, QGraphicsItem *item = 0);
 
     DiagramType diagramType() const {
         return polygon() == boxPolygon ? Box : Triangle;
@@ -29,4 +29,4 @@ private:
     QPolygonF trianglePolygon;
 };
 
-#endif // DIAGRAMITEM_H
+#endif

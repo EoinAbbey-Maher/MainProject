@@ -173,6 +173,16 @@
      <string>Apply Selected Texture</string>
     </property>
    </widget>
+   <widget class="QGraphicsView" name="m_graphicsView">
+    <property name="geometry">
+     <rect>
+      <x>10</x>
+      <y>0</y>
+      <width>811</width>
+      <height>411</height>
+     </rect>
+    </property>
+   </widget>
   </widget>
   <widget class="QMenuBar" name="menubar">
    <property name="geometry">
@@ -180,7 +190,7 @@
      <x>0</x>
      <y>0</y>
      <width>832</width>
-     <height>22</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>

@@ -2,6 +2,7 @@
 #include "ui_mainwindow.h"
 
 
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow)
@@ -13,8 +14,6 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->m_applyButton, SIGNAL(released()), this,SLOT(handleApplyButton()));
 
 }
-
-
 
 MainWindow::~MainWindow()
 {
@@ -80,7 +79,8 @@ void MainWindow::setupIcons()
 // ------------------------------------------------------------------------------------
 void MainWindow::setupGameGrid()
 {
-    QImage *img = new QImage();
+
+
 
         for (int r = 0; r < ui->Game_Table ->rowCount(); r++)
            {
@@ -93,6 +93,11 @@ void MainWindow::setupGameGrid()
 
         ui->Game_Table->setEditTriggers(QAbstractItemView::NoEditTriggers);
 
+    QGraphicsProxyWidget *pr = scene->addWidget(ui->Game_Table);
+
+    ui->m_graphicsView->setScene(scene);
+
+    pr->moveBy(10,10);
 
 }
 

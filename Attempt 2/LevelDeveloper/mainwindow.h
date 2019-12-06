@@ -3,6 +3,9 @@
 #include "QtWidgets"
 #include <QWidget>
 #include <QMainWindow>
+#include <QGraphicsView>
+
+#include "mygraphicsview.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -16,13 +19,22 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
+public signals:
+
+
+
 private slots:
     void handleApplyButton();
 
-private:
+private: //variables
+    QGraphicsScene * scene = new QGraphicsScene(this);
+    MyGraphicsView * gView = new MyGraphicsView;
+    Ui::MainWindow *ui;
+
+private: //functions
     void setTextures();
     void setupIcons();
     void setupGameGrid();
-    Ui::MainWindow *ui;
+
 };
 #endif // MAINWINDOW_H

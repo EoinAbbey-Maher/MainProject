@@ -2,10 +2,10 @@
 #define COMMANDS_H
 
 #include <QUndoCommand>
-#include <diagramitem.h>
 
+#include "diagramitem.h"
 
-
+//! [0]
 class MoveCommand : public QUndoCommand
 {
 public:
@@ -24,7 +24,9 @@ private:
     QPointF myOldPos;
     QPointF newPos;
 };
+//! [0]
 
+//! [1]
 class DeleteCommand : public QUndoCommand
 {
 public:
@@ -37,7 +39,9 @@ private:
     DiagramItem *myDiagramItem;
     QGraphicsScene *myGraphicsScene;
 };
+//! [1]
 
+//! [2]
 class AddCommand : public QUndoCommand
 {
 public:
@@ -53,6 +57,7 @@ private:
     QGraphicsScene *myGraphicsScene;
     QPointF initialPosition;
 };
+//! [2]
 
 QString createCommandString(DiagramItem *item, const QPointF &point);
 

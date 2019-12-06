@@ -1,17 +1,17 @@
+
 #ifndef DIAGRAMSCENE_H
 #define DIAGRAMSCENE_H
 
-#include <QGraphicsScene>
 #include <QObject>
-#include <diagramitem.h>
-
+#include <QGraphicsScene>
 
 class DiagramItem;
 QT_BEGIN_NAMESPACE
 class QGraphicsSceneDragDropEvent;
-class QGraphicViewItem;
-QT_END_NAMESPACE;
+class QGraphicsViewItem;
+QT_END_NAMESPACE
 
+//! [0]
 class DiagramScene : public QGraphicsScene
 {
     Q_OBJECT
@@ -20,7 +20,7 @@ public:
     DiagramScene(QObject *parent = 0);
 
 signals:
-    void itemMoved(DiagramItem *movedItem, const QPointF *MovedFromPositon);
+    void itemMoved(DiagramItem *movedItem, const QPointF &movedFromPosition);
 
 protected:
     void mousePressEvent(QGraphicsSceneMouseEvent *event) override;
@@ -30,5 +30,6 @@ private:
     QGraphicsItem *movingItem;
     QPointF oldPos;
 };
+//! [0]
 
-#endif // DIAGRAMSCENE_H
+#endif
