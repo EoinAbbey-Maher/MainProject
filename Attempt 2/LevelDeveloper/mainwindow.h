@@ -4,6 +4,7 @@
 #include <QWidget>
 #include <QMainWindow>
 #include <QGraphicsView>
+#include <QTableWidget>
 
 #include "mygraphicsview.h"
 
@@ -27,19 +28,32 @@ signals:
 private slots:
     void handleApplyButton();
     void handleClearButton();
+    void wheelEvent(QWheelEvent *t_event);
+    void keyPressEvent(QKeyEvent * t_event);
 
 private: //variables
     QGraphicsScene * scene = new QGraphicsScene(this);
-    MyGraphicsView * gView = new MyGraphicsView;
+    QGraphicsProxyWidget * m_proxyWidget = new QGraphicsProxyWidget;
+
     Ui::MainWindow *ui;
 
+    QAction *setTextureAction;
+    QAction *removeTextureAction;
+    QAction *undoAction;
+    QAction * redoAction;
+
+    QUndoStack *undoStack;
+
 private: //functions
+
+    QTableWidget * m_mapTable;
+
+    void createActions();
+
     void setTextures();
     void removeTextures();
     void setupIcons();
     void setupGameGrid();
-
-
 
 };
 #endif // MAINWINDOW_H

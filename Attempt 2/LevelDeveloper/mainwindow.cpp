@@ -14,7 +14,7 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->m_applyButton, SIGNAL(released()), this,SLOT(handleApplyButton()));
     connect(ui->m_clearCellButton, SIGNAL(released()),this,SLOT(handleClearButton()));
     connect(ui->Icon_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
-    connect(ui->Game_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
+    connect(m_mapTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
 
 }
 
@@ -28,7 +28,7 @@ MainWindow::~MainWindow()
 void MainWindow::handleApplyButton()
 {
     //ui->m_applyButton->setText("Pressed");
-if(ui->Game_Table->selectedItems().size() != 0 && ui->Icon_Table->selectedItems().size() != 0)
+if( m_mapTable->selectedItems().size() != 0 && ui->Icon_Table->selectedItems().size() != 0)
 {
     setTextures();
 }
@@ -37,10 +37,27 @@ if(ui->Game_Table->selectedItems().size() != 0 && ui->Icon_Table->selectedItems(
 
 void MainWindow::handleClearButton()
 {
-    if(ui->Game_Table->selectedItems().size() != 0)
+    if(m_mapTable->selectedItems().size() != 0)
     {
         removeTextures();
     }
+}
+
+void MainWindow::createActions()
+{
+    setTextureAction = new QAction(tr("&Set Texture"), this);
+    connect(ui->Icon_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
+    connect( m_mapTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
+    connect(ui->m_applyButton, SIGNAL(released()), this,SLOT(handleApplyButton()));
+
+    removeTextureAction = new QAction(tr("&Remove Textures"), this);
+    connect(ui->m_clearCellButton, SIGNAL(released()),this,SLOT(handleClearButton()));
+
+    undoAction = undoStack->createUndoAction(this, tr("&Undo"));
+    undoAction->setShortcut(QKeySequence::Undo);
+
+    redoAction = undoStack->createRedoAction(this,tr("&Redo"));
+    undoAction->setShortcut(QKeySequence::Redo);
 }
 
 // ------------------------------------------------------------------------------------
@@ -48,9 +65,9 @@ void MainWindow::handleClearButton()
 // ------------------------------------------------------------------------------------
 void MainWindow::setTextures()
 {
-    for (int i = 0; i < ui->Game_Table->selectedItems().count(); i++)
+    for (int i = 0; i <  m_mapTable->selectedItems().count(); i++)
     {
-        ui->Game_Table->selectedItems().at(i)->setData(Qt::DecorationRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::DecorationRole).value<QPixmap>());
+         m_mapTable->selectedItems().at(i)->setData(Qt::DecorationRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::DecorationRole).value<QPixmap>());
     }
 
     qDebug() << "setup Textures";
@@ -64,9 +81,9 @@ void MainWindow::removeTextures()
     QString imgString = ":/empty.png";
     QImage *emptyImg = new QImage();
 
-    for (int i = 0; i < ui->Game_Table->selectedItems().count(); i++)
+    for (int i = 0; i <  m_mapTable->selectedItems().count(); i++)
     {
-        ui->Game_Table->selectedItems().at(i)->setData(Qt::DecorationRole, QPixmap::fromImage(*emptyImg));
+        m_mapTable->selectedItems().at(i)->setData(Qt::DecorationRole, QPixmap::fromImage(*emptyImg));
     }
 }
 
@@ -101,8 +118,6 @@ void MainWindow::setupIcons()
 
         ui->Icon_Table->setSelectionMode(QAbstractItemView::SingleSelection);
         ui->Icon_Table->setEditTriggers(QAbstractItemView::NoEditTriggers);
-
-
 }
 
 // ------------------------------------------------------------------------------------
@@ -110,21 +125,73 @@ void MainWindow::setupIcons()
 // ------------------------------------------------------------------------------------
 void MainWindow::setupGameGrid()
 {
-        for (int r = 0; r < ui->Game_Table ->rowCount(); r++)
+
+    ui->graphicsView->setScene(scene);
+
+    m_mapTable = new QTableWidget;
+    m_mapTable->horizontalHeader()->hide();
+    m_mapTable->horizontalHeader()->setDefaultSectionSize(50);
+    m_mapTable->verticalHeader()->hide();
+    m_mapTable->verticalHeader()->setDefaultSectionSize(50);
+
+
+
+    m_mapTable->setRowCount(20);
+    m_mapTable->setColumnCount(32);
+
+        for (int r = 0; r < m_mapTable->rowCount(); r++)
            {
-               for (int c = 0; c < ui->Game_Table->columnCount(); c++)
+               for (int c = 0; c < m_mapTable->columnCount(); c++)
                 {
+
                     QTableWidgetItem * item = new QTableWidgetItem;
-                    ui->Game_Table->setItem(r,c,item);
+                    m_mapTable->setItem(r,c,item);
                 }
           }
 
-        ui->Game_Table->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    m_mapTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    m_mapTable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_mapTable->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
 
-    QGraphicsProxyWidget *pr = scene->addWidget(ui->Game_Table);
+    m_mapTable->setFixedSize(m_mapTable->horizontalHeader()->length()+m_mapTable->verticalHeader()->width(), m_mapTable->verticalHeader()->length()+m_mapTable->horizontalHeader()->height());
+    m_proxyWidget = scene->addWidget( m_mapTable );
+    ui->graphicsView->scale(0.5,0.5);
+}
 
+void MainWindow::wheelEvent(QWheelEvent *t_event)
+{
+    if(t_event->delta() > 0)
+    {
+         ui->graphicsView->scale(1.25, 1.25);
+    }
+          else
+    {
+          ui->graphicsView->scale(0.8, 0.8);
+    }
+}
 
-    pr->moveBy(10,10);
+void MainWindow::keyPressEvent(QKeyEvent *t_event)
+{
+    if(t_event->key() == Qt::Key_W)
+    {
+       m_proxyWidget->moveBy(0,5);
+    }
+
+    if(t_event->key() == Qt::Key_S)
+    {
+       m_proxyWidget->moveBy(0,-5);
+    }
+
+    if(t_event->key() == Qt::Key_A)
+    {
+       m_proxyWidget->moveBy(5,0);
+    }
+
+    if(t_event->key() == Qt::Key_D)
+    {
+        m_proxyWidget->moveBy(-5,0);
+    }
+
 }
 
 

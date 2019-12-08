@@ -1,4 +1,5 @@
 
+
 #include <QtWidgets>
 
 #include "mainwindow.h"
@@ -51,7 +52,6 @@ void MainWindow::createActions()
 
 //! [3] //! [4]
     addBoxAction = new QAction(tr("Add &Box"), this);
-//! [4]
     addBoxAction->setShortcut(tr("Ctrl+O"));
     connect(addBoxAction, &QAction::triggered, this, &MainWindow::addBox);
 
