@@ -1,40 +1,33 @@
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
-#include "QtWidgets"
+
 #include <QWidget>
 #include <QMainWindow>
 #include <QGraphicsView>
+#include <QHBoxLayout>
+#include <QImage>
 
 #include "mygraphicsview.h"
+#include "tile.h"
+
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+class QSplitter;
+class QGraphicsScene;
+
 QT_END_NAMESPACE
 
-class MainWindow : public QMainWindow
+class MainWindow : public QWidget
 {
     Q_OBJECT
 
 public:
     MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    ~MainWindow() {}
+private:
+    void setupMatrix();
+    void initScene();
 
-public signals:
-
-
-
-private slots:
-    void handleApplyButton();
-
-private: //variables
-    QGraphicsScene * scene = new QGraphicsScene(this);
-    MyGraphicsView * gView = new MyGraphicsView;
-    Ui::MainWindow *ui;
-
-private: //functions
-    void setTextures();
-    void setupIcons();
-    void setupGameGrid();
-
+    QGraphicsScene * m_scene;
 };
 #endif // MAINWINDOW_H

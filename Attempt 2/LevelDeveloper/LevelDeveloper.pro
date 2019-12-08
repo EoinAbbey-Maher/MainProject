@@ -19,12 +19,14 @@ SOURCES += \
     commands.cpp \
     main.cpp \
     mainwindow.cpp \
-    mygraphicsview.cpp
+    mygraphicsview.cpp \
+    tile.cpp
 
 HEADERS += \
     commands.h \
     mainwindow.h \
-    mygraphicsview.h
+    mygraphicsview.h \
+    tile.h
 
 FORMS += \
     mainwindow.ui
