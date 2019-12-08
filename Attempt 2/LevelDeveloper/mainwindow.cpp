@@ -12,6 +12,9 @@ MainWindow::MainWindow(QWidget *parent)
     setupGameGrid();
 
     connect(ui->m_applyButton, SIGNAL(released()), this,SLOT(handleApplyButton()));
+    connect(ui->m_clearCellButton, SIGNAL(released()),this,SLOT(handleClearButton()));
+    connect(ui->Icon_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
+    connect(ui->Game_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
 
 }
 
@@ -20,10 +23,24 @@ MainWindow::~MainWindow()
     delete ui;
 }
 
+
+
 void MainWindow::handleApplyButton()
 {
-    ui->m_applyButton->setText("Pressed");
+    //ui->m_applyButton->setText("Pressed");
+if(ui->Game_Table->selectedItems().size() != 0 && ui->Icon_Table->selectedItems().size() != 0)
+{
     setTextures();
+}
+
+}
+
+void MainWindow::handleClearButton()
+{
+    if(ui->Game_Table->selectedItems().size() != 0)
+    {
+        removeTextures();
+    }
 }
 
 // ------------------------------------------------------------------------------------
@@ -40,12 +57,26 @@ void MainWindow::setTextures()
 }
 
 // ------------------------------------------------------------------------------------
+//            Remove Texture From Cell
+// ------------------------------------------------------------------------------------
+void MainWindow::removeTextures()
+{
+    QString imgString = ":/empty.png";
+    QImage *emptyImg = new QImage();
+
+    for (int i = 0; i < ui->Game_Table->selectedItems().count(); i++)
+    {
+        ui->Game_Table->selectedItems().at(i)->setData(Qt::DecorationRole, QPixmap::fromImage(*emptyImg));
+    }
+}
+
+// ------------------------------------------------------------------------------------
 //            Assign Textures From Button Press
 // ------------------------------------------------------------------------------------
 void MainWindow::setupIcons()
 {
 
-    QString imgString = ":/floor.jpg";
+    QString imgString = ":/floor.png";
     QImage *img = new QImage();
     bool loaded = img->load(imgString);
 
@@ -79,9 +110,6 @@ void MainWindow::setupIcons()
 // ------------------------------------------------------------------------------------
 void MainWindow::setupGameGrid()
 {
-
-
-
         for (int r = 0; r < ui->Game_Table ->rowCount(); r++)
            {
                for (int c = 0; c < ui->Game_Table->columnCount(); c++)
@@ -95,10 +123,8 @@ void MainWindow::setupGameGrid()
 
     QGraphicsProxyWidget *pr = scene->addWidget(ui->Game_Table);
 
-    ui->m_graphicsView->setScene(scene);
 
     pr->moveBy(10,10);
-
 }
 
 

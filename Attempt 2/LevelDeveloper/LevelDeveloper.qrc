@@ -1,5 +1,6 @@
 <!DOCTYPE RCC><RCC version = "1.0">
 <qresource>
-    <file alias = "floor.jpg">Images/floor.jpg</file>
+    <file alias = "floor.png">Images/floor.png</file>
+    <file alias = "empty.png">Images/empty.png</file>
 </qresource>
 </RCC>

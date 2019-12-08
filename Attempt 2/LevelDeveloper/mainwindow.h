@@ -19,12 +19,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-public signals:
+public:
+signals:
 
 
 
 private slots:
     void handleApplyButton();
+    void handleClearButton();
 
 private: //variables
     QGraphicsScene * scene = new QGraphicsScene(this);
@@ -33,8 +35,11 @@ private: //variables
 
 private: //functions
     void setTextures();
+    void removeTextures();
     void setupIcons();
     void setupGameGrid();
+
+
 
 };
 #endif // MAINWINDOW_H

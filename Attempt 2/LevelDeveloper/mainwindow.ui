@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>832</width>
-    <height>562</height>
+    <width>1045</width>
+    <height>741</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -30,8 +30,8 @@
      <rect>
       <x>10</x>
       <y>18</y>
-      <width>811</width>
-      <height>391</height>
+      <width>1021</width>
+      <height>551</height>
      </rect>
     </property>
     <property name="gridStyle">
@@ -112,7 +112,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>411</y>
+      <y>580</y>
       <width>511</width>
       <height>111</height>
      </rect>
@@ -163,9 +163,9 @@
    <widget class="QPushButton" name="m_applyButton">
     <property name="geometry">
      <rect>
-      <x>520</x>
-      <y>420</y>
-      <width>281</width>
+      <x>530</x>
+      <y>590</y>
+      <width>131</width>
       <height>41</height>
      </rect>
     </property>
@@ -173,14 +173,17 @@
      <string>Apply Selected Texture</string>
     </property>
    </widget>
-   <widget class="QGraphicsView" name="m_graphicsView">
+   <widget class="QPushButton" name="m_clearCellButton">
     <property name="geometry">
      <rect>
-      <x>10</x>
-      <y>0</y>
-      <width>811</width>
-      <height>411</height>
+      <x>530</x>
+      <y>640</y>
+      <width>131</width>
+      <height>41</height>
      </rect>
+    </property>
+    <property name="text">
+     <string>Clear Selected Cells</string>
     </property>
    </widget>
   </widget>
@@ -189,7 +192,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>832</width>
+     <width>1045</width>
      <height>20</height>
     </rect>
    </property>
