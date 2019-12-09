@@ -154,9 +154,15 @@
      <rect>
       <x>530</x>
       <y>590</y>
-      <width>131</width>
+      <width>251</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
     <property name="text">
      <string>Apply Selected Texture</string>
@@ -167,9 +173,15 @@
      <rect>
       <x>530</x>
       <y>640</y>
-      <width>131</width>
+      <width>251</width>
       <height>41</height>
      </rect>
+    </property>
+    <property name="sizePolicy">
+     <sizepolicy hsizetype="Minimum" vsizetype="Fixed">
+      <horstretch>0</horstretch>
+      <verstretch>0</verstretch>
+     </sizepolicy>
     </property>
     <property name="text">
      <string>Clear Selected Cells</string>
@@ -192,7 +204,7 @@
      <x>0</x>
      <y>0</y>
      <width>1044</width>
-     <height>20</height>
+     <height>21</height>
     </rect>
    </property>
   </widget>

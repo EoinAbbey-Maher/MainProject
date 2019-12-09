@@ -16,6 +16,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(ui->Icon_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
     connect(m_mapTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
 
+
+
 }
 
 MainWindow::~MainWindow()
