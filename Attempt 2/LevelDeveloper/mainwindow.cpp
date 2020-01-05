@@ -13,9 +13,10 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->m_applyButton, SIGNAL(released()), this,SLOT(handleApplyButton()));
     connect(ui->m_clearCellButton, SIGNAL(released()),this,SLOT(handleClearButton()));
+    connect(ui->m_exportButton, SIGNAL(released()), this, SLOT(handleExportButton()));
+
     connect(ui->Icon_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
     connect(m_mapTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
-
 
 
 }
@@ -24,8 +25,6 @@ MainWindow::~MainWindow()
 {
     delete ui;
 }
-
-
 
 void MainWindow::handleApplyButton()
 {
@@ -43,6 +42,11 @@ void MainWindow::handleClearButton()
     {
         removeTextures();
     }
+}
+
+void MainWindow::handleExportButton()
+{
+    m_xmlWriter.WriteTilesToFile(m_mapTable);
 }
 
 void MainWindow::createActions()
@@ -98,6 +102,20 @@ void MainWindow::setupIcons()
     QString imgString = ":/floor.png";
     QImage *img = new QImage();
     bool loaded = img->load(imgString);
+    img->scaled(50,50, Qt::KeepAspectRatio);
+
+    QImage *img1= new QImage();
+    img1->load(":/floor1.png");
+    img1->scaled(50,50, Qt::KeepAspectRatio);
+    QImage *img2= new QImage();
+    img2->load(":/floor2.png");
+    img2->scaled(50,50, Qt::KeepAspectRatio);
+    QImage *img3= new QImage();
+    img3->load(":/floor3.png");
+    img3->scaled(50,50, Qt::KeepAspectRatio);
+    QImage *img4= new QImage();
+    img4->load(":/empty.png");
+    img4->scaled(50,50, Qt::KeepAspectRatio);
 
     if(loaded)
     {
@@ -106,9 +124,43 @@ void MainWindow::setupIcons()
            {
                for (int c = 0; c < ui->Icon_Table ->columnCount(); c++)
                 {
-                    QTableWidgetItem * item = new QTableWidgetItem;
-                    item->setData(Qt::DecorationRole, QPixmap::fromImage(*img));
-                    ui->Icon_Table ->setItem(r,c,item);
+                    TileItem * item = new TileItem;
+                    switch(r){
+                    case 0:
+                        switch(c){
+                        case 0:
+                                item->setTexture(img);
+                                item->setData(Qt::DecorationRole, QPixmap::fromImage(*img));
+                                item->setIndexVal(QVector2D(r,c));
+                                ui->Icon_Table->setItem(r,c,item);
+                                    break;
+                        case 1:
+                                item->setTexture(img1);
+                                item->setIndexVal(QVector2D(r,c));
+                                ui->Icon_Table ->setItem(r,c,item);
+                                    break;
+                        case 2:
+                                item->setTexture(img2);
+                                item->setIndexVal(QVector2D(r,c));
+                                ui->Icon_Table ->setItem(r,c,item);
+                                    break;
+                        case 3:
+                                item->setTexture(img3);
+                                item->setIndexVal(QVector2D(r,c));
+                                ui->Icon_Table ->setItem(r,c,item);
+                                    break;
+
+                        default: break;
+                        }
+                        break;
+
+                    default:
+                        item->setTexture(img);
+                        item->setData(Qt::DecorationRole, QPixmap::fromImage(*img4));
+                        item->setIndexVal(QVector2D(r,c));
+                        ui->Icon_Table ->setItem(r,c,item);
+                        break;
+                    }
                 }
           }
     }
@@ -120,6 +172,7 @@ void MainWindow::setupIcons()
 
         ui->Icon_Table->setSelectionMode(QAbstractItemView::SingleSelection);
         ui->Icon_Table->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        ui->Icon_Table->show();
 }
 
 // ------------------------------------------------------------------------------------
@@ -129,14 +182,13 @@ void MainWindow::setupGameGrid()
 {
 
     ui->graphicsView->setScene(scene);
+    ui->m_FullCameraView->setScene(scene);
 
     m_mapTable = new QTableWidget;
     m_mapTable->horizontalHeader()->hide();
     m_mapTable->horizontalHeader()->setDefaultSectionSize(50);
     m_mapTable->verticalHeader()->hide();
     m_mapTable->verticalHeader()->setDefaultSectionSize(50);
-
-
 
     m_mapTable->setRowCount(20);
     m_mapTable->setColumnCount(32);
@@ -146,7 +198,7 @@ void MainWindow::setupGameGrid()
                for (int c = 0; c < m_mapTable->columnCount(); c++)
                 {
 
-                    QTableWidgetItem * item = new QTableWidgetItem;
+                    TileItem* item = new TileItem;
                     m_mapTable->setItem(r,c,item);
                 }
           }
@@ -158,6 +210,7 @@ void MainWindow::setupGameGrid()
     m_mapTable->setFixedSize(m_mapTable->horizontalHeader()->length()+m_mapTable->verticalHeader()->width(), m_mapTable->verticalHeader()->length()+m_mapTable->horizontalHeader()->height());
     m_proxyWidget = scene->addWidget( m_mapTable );
     ui->graphicsView->scale(0.5,0.5);
+    ui->m_FullCameraView->scale(0.17,0.17);
 }
 
 void MainWindow::wheelEvent(QWheelEvent *t_event)
@@ -176,24 +229,32 @@ void MainWindow::keyPressEvent(QKeyEvent *t_event)
 {
     if(t_event->key() == Qt::Key_W)
     {
-       m_proxyWidget->moveBy(0,5);
+       m_proxyWidget->moveBy(0,10);
     }
 
     if(t_event->key() == Qt::Key_S)
     {
-       m_proxyWidget->moveBy(0,-5);
+       m_proxyWidget->moveBy(0,-10);
     }
 
     if(t_event->key() == Qt::Key_A)
     {
-       m_proxyWidget->moveBy(5,0);
+       m_proxyWidget->moveBy(10,0);
     }
 
     if(t_event->key() == Qt::Key_D)
     {
-        m_proxyWidget->moveBy(-5,0);
+        m_proxyWidget->moveBy(-10,0);
     }
 
+    if(t_event->key() == Qt::Key_Q)
+    {
+         ui->graphicsView->scale(1.25, 1.25);
+    }
+    if(t_event->key() == Qt::Key_E)
+    {
+          ui->graphicsView->scale(0.8, 0.8);
+    }
 }
 
 

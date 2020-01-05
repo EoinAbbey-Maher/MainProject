@@ -20,13 +20,17 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     map_board.cpp \
-    mygraphicsview.cpp
+    mygraphicsview.cpp \
+    tileitem.cpp \
+    xmlwriter.cpp
 
 HEADERS += \
     commands.h \
     mainwindow.h \
     map_board.h \
-    mygraphicsview.h
+    mygraphicsview.h \
+    tileitem.h \
+    xmlwriter.h
 
 FORMS += \
     mainwindow.ui
@@ -38,3 +42,10 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     LevelDeveloper.qrc
+
+OTHER_FILES += \
+    Images/floor.png
+    Images/floor1.png
+    Images/floor2.png
+    Images/floor3.png
+    Images/empty.png</

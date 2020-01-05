@@ -3,6 +3,8 @@
 
 #include <QWidget>
 #include <QTableWidget>
+#include <QList>
+#include "tileitem.h"
 
 
 class Map_Board : public QTableWidget

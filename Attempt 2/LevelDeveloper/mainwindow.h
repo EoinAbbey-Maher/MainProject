@@ -6,7 +6,9 @@
 #include <QGraphicsView>
 #include <QTableWidget>
 
+#include "tileitem.h"
 #include "mygraphicsview.h"
+#include "xmlwriter.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -28,8 +30,10 @@ signals:
 private slots:
     void handleApplyButton();
     void handleClearButton();
+    void handleExportButton();
     void wheelEvent(QWheelEvent *t_event);
     void keyPressEvent(QKeyEvent * t_event);
+
 
 private: //variables
     QGraphicsScene * scene = new QGraphicsScene(this);
@@ -43,6 +47,8 @@ private: //variables
     QAction * redoAction;
 
     QUndoStack *undoStack;
+
+    XMLWriter m_xmlWriter;
 
 private: //functions
 
