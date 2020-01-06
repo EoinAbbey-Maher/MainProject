@@ -6,6 +6,7 @@
 #include <QtWidgets>
 #include <qtablewidget.h>
 #include <qfiledialog.h>
+#include <QMessageBox>
 
 #include "tileitem.h"
 

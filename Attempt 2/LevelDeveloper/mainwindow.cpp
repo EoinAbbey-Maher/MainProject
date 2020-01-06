@@ -210,7 +210,7 @@ void MainWindow::setupGameGrid()
     m_mapTable->setFixedSize(m_mapTable->horizontalHeader()->length()+m_mapTable->verticalHeader()->width(), m_mapTable->verticalHeader()->length()+m_mapTable->horizontalHeader()->height());
     m_proxyWidget = scene->addWidget( m_mapTable );
     ui->graphicsView->scale(0.5,0.5);
-    ui->m_FullCameraView->scale(0.17,0.17);
+    ui->m_FullCameraView->scale(0.1,0.1);
 }
 
 void MainWindow::wheelEvent(QWheelEvent *t_event)
