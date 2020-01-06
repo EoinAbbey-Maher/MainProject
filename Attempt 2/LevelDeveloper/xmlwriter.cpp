@@ -59,8 +59,8 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table)
 
 }
 
-//    QDir imagePaths("Images/floor.png");
-  //  if(QFile::exists("Images/floor.png"))
+    //QDir imagePaths("Images/floor.png");
+    //if(QFile::exists("Images/floor.png"))
     //{
       //  qDebug() << "Image Exists";
   //      QFile::copy("Images/floor.png","MapExport/floor.png");
