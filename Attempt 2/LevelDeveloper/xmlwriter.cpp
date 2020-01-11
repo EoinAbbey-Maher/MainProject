@@ -35,7 +35,8 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table)
                     xmlWriter.writeStartElement("Tile" + QString::number(tileCount));
                     xmlWriter.writeAttribute("IndexX", QString::number(c));
                     xmlWriter.writeAttribute("IndexY", QString::number(r));
-                    xmlWriter.writeAttribute("Image", "ImagePath");
+                    xmlWriter.writeAttribute("Position",t_table->itemAt(c,r)->data(Qt::UserRole+1).toString());
+                    xmlWriter.writeAttribute("Image", t_table->itemAt(c,r)->data(Qt::UserRole).toString());
                     xmlWriter.writeEndElement();
 
                     tileCount++;

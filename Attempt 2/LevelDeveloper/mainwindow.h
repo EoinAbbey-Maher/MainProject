@@ -52,6 +52,9 @@ private: //variables
 
 private: //functions
 
+    QVector<TileItem> m_iconTiles;
+    QVector<TileItem> m_mapTiles;
+
     QTableWidget * m_mapTable;
 
     void createActions();

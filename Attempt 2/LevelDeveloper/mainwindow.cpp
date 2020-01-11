@@ -17,8 +17,6 @@ MainWindow::MainWindow(QWidget *parent)
 
     connect(ui->Icon_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
     connect(m_mapTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
-
-
 }
 
 MainWindow::~MainWindow()
@@ -46,7 +44,7 @@ void MainWindow::handleClearButton()
 
 void MainWindow::handleExportButton()
 {
-    m_xmlWriter.WriteTilesToFile(m_mapTable);
+    m_xmlWriter.WriteTilesToFile(ui->Icon_Table);
 }
 
 void MainWindow::createActions()
@@ -74,6 +72,7 @@ void MainWindow::setTextures()
     for (int i = 0; i <  m_mapTable->selectedItems().count(); i++)
     {
          m_mapTable->selectedItems().at(i)->setData(Qt::DecorationRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::DecorationRole).value<QPixmap>());
+         m_mapTable->selectedItems().at(i)->setData(Qt::UserRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole));
     }
 
     qDebug() << "setup Textures";
@@ -105,15 +104,23 @@ void MainWindow::setupIcons()
     img->scaled(50,50, Qt::KeepAspectRatio);
 
     QImage *img1= new QImage();
+    QString img1String = ":/floor1.png";
     img1->load(":/floor1.png");
     img1->scaled(50,50, Qt::KeepAspectRatio);
+
     QImage *img2= new QImage();
+    QString img2String = ":/floor2.png";
     img2->load(":/floor2.png");
+
     img2->scaled(50,50, Qt::KeepAspectRatio);
+
     QImage *img3= new QImage();
+    QString img3String = ":/floor3.png";
     img3->load(":/floor3.png");
     img3->scaled(50,50, Qt::KeepAspectRatio);
+
     QImage *img4= new QImage();
+    QString img4String = ":/empty.png";
     img4->load(":/empty.png");
     img4->scaled(50,50, Qt::KeepAspectRatio);
 
@@ -130,22 +137,28 @@ void MainWindow::setupIcons()
                         switch(c){
                         case 0:
                                 item->setTexture(img);
-                                item->setData(Qt::DecorationRole, QPixmap::fromImage(*img));
+                                item->setData(Qt::UserRole, imgString);
                                 item->setIndexVal(QVector2D(r,c));
                                 ui->Icon_Table->setItem(r,c,item);
                                     break;
                         case 1:
                                 item->setTexture(img1);
+                                item->setData(Qt::UserRole, img1String);
+                                item->setData(Qt::DecorationRole, QPixmap::fromImage(*img1));
                                 item->setIndexVal(QVector2D(r,c));
                                 ui->Icon_Table ->setItem(r,c,item);
                                     break;
                         case 2:
                                 item->setTexture(img2);
+                                item->setData(Qt::DecorationRole, QPixmap::fromImage(*img2));
+                                item->setData(Qt::UserRole, img2String);
                                 item->setIndexVal(QVector2D(r,c));
                                 ui->Icon_Table ->setItem(r,c,item);
                                     break;
                         case 3:
                                 item->setTexture(img3);
+                                item->setData(Qt::DecorationRole, QPixmap::fromImage(*img3));
+                                item->setData(Qt::UserRole, img3String);
                                 item->setIndexVal(QVector2D(r,c));
                                 ui->Icon_Table ->setItem(r,c,item);
                                     break;
@@ -156,6 +169,7 @@ void MainWindow::setupIcons()
 
                     default:
                         item->setTexture(img);
+                        item->setData(Qt::UserRole, img4String);
                         item->setData(Qt::DecorationRole, QPixmap::fromImage(*img4));
                         item->setIndexVal(QVector2D(r,c));
                         ui->Icon_Table ->setItem(r,c,item);
@@ -179,8 +193,7 @@ void MainWindow::setupIcons()
 //            Assign Textures From Button Press
 // ------------------------------------------------------------------------------------
 void MainWindow::setupGameGrid()
-{
-
+{       
     ui->graphicsView->setScene(scene);
     ui->m_FullCameraView->setScene(scene);
 
@@ -199,6 +212,8 @@ void MainWindow::setupGameGrid()
                 {
 
                     TileItem* item = new TileItem;
+                    item->setData(Qt::UserRole, "Transparent");
+                    item->setData(Qt::UserRole+1, QVector2D(c*50, r*50));
                     m_mapTable->setItem(r,c,item);
                 }
           }
