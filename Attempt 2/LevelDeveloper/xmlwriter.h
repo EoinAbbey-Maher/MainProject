@@ -16,7 +16,7 @@ class XMLWriter : public QWidget
 public:
     XMLWriter();
 
-    void WriteTilesToFile(QTableWidget * t_table);
+    void WriteTilesToFile(QTableWidget * t_table, QVector<QString> t_TextureNames);
 signals:
 
 public slots:

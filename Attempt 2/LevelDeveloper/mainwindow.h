@@ -55,6 +55,8 @@ private: //functions
     QVector<TileItem> m_iconTiles;
     QVector<TileItem> m_mapTiles;
 
+    QVector<QString> m_TexturePaths;
+
     QTableWidget * m_mapTable;
 
     void createActions();

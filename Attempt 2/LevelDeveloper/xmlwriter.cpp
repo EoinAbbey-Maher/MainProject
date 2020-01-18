@@ -5,7 +5,7 @@ XMLWriter::XMLWriter()
 
 }
 
-void XMLWriter::WriteTilesToFile(QTableWidget *t_table)
+void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_TextureNames)
 {
     QString fileName = "Map_Data.xml";
     QString path = "MapExport/";
@@ -25,18 +25,25 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table)
         xmlWriter.setAutoFormatting(true);
         xmlWriter.writeStartDocument();
 
+
+        xmlWriter.writeStartElement("Map Values");
+        xmlWriter.writeTextElement("NoOfTextures", QString::number(t_TextureNames.size()));
+        xmlWriter.writeEndElement();
         xmlWriter.writeStartElement("Tiles");
+
 
         int tileCount = 0;
         for (int r = 0; r < t_table ->rowCount(); r++)
            {
                for (int c = 0; c < t_table ->columnCount(); c++)
                 {
+                   QTableWidgetItem* item = t_table->item(r,c);
+
                     xmlWriter.writeStartElement("Tile" + QString::number(tileCount));
-                    xmlWriter.writeAttribute("IndexX", QString::number(c));
-                    xmlWriter.writeAttribute("IndexY", QString::number(r));
-                    xmlWriter.writeAttribute("Position",t_table->itemAt(c,r)->data(Qt::UserRole+1).toString());
-                    xmlWriter.writeAttribute("Image", t_table->itemAt(c,r)->data(Qt::UserRole).toString());
+                    xmlWriter.writeTextElement("IndexX", QString::number(c));
+                    xmlWriter.writeTextElement("IndexY", QString::number(r));
+                    xmlWriter.writeTextElement("Position",item->data(Qt::UserRole+1).toString());
+                    xmlWriter.writeTextElement("Image", item->data(Qt::UserRole).toString());
                     xmlWriter.writeEndElement();
 
                     tileCount++;
