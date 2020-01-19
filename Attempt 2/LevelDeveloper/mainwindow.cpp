@@ -140,12 +140,14 @@ void MainWindow::setupIcons()
                         case 0:
                                 item->setTexture(img);
                                 item->setData(Qt::UserRole,m_TexturePaths[0]);
+                                item->setData(Qt::UserRole+3, "Floor");
                                 item->setIndexVal(QVector2D(r,c));
                                 ui->Icon_Table->setItem(r,c,item);
                                     break;
                         case 1:
                                 item->setTexture(img1);
                                 item->setData(Qt::UserRole,m_TexturePaths[1]);
+                                item->setData(Qt::UserRole+3, "Floor");
                                 item->setData(Qt::DecorationRole, QPixmap::fromImage(*img1));
                                 item->setIndexVal(QVector2D(r,c));
                                 ui->Icon_Table ->setItem(r,c,item);
@@ -153,6 +155,7 @@ void MainWindow::setupIcons()
                         case 2:
                                 item->setTexture(img2);
                                 item->setData(Qt::DecorationRole, QPixmap::fromImage(*img2));
+                                item->setData(Qt::UserRole+3, "Floor");
                                 item->setData(Qt::UserRole, m_TexturePaths[2]);
                                 item->setIndexVal(QVector2D(r,c));
                                 ui->Icon_Table ->setItem(r,c,item);
@@ -160,6 +163,7 @@ void MainWindow::setupIcons()
                         case 3:
                                 item->setTexture(img3);
                                 item->setData(Qt::DecorationRole, QPixmap::fromImage(*img3));
+                                item->setData(Qt::UserRole+3, "Floor");
                                 item->setData(Qt::UserRole,m_TexturePaths[3]);
                                 item->setIndexVal(QVector2D(r,c));
                                 ui->Icon_Table ->setItem(r,c,item);
@@ -172,6 +176,7 @@ void MainWindow::setupIcons()
                     default:
                         item->setTexture(img);
                         item->setData(Qt::UserRole, m_TexturePaths[4]);
+                        item->setData(Qt::UserRole+3, "Floor");
                         item->setData(Qt::DecorationRole, QPixmap::fromImage(*img4));
                         item->setIndexVal(QVector2D(r,c));
                         ui->Icon_Table ->setItem(r,c,item);
@@ -214,8 +219,10 @@ void MainWindow::setupGameGrid()
                 {
 
                     TileItem* item = new TileItem;
-                    item->setData(Qt::UserRole, "Transparent");
-                    item->setData(Qt::UserRole+1, "" + QString::number(r * 50) + " , " + QString::number(c* 50));
+                    item->setData(Qt::UserRole, "empty.png");
+                    item->setData(Qt::UserRole+1, QString::number(c * 32));
+                    item->setData(Qt::UserRole+2, QString::number(r * 32));
+                    item->setData(Qt::UserRole+3, "empty");
                     m_mapTable->setItem(r,c,item);
                 }
           }

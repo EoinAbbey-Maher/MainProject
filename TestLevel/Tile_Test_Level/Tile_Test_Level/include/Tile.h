@@ -27,9 +27,7 @@ public: //functions
 		sf::Texture * t_doorOpen, 
 		sf::Texture * t_doorClosed);
 
-	void setTexture(TileType t_type, const int T_XPOS = 0, const int T_YPOS= 0);
-	void setPosition();
-	void setIndex();
+	void setTexture(sf::Texture & t_texture);
 
 private: //functions
 
@@ -38,15 +36,16 @@ public: //variables
 	std::map<std::string,sf::Texture*> m_textureDict;
 	
 	sf::RectangleShape m_bodySquare;
-	TileType m_type;
+	std::string m_type;
 
+	sf::Vector2i indexPosition;
+	sf::Vector2f m_position{ 0,0 };
 private: //variables 
 	
 	sf::IntRect m_textureRect;
-	int const M_SIZE{ 26 };
+	int const M_SIZE{ 32};
 
-	sf::Vector2f indexPosition();
-	sf::Vector2f m_position{ 0,0 };
+	
 };
 
 #endif // !TILE

@@ -26,8 +26,15 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_Textu
         xmlWriter.writeStartDocument();
 
 
-        xmlWriter.writeStartElement("Map Values");
+        xmlWriter.writeStartElement("Map_Values");
         xmlWriter.writeTextElement("NoOfTextures", QString::number(t_TextureNames.size()));
+        xmlWriter.writeTextElement("TotalTiles", QString::number(t_table->rowCount() * t_table->columnCount()));
+
+        for (int i = 0; i < t_TextureNames.size(); i++)
+        {
+            xmlWriter.writeTextElement("Texture" + QString::number(i), t_TextureNames[i]);
+        }
+
         xmlWriter.writeEndElement();
         xmlWriter.writeStartElement("Tiles");
 
@@ -42,8 +49,10 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_Textu
                     xmlWriter.writeStartElement("Tile" + QString::number(tileCount));
                     xmlWriter.writeTextElement("IndexX", QString::number(c));
                     xmlWriter.writeTextElement("IndexY", QString::number(r));
-                    xmlWriter.writeTextElement("Position",item->data(Qt::UserRole+1).toString());
+                    xmlWriter.writeTextElement("PositionX",item->data(Qt::UserRole+1).toString());
+                    xmlWriter.writeTextElement("*",item->data(Qt::UserRole+2).toString());
                     xmlWriter.writeTextElement("Image", item->data(Qt::UserRole).toString());
+                    xmlWriter.writeTextElement("Type", item->data(Qt::UserRole+3).toString());
                     xmlWriter.writeEndElement();
 
                     tileCount++;

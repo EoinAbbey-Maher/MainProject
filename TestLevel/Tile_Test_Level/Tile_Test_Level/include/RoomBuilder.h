@@ -32,9 +32,9 @@ private: //variables
 	const int MAX_TEXTURES{ 6 };
 	int m_tileValue[M_TOTALHEIGHT][M_TOTALWIDTH];
 	std::vector<sf::Texture> m_textures;
+	std::vector<sf::String> m_textureAddresses;
 
 	sf::RenderWindow & m_window;
-
 
 	sf::Texture floor1;
 	sf::Texture floor2;

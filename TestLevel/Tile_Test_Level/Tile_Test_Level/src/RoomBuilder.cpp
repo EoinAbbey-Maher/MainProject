@@ -30,18 +30,50 @@ void RoomBuilder::loadFile(const char* t_roomName)
 	XMLDocument doc;
 	doc.LoadFile(t_roomName);
 
-	XMLText* indexX = doc.FirstChildElement("Tiles")->FirstChildElement("Tile0")->FirstChildElement("IndexX")->FirstChild()->ToText();
-	XMLText* indexY= doc.FirstChildElement("Tiles")->FirstChildElement("Tile0")->FirstChildElement("IndexY")->FirstChild()->ToText();
-	XMLText*  Position = doc.FirstChildElement("Tiles")->FirstChildElement("Tile0")->FirstChildElement("Position")->FirstChild()->ToText();
-	XMLText* ImageURL = doc.FirstChildElement("Tiles")->FirstChildElement("Tile0")->FirstChildElement("Image")->FirstChild()->ToText();
+	XMLText * NoOfTextures = doc.FirstChildElement("Map_Values")->FirstChildElement("NoOfTextures")->FirstChild()->ToText();
+	XMLText* TotalTilesXml= doc.FirstChildElement("Map_Values")->FirstChildElement("TotalTiles")->FirstChild()->ToText();
+	
 
-	std::string imageString = ImageURL->Value();
-	imageString = imageString.erase(0,2);
+	int noOfTextureInt = std::stoi(NoOfTextures->Value());
+	int TotalTilesInt= std::stoi(TotalTilesXml->Value());
+	
+	int t = 0;
 
-	std::cout << indexX->Value() << std::endl;
-	std::cout << indexY->Value() << std::endl;
-	std::cout << Position->Value() << std::endl;
-	std::cout << imageString << std::endl;
+	for (int i = 0; i < M_TOTALHEIGHT; i++)
+	{
+		for (int j = 0; j < M_TOTALWIDTH; j++)
+		{
+
+			std::string str = std::to_string(t);
+
+			XMLText* indexX = doc.FirstChildElement("Tiles")->FirstChildElement(tile)->FirstChildElement("IndexX")->FirstChild()->ToText();
+			XMLText* indexY = doc.FirstChildElement("Tiles")->FirstChildElement(tile)->FirstChildElement("IndexY")->FirstChild()->ToText();
+			XMLText* PositionX = doc.FirstChildElement("Tiles")->FirstChildElement(tile)->FirstChildElement("PositionX")->FirstChild()->ToText();
+			XMLText* PositionY = doc.FirstChildElement("Tiles")->FirstChildElement(tile)->FirstChildElement("PositionY")->FirstChild()->ToText();
+			XMLText* TypeXML = doc.FirstChildElement("Tiles")->FirstChildElement(tile)->FirstChildElement("PositionY")->FirstChild()->ToText();
+
+			XMLText* ImageURL = doc.FirstChildElement("Tiles")->FirstChildElement(tile)->FirstChildElement("Image")->FirstChild()->ToText();
+
+			m_tiles[i][j].indexPosition = sf::Vector2i(std::stoi(indexX->Value()), std::stoi(indexY->Value()));
+			m_tiles[i][j].m_position = sf::Vector2f(std::stof(PositionX->Value()), std::stof(PositionY->Value()));
+
+			t++;
+		} // !for j
+
+	} // !for i
+
+
+	for (int i = 0; i < noOfTextureInt; i++)
+	{
+		XMLText* ImageLink= doc.FirstChildElement("Tiles")->FirstChildElement("Tile0")->FirstChildElement("Image")->FirstChild()->ToText();
+		std::string imageString = ImageLink->Value();
+		imageString = imageString.erase(0, 2);
+
+		m_textureAddresses.push_back(imageString);
+
+		m_textures.push_back(sf::Texture());
+		m_textures[i].loadFromFile(m_textureAddresses[i]);
+	}
 
 
 	std::cout << "builder" << std::endl;
