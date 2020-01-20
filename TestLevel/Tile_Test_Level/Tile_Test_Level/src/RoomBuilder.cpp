@@ -43,16 +43,20 @@ void RoomBuilder::loadFile(const char* t_roomName)
 	{
 		for (int j = 0; j < M_TOTALWIDTH; j++)
 		{
+			
+			std::string str = "Tile" + std::to_string(t);
+			char tilearr[6] = {};
 
-			std::string str = std::to_string(t);
+			strcpy_s(tilearr, str.c_str());
+			
 
-			XMLText* indexX = doc.FirstChildElement("Tiles")->FirstChildElement(tile)->FirstChildElement("IndexX")->FirstChild()->ToText();
-			XMLText* indexY = doc.FirstChildElement("Tiles")->FirstChildElement(tile)->FirstChildElement("IndexY")->FirstChild()->ToText();
-			XMLText* PositionX = doc.FirstChildElement("Tiles")->FirstChildElement(tile)->FirstChildElement("PositionX")->FirstChild()->ToText();
-			XMLText* PositionY = doc.FirstChildElement("Tiles")->FirstChildElement(tile)->FirstChildElement("PositionY")->FirstChild()->ToText();
-			XMLText* TypeXML = doc.FirstChildElement("Tiles")->FirstChildElement(tile)->FirstChildElement("PositionY")->FirstChild()->ToText();
+			XMLText* indexX = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("IndexX")->FirstChild()->ToText();
+			XMLText* indexY = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("IndexY")->FirstChild()->ToText();
+			XMLText* PositionX = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("PositionX")->FirstChild()->ToText();
+			XMLText* PositionY = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("PositionY")->FirstChild()->ToText();
+			XMLText* TypeXML = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("PositionY")->FirstChild()->ToText();
 
-			XMLText* ImageURL = doc.FirstChildElement("Tiles")->FirstChildElement(tile)->FirstChildElement("Image")->FirstChild()->ToText();
+			XMLText* ImageURL = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("Image")->FirstChild()->ToText();
 
 			m_tiles[i][j].indexPosition = sf::Vector2i(std::stoi(indexX->Value()), std::stoi(indexY->Value()));
 			m_tiles[i][j].m_position = sf::Vector2f(std::stof(PositionX->Value()), std::stof(PositionY->Value()));
