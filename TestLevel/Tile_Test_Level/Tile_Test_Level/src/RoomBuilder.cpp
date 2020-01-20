@@ -3,16 +3,6 @@
 RoomBuilder::RoomBuilder(sf::RenderWindow & t_window) :
 	m_window(t_window)
 {
-	loadAssets();
-	
-	for (int i = 0; i < M_TOTALHEIGHT; i++)
-	{
-		for (int j = 0; j  < M_TOTALWIDTH; j++)
-		{			
-			m_tiles[i][j].init(sf::Vector2f(0, 0),&floor1, &floor2, &wall1, &wall2, &door1, &star);						
-		} // !for j
-		
-	} // !for i
 }
 
 RoomBuilder::~RoomBuilder()
@@ -37,6 +27,31 @@ void RoomBuilder::loadFile(const char* t_roomName)
 	int noOfTextureInt = std::stoi(NoOfTextures->Value());
 	int TotalTilesInt= std::stoi(TotalTilesXml->Value());
 	
+
+	for (int i = 0; i < noOfTextureInt; i++)
+	{
+		std::string str = "Texture" + std::to_string(i);
+		char texturearr[11] = {};
+
+		strcpy_s(texturearr, str.c_str());
+
+		XMLText* ImageLink = doc.FirstChildElement("Map_Values")->FirstChildElement(texturearr)->FirstChild()->ToText();
+		std::string imageString = ImageLink->Value();
+		imageString = imageString.erase(0, 2);
+
+		m_textureAddresses.push_back(imageString);
+
+		m_textures.push_back(sf::Texture());
+		
+		if (!m_textures[i].loadFromFile("assets\\Tiles\\" + imageString))
+		{
+			std::cout << "failed to load " << std::endl;
+		}
+
+
+		m_textureDict[imageString] = &m_textures[i];
+	}
+	
 	int t = 0;
 
 	for (int i = 0; i < M_TOTALHEIGHT; i++)
@@ -45,7 +60,7 @@ void RoomBuilder::loadFile(const char* t_roomName)
 		{
 			
 			std::string str = "Tile" + std::to_string(t);
-			char tilearr[6] = {};
+			char tilearr[10] = {};
 
 			strcpy_s(tilearr, str.c_str());
 			
@@ -57,9 +72,16 @@ void RoomBuilder::loadFile(const char* t_roomName)
 			XMLText* TypeXML = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("PositionY")->FirstChild()->ToText();
 
 			XMLText* ImageURL = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("Image")->FirstChild()->ToText();
+			
+			std::string imgStr =ImageURL->Value();
+			imgStr = imgStr.erase(0, 2);
 
 			m_tiles[i][j].indexPosition = sf::Vector2i(std::stoi(indexX->Value()), std::stoi(indexY->Value()));
 			m_tiles[i][j].m_position = sf::Vector2f(std::stof(PositionX->Value()), std::stof(PositionY->Value()));
+			m_tiles[i][j].m_ImgAddress = imgStr;
+
+			m_tiles[i][j].init(m_textureDict);
+
 
 			t++;
 		} // !for j
@@ -67,17 +89,7 @@ void RoomBuilder::loadFile(const char* t_roomName)
 	} // !for i
 
 
-	for (int i = 0; i < noOfTextureInt; i++)
-	{
-		XMLText* ImageLink= doc.FirstChildElement("Tiles")->FirstChildElement("Tile0")->FirstChildElement("Image")->FirstChild()->ToText();
-		std::string imageString = ImageLink->Value();
-		imageString = imageString.erase(0, 2);
-
-		m_textureAddresses.push_back(imageString);
-
-		m_textures.push_back(sf::Texture());
-		m_textures[i].loadFromFile(m_textureAddresses[i]);
-	}
+	
 
 
 	std::cout << "builder" << std::endl;

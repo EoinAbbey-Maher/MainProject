@@ -50,7 +50,7 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_Textu
                     xmlWriter.writeTextElement("IndexX", QString::number(c));
                     xmlWriter.writeTextElement("IndexY", QString::number(r));
                     xmlWriter.writeTextElement("PositionX",item->data(Qt::UserRole+1).toString());
-                    xmlWriter.writeTextElement("*",item->data(Qt::UserRole+2).toString());
+                    xmlWriter.writeTextElement("PositionY",item->data(Qt::UserRole+2).toString());
                     xmlWriter.writeTextElement("Image", item->data(Qt::UserRole).toString());
                     xmlWriter.writeTextElement("Type", item->data(Qt::UserRole+3).toString());
                     xmlWriter.writeEndElement();

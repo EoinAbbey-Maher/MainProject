@@ -23,6 +23,8 @@ private: // functions
 
 public: // variables
 
+	std::map<std::string, sf::Texture*> m_textureDict;
+
 	static const int M_TOTALHEIGHT = 20;
 	static const int M_TOTALWIDTH = 32;
 
