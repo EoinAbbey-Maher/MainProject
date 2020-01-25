@@ -49,7 +49,7 @@ void RoomBuilder::loadFile(const char* t_roomName)
 		}
 
 
-		m_textureDict[imageString] = &m_textures[i];
+		m_textureDict[imageString] = m_textures[i];
 	}
 	
 	int t = 0;
@@ -87,10 +87,6 @@ void RoomBuilder::loadFile(const char* t_roomName)
 		} // !for j
 
 	} // !for i
-
-
-	
-
 
 	std::cout << "builder" << std::endl;
 

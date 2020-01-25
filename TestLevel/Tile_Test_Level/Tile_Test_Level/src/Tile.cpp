@@ -8,9 +8,9 @@ Tile::~Tile()
 {
 }
 
-void Tile::init( std::map<std::string, sf::Texture*>& t_texturesMap)
+void Tile::init( std::map<std::string, sf::Texture>& t_texturesMap)
 {
-	m_bodySquare.setTexture(t_texturesMap["floor.png"]);
+	m_bodySquare.setTexture(&t_texturesMap[m_ImgAddress]);
 
 	m_bodySquare.setPosition(m_position);
 	m_bodySquare.setSize(sf::Vector2f(M_SIZE, M_SIZE));

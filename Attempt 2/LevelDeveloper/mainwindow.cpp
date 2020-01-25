@@ -96,7 +96,9 @@ void MainWindow::removeTextures()
     for (int i = 0; i <  m_mapTable->selectedItems().count(); i++)
     {
         m_mapTable->selectedItems().at(i)->setData(Qt::DecorationRole, QPixmap::fromImage(*emptyImg));
-    }
+        m_mapTable->selectedItems().at(i)->setData(Qt::UserRole, m_TexturePaths[4]);
+   }
+
 }
 
 // ------------------------------------------------------------------------------------

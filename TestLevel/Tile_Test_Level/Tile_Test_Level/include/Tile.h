@@ -19,7 +19,7 @@ public: //functions
 	~Tile();
 	void render(sf::RenderWindow & t_window);
 
-	void init(std::map<std::string, sf::Texture*> & t_texturesMap);
+	void init(std::map<std::string, sf::Texture> & t_texturesMap);
 	void setTexture(sf::Texture & t_texture);
 
 private: //functions
