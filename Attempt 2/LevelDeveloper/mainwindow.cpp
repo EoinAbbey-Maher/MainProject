@@ -8,6 +8,7 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
+    this->setStyleSheet("background-color: darkgrey;");
 
     m_TexturePaths.push_back(":/floor.png");
     m_TexturePaths.push_back(":/floor1.png");
