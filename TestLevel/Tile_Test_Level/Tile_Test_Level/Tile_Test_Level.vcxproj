@@ -126,6 +126,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="include\Game.h" />
+    <ClInclude Include="include\Global.h" />
     <ClInclude Include="include\RoomBuilder.h" />
     <ClInclude Include="include\Tile.h" />
     <ClInclude Include="include\tinyxml2.h" />

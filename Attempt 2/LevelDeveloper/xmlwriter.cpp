@@ -8,6 +8,8 @@ XMLWriter::XMLWriter()
 void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_TextureNames)
 {
     QString fileName = "Map_Data.xml";
+    QString SavePath = QFileDialog::getSaveFileName();
+;
     QString path = "MapExport/";
     QDir dir;
 
@@ -16,7 +18,7 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_Textu
         dir.mkpath(path);
     }
 
-    QFile file(path + fileName);
+    QFile file(SavePath);
     if(file.open(QIODevice::WriteOnly))
      {
 
@@ -67,7 +69,7 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_Textu
 
     switch(QMessageBox::question(
            this, tr("Map Export"),
-               tr("Map data has been sucessfully exported to the root folder of this application."),
+               tr("Map data has been sucessfully exported to Folder"),
                 QMessageBox::Ok))
 {
     case QMessageBox::Ok:

@@ -5,9 +5,10 @@
 #include <SFML/Graphics.hpp>
 #include <map>
 struct GlobalSettings {
-	unsigned static const int s_width{ 1080 };
-	unsigned static const int s_height{ 1080 };
+
+	unsigned static const int s_width{ 1024*2 };
+	unsigned static const int s_height{ 640*2 };
 
 };
 
-#endif // !GLOBAL_H
+#endif // !GLOBAL_H	

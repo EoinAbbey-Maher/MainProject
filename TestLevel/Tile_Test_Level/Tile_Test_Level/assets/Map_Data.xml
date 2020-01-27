@@ -14,7 +14,7 @@
         <IndexY>0</IndexY>
         <PositionX>0</PositionX>
         <PositionY>0</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile0>
     <Tile1>
@@ -22,7 +22,7 @@
         <IndexY>0</IndexY>
         <PositionX>32</PositionX>
         <PositionY>0</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile1>
     <Tile2>
@@ -30,7 +30,7 @@
         <IndexY>0</IndexY>
         <PositionX>64</PositionX>
         <PositionY>0</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile2>
     <Tile3>
@@ -38,7 +38,7 @@
         <IndexY>0</IndexY>
         <PositionX>96</PositionX>
         <PositionY>0</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile3>
     <Tile4>
@@ -46,7 +46,7 @@
         <IndexY>0</IndexY>
         <PositionX>128</PositionX>
         <PositionY>0</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile4>
     <Tile5>
@@ -270,7 +270,7 @@
         <IndexY>1</IndexY>
         <PositionX>0</PositionX>
         <PositionY>32</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile32>
     <Tile33>
@@ -278,7 +278,7 @@
         <IndexY>1</IndexY>
         <PositionX>32</PositionX>
         <PositionY>32</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile33>
     <Tile34>
@@ -286,7 +286,7 @@
         <IndexY>1</IndexY>
         <PositionX>64</PositionX>
         <PositionY>32</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile34>
     <Tile35>
@@ -294,7 +294,7 @@
         <IndexY>1</IndexY>
         <PositionX>96</PositionX>
         <PositionY>32</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile35>
     <Tile36>
@@ -302,7 +302,7 @@
         <IndexY>1</IndexY>
         <PositionX>128</PositionX>
         <PositionY>32</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile36>
     <Tile37>
@@ -526,7 +526,7 @@
         <IndexY>2</IndexY>
         <PositionX>0</PositionX>
         <PositionY>64</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile64>
     <Tile65>
@@ -534,7 +534,7 @@
         <IndexY>2</IndexY>
         <PositionX>32</PositionX>
         <PositionY>64</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile65>
     <Tile66>
@@ -542,7 +542,7 @@
         <IndexY>2</IndexY>
         <PositionX>64</PositionX>
         <PositionY>64</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile66>
     <Tile67>
@@ -550,7 +550,7 @@
         <IndexY>2</IndexY>
         <PositionX>96</PositionX>
         <PositionY>64</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile67>
     <Tile68>
@@ -558,7 +558,7 @@
         <IndexY>2</IndexY>
         <PositionX>128</PositionX>
         <PositionY>64</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile68>
     <Tile69>
@@ -646,7 +646,7 @@
         <IndexY>2</IndexY>
         <PositionX>480</PositionX>
         <PositionY>64</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile79>
     <Tile80>
@@ -654,7 +654,7 @@
         <IndexY>2</IndexY>
         <PositionX>512</PositionX>
         <PositionY>64</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile80>
     <Tile81>
@@ -662,7 +662,7 @@
         <IndexY>2</IndexY>
         <PositionX>544</PositionX>
         <PositionY>64</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile81>
     <Tile82>
@@ -670,7 +670,7 @@
         <IndexY>2</IndexY>
         <PositionX>576</PositionX>
         <PositionY>64</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile82>
     <Tile83>
@@ -678,7 +678,7 @@
         <IndexY>2</IndexY>
         <PositionX>608</PositionX>
         <PositionY>64</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile83>
     <Tile84>
@@ -686,7 +686,7 @@
         <IndexY>2</IndexY>
         <PositionX>640</PositionX>
         <PositionY>64</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile84>
     <Tile85>
@@ -782,7 +782,7 @@
         <IndexY>3</IndexY>
         <PositionX>0</PositionX>
         <PositionY>96</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile96>
     <Tile97>
@@ -790,7 +790,7 @@
         <IndexY>3</IndexY>
         <PositionX>32</PositionX>
         <PositionY>96</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile97>
     <Tile98>
@@ -798,7 +798,7 @@
         <IndexY>3</IndexY>
         <PositionX>64</PositionX>
         <PositionY>96</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile98>
     <Tile99>
@@ -806,7 +806,7 @@
         <IndexY>3</IndexY>
         <PositionX>96</PositionX>
         <PositionY>96</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile99>
     <Tile100>
@@ -814,7 +814,7 @@
         <IndexY>3</IndexY>
         <PositionX>128</PositionX>
         <PositionY>96</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile100>
     <Tile101>
@@ -838,7 +838,7 @@
         <IndexY>3</IndexY>
         <PositionX>224</PositionX>
         <PositionY>96</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile103>
     <Tile104>
@@ -846,7 +846,7 @@
         <IndexY>3</IndexY>
         <PositionX>256</PositionX>
         <PositionY>96</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile104>
     <Tile105>
@@ -902,7 +902,7 @@
         <IndexY>3</IndexY>
         <PositionX>480</PositionX>
         <PositionY>96</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile111>
     <Tile112>
@@ -910,7 +910,7 @@
         <IndexY>3</IndexY>
         <PositionX>512</PositionX>
         <PositionY>96</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile112>
     <Tile113>
@@ -918,7 +918,7 @@
         <IndexY>3</IndexY>
         <PositionX>544</PositionX>
         <PositionY>96</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile113>
     <Tile114>
@@ -926,7 +926,7 @@
         <IndexY>3</IndexY>
         <PositionX>576</PositionX>
         <PositionY>96</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile114>
     <Tile115>
@@ -934,7 +934,7 @@
         <IndexY>3</IndexY>
         <PositionX>608</PositionX>
         <PositionY>96</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile115>
     <Tile116>
@@ -942,7 +942,7 @@
         <IndexY>3</IndexY>
         <PositionX>640</PositionX>
         <PositionY>96</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile116>
     <Tile117>
@@ -1038,7 +1038,7 @@
         <IndexY>4</IndexY>
         <PositionX>0</PositionX>
         <PositionY>128</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile128>
     <Tile129>
@@ -1046,7 +1046,7 @@
         <IndexY>4</IndexY>
         <PositionX>32</PositionX>
         <PositionY>128</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile129>
     <Tile130>
@@ -1054,7 +1054,7 @@
         <IndexY>4</IndexY>
         <PositionX>64</PositionX>
         <PositionY>128</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile130>
     <Tile131>
@@ -1062,7 +1062,7 @@
         <IndexY>4</IndexY>
         <PositionX>96</PositionX>
         <PositionY>128</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile131>
     <Tile132>
@@ -1070,7 +1070,7 @@
         <IndexY>4</IndexY>
         <PositionX>128</PositionX>
         <PositionY>128</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile132>
     <Tile133>
@@ -1094,7 +1094,7 @@
         <IndexY>4</IndexY>
         <PositionX>224</PositionX>
         <PositionY>128</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile135>
     <Tile136>
@@ -1102,7 +1102,7 @@
         <IndexY>4</IndexY>
         <PositionX>256</PositionX>
         <PositionY>128</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile136>
     <Tile137>
@@ -1158,7 +1158,7 @@
         <IndexY>4</IndexY>
         <PositionX>480</PositionX>
         <PositionY>128</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile143>
     <Tile144>
@@ -1166,7 +1166,7 @@
         <IndexY>4</IndexY>
         <PositionX>512</PositionX>
         <PositionY>128</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile144>
     <Tile145>
@@ -1174,7 +1174,7 @@
         <IndexY>4</IndexY>
         <PositionX>544</PositionX>
         <PositionY>128</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile145>
     <Tile146>
@@ -1182,7 +1182,7 @@
         <IndexY>4</IndexY>
         <PositionX>576</PositionX>
         <PositionY>128</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile146>
     <Tile147>
@@ -1190,7 +1190,7 @@
         <IndexY>4</IndexY>
         <PositionX>608</PositionX>
         <PositionY>128</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile147>
     <Tile148>
@@ -1198,7 +1198,7 @@
         <IndexY>4</IndexY>
         <PositionX>640</PositionX>
         <PositionY>128</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile148>
     <Tile149>
@@ -1294,7 +1294,7 @@
         <IndexY>5</IndexY>
         <PositionX>0</PositionX>
         <PositionY>160</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile160>
     <Tile161>
@@ -1302,7 +1302,7 @@
         <IndexY>5</IndexY>
         <PositionX>32</PositionX>
         <PositionY>160</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile161>
     <Tile162>
@@ -1310,7 +1310,7 @@
         <IndexY>5</IndexY>
         <PositionX>64</PositionX>
         <PositionY>160</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile162>
     <Tile163>
@@ -1318,7 +1318,7 @@
         <IndexY>5</IndexY>
         <PositionX>96</PositionX>
         <PositionY>160</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile163>
     <Tile164>
@@ -1326,7 +1326,7 @@
         <IndexY>5</IndexY>
         <PositionX>128</PositionX>
         <PositionY>160</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile164>
     <Tile165>
@@ -1350,7 +1350,7 @@
         <IndexY>5</IndexY>
         <PositionX>224</PositionX>
         <PositionY>160</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile167>
     <Tile168>
@@ -1358,7 +1358,7 @@
         <IndexY>5</IndexY>
         <PositionX>256</PositionX>
         <PositionY>160</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile168>
     <Tile169>
@@ -1414,7 +1414,7 @@
         <IndexY>5</IndexY>
         <PositionX>480</PositionX>
         <PositionY>160</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile175>
     <Tile176>
@@ -1422,7 +1422,7 @@
         <IndexY>5</IndexY>
         <PositionX>512</PositionX>
         <PositionY>160</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile176>
     <Tile177>
@@ -1430,7 +1430,7 @@
         <IndexY>5</IndexY>
         <PositionX>544</PositionX>
         <PositionY>160</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile177>
     <Tile178>
@@ -1438,7 +1438,7 @@
         <IndexY>5</IndexY>
         <PositionX>576</PositionX>
         <PositionY>160</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile178>
     <Tile179>
@@ -1446,7 +1446,7 @@
         <IndexY>5</IndexY>
         <PositionX>608</PositionX>
         <PositionY>160</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile179>
     <Tile180>
@@ -1454,7 +1454,7 @@
         <IndexY>5</IndexY>
         <PositionX>640</PositionX>
         <PositionY>160</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile180>
     <Tile181>
@@ -1550,7 +1550,7 @@
         <IndexY>6</IndexY>
         <PositionX>0</PositionX>
         <PositionY>192</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile192>
     <Tile193>
@@ -1558,7 +1558,7 @@
         <IndexY>6</IndexY>
         <PositionX>32</PositionX>
         <PositionY>192</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile193>
     <Tile194>
@@ -1566,7 +1566,7 @@
         <IndexY>6</IndexY>
         <PositionX>64</PositionX>
         <PositionY>192</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile194>
     <Tile195>
@@ -1574,7 +1574,7 @@
         <IndexY>6</IndexY>
         <PositionX>96</PositionX>
         <PositionY>192</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile195>
     <Tile196>
@@ -1582,7 +1582,7 @@
         <IndexY>6</IndexY>
         <PositionX>128</PositionX>
         <PositionY>192</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile196>
     <Tile197>
@@ -1606,7 +1606,7 @@
         <IndexY>6</IndexY>
         <PositionX>224</PositionX>
         <PositionY>192</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile199>
     <Tile200>
@@ -1614,7 +1614,7 @@
         <IndexY>6</IndexY>
         <PositionX>256</PositionX>
         <PositionY>192</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile200>
     <Tile201>
@@ -1670,7 +1670,7 @@
         <IndexY>6</IndexY>
         <PositionX>480</PositionX>
         <PositionY>192</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile207>
     <Tile208>
@@ -1678,7 +1678,7 @@
         <IndexY>6</IndexY>
         <PositionX>512</PositionX>
         <PositionY>192</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile208>
     <Tile209>
@@ -1686,7 +1686,7 @@
         <IndexY>6</IndexY>
         <PositionX>544</PositionX>
         <PositionY>192</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile209>
     <Tile210>
@@ -1694,7 +1694,7 @@
         <IndexY>6</IndexY>
         <PositionX>576</PositionX>
         <PositionY>192</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile210>
     <Tile211>
@@ -1702,7 +1702,7 @@
         <IndexY>6</IndexY>
         <PositionX>608</PositionX>
         <PositionY>192</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile211>
     <Tile212>
@@ -1710,7 +1710,7 @@
         <IndexY>6</IndexY>
         <PositionX>640</PositionX>
         <PositionY>192</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile212>
     <Tile213>
@@ -1806,7 +1806,7 @@
         <IndexY>7</IndexY>
         <PositionX>0</PositionX>
         <PositionY>224</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile224>
     <Tile225>
@@ -1814,7 +1814,7 @@
         <IndexY>7</IndexY>
         <PositionX>32</PositionX>
         <PositionY>224</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile225>
     <Tile226>
@@ -1822,7 +1822,7 @@
         <IndexY>7</IndexY>
         <PositionX>64</PositionX>
         <PositionY>224</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile226>
     <Tile227>
@@ -1830,7 +1830,7 @@
         <IndexY>7</IndexY>
         <PositionX>96</PositionX>
         <PositionY>224</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile227>
     <Tile228>
@@ -1838,7 +1838,7 @@
         <IndexY>7</IndexY>
         <PositionX>128</PositionX>
         <PositionY>224</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile228>
     <Tile229>
@@ -1862,7 +1862,7 @@
         <IndexY>7</IndexY>
         <PositionX>224</PositionX>
         <PositionY>224</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile231>
     <Tile232>
@@ -1870,7 +1870,7 @@
         <IndexY>7</IndexY>
         <PositionX>256</PositionX>
         <PositionY>224</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile232>
     <Tile233>
@@ -1926,7 +1926,7 @@
         <IndexY>7</IndexY>
         <PositionX>480</PositionX>
         <PositionY>224</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile239>
     <Tile240>
@@ -1934,7 +1934,7 @@
         <IndexY>7</IndexY>
         <PositionX>512</PositionX>
         <PositionY>224</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile240>
     <Tile241>
@@ -1942,7 +1942,7 @@
         <IndexY>7</IndexY>
         <PositionX>544</PositionX>
         <PositionY>224</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile241>
     <Tile242>
@@ -1950,7 +1950,7 @@
         <IndexY>7</IndexY>
         <PositionX>576</PositionX>
         <PositionY>224</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile242>
     <Tile243>
@@ -1958,7 +1958,7 @@
         <IndexY>7</IndexY>
         <PositionX>608</PositionX>
         <PositionY>224</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile243>
     <Tile244>
@@ -1966,7 +1966,7 @@
         <IndexY>7</IndexY>
         <PositionX>640</PositionX>
         <PositionY>224</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile244>
     <Tile245>
@@ -2062,7 +2062,7 @@
         <IndexY>8</IndexY>
         <PositionX>0</PositionX>
         <PositionY>256</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile256>
     <Tile257>
@@ -2070,7 +2070,7 @@
         <IndexY>8</IndexY>
         <PositionX>32</PositionX>
         <PositionY>256</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile257>
     <Tile258>
@@ -2078,7 +2078,7 @@
         <IndexY>8</IndexY>
         <PositionX>64</PositionX>
         <PositionY>256</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile258>
     <Tile259>
@@ -2086,7 +2086,7 @@
         <IndexY>8</IndexY>
         <PositionX>96</PositionX>
         <PositionY>256</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile259>
     <Tile260>
@@ -2094,7 +2094,7 @@
         <IndexY>8</IndexY>
         <PositionX>128</PositionX>
         <PositionY>256</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor2.png</Image>
         <Type>empty</Type>
     </Tile260>
     <Tile261>
@@ -2118,7 +2118,7 @@
         <IndexY>8</IndexY>
         <PositionX>224</PositionX>
         <PositionY>256</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile263>
     <Tile264>
@@ -2126,7 +2126,7 @@
         <IndexY>8</IndexY>
         <PositionX>256</PositionX>
         <PositionY>256</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile264>
     <Tile265>
@@ -2182,7 +2182,7 @@
         <IndexY>8</IndexY>
         <PositionX>480</PositionX>
         <PositionY>256</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile271>
     <Tile272>
@@ -2190,7 +2190,7 @@
         <IndexY>8</IndexY>
         <PositionX>512</PositionX>
         <PositionY>256</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile272>
     <Tile273>
@@ -2198,7 +2198,7 @@
         <IndexY>8</IndexY>
         <PositionX>544</PositionX>
         <PositionY>256</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile273>
     <Tile274>
@@ -2206,7 +2206,7 @@
         <IndexY>8</IndexY>
         <PositionX>576</PositionX>
         <PositionY>256</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile274>
     <Tile275>
@@ -2214,7 +2214,7 @@
         <IndexY>8</IndexY>
         <PositionX>608</PositionX>
         <PositionY>256</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile275>
     <Tile276>
@@ -2222,7 +2222,7 @@
         <IndexY>8</IndexY>
         <PositionX>640</PositionX>
         <PositionY>256</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile276>
     <Tile277>
@@ -2374,7 +2374,7 @@
         <IndexY>9</IndexY>
         <PositionX>224</PositionX>
         <PositionY>288</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile295>
     <Tile296>
@@ -2382,7 +2382,7 @@
         <IndexY>9</IndexY>
         <PositionX>256</PositionX>
         <PositionY>288</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile296>
     <Tile297>
@@ -2438,7 +2438,7 @@
         <IndexY>9</IndexY>
         <PositionX>480</PositionX>
         <PositionY>288</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile303>
     <Tile304>
@@ -2446,7 +2446,7 @@
         <IndexY>9</IndexY>
         <PositionX>512</PositionX>
         <PositionY>288</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile304>
     <Tile305>
@@ -2454,7 +2454,7 @@
         <IndexY>9</IndexY>
         <PositionX>544</PositionX>
         <PositionY>288</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile305>
     <Tile306>
@@ -2462,7 +2462,7 @@
         <IndexY>9</IndexY>
         <PositionX>576</PositionX>
         <PositionY>288</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile306>
     <Tile307>
@@ -2470,7 +2470,7 @@
         <IndexY>9</IndexY>
         <PositionX>608</PositionX>
         <PositionY>288</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile307>
     <Tile308>
@@ -2478,7 +2478,7 @@
         <IndexY>9</IndexY>
         <PositionX>640</PositionX>
         <PositionY>288</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile308>
     <Tile309>
@@ -2630,7 +2630,7 @@
         <IndexY>10</IndexY>
         <PositionX>224</PositionX>
         <PositionY>320</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile327>
     <Tile328>
@@ -2638,7 +2638,7 @@
         <IndexY>10</IndexY>
         <PositionX>256</PositionX>
         <PositionY>320</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile328>
     <Tile329>
@@ -2694,7 +2694,7 @@
         <IndexY>10</IndexY>
         <PositionX>480</PositionX>
         <PositionY>320</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile335>
     <Tile336>
@@ -2702,7 +2702,7 @@
         <IndexY>10</IndexY>
         <PositionX>512</PositionX>
         <PositionY>320</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile336>
     <Tile337>
@@ -2710,7 +2710,7 @@
         <IndexY>10</IndexY>
         <PositionX>544</PositionX>
         <PositionY>320</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile337>
     <Tile338>
@@ -2718,7 +2718,7 @@
         <IndexY>10</IndexY>
         <PositionX>576</PositionX>
         <PositionY>320</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile338>
     <Tile339>
@@ -2726,7 +2726,7 @@
         <IndexY>10</IndexY>
         <PositionX>608</PositionX>
         <PositionY>320</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile339>
     <Tile340>
@@ -2734,7 +2734,7 @@
         <IndexY>10</IndexY>
         <PositionX>640</PositionX>
         <PositionY>320</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile340>
     <Tile341>
@@ -2886,7 +2886,7 @@
         <IndexY>11</IndexY>
         <PositionX>224</PositionX>
         <PositionY>352</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile359>
     <Tile360>
@@ -2894,7 +2894,7 @@
         <IndexY>11</IndexY>
         <PositionX>256</PositionX>
         <PositionY>352</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile360>
     <Tile361>
@@ -2950,7 +2950,7 @@
         <IndexY>11</IndexY>
         <PositionX>480</PositionX>
         <PositionY>352</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile367>
     <Tile368>
@@ -2958,7 +2958,7 @@
         <IndexY>11</IndexY>
         <PositionX>512</PositionX>
         <PositionY>352</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile368>
     <Tile369>
@@ -2966,7 +2966,7 @@
         <IndexY>11</IndexY>
         <PositionX>544</PositionX>
         <PositionY>352</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile369>
     <Tile370>
@@ -2974,7 +2974,7 @@
         <IndexY>11</IndexY>
         <PositionX>576</PositionX>
         <PositionY>352</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile370>
     <Tile371>
@@ -2982,7 +2982,7 @@
         <IndexY>11</IndexY>
         <PositionX>608</PositionX>
         <PositionY>352</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile371>
     <Tile372>
@@ -2990,7 +2990,7 @@
         <IndexY>11</IndexY>
         <PositionX>640</PositionX>
         <PositionY>352</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor3.png</Image>
         <Type>empty</Type>
     </Tile372>
     <Tile373>
@@ -3142,7 +3142,7 @@
         <IndexY>12</IndexY>
         <PositionX>224</PositionX>
         <PositionY>384</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile391>
     <Tile392>
@@ -3150,7 +3150,7 @@
         <IndexY>12</IndexY>
         <PositionX>256</PositionX>
         <PositionY>384</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile392>
     <Tile393>
@@ -3398,7 +3398,7 @@
         <IndexY>13</IndexY>
         <PositionX>224</PositionX>
         <PositionY>416</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile423>
     <Tile424>
@@ -3406,7 +3406,7 @@
         <IndexY>13</IndexY>
         <PositionX>256</PositionX>
         <PositionY>416</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile424>
     <Tile425>
@@ -3654,7 +3654,7 @@
         <IndexY>14</IndexY>
         <PositionX>224</PositionX>
         <PositionY>448</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile455>
     <Tile456>
@@ -3662,7 +3662,7 @@
         <IndexY>14</IndexY>
         <PositionX>256</PositionX>
         <PositionY>448</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile456>
     <Tile457>
@@ -3910,7 +3910,7 @@
         <IndexY>15</IndexY>
         <PositionX>224</PositionX>
         <PositionY>480</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile487>
     <Tile488>
@@ -3918,7 +3918,7 @@
         <IndexY>15</IndexY>
         <PositionX>256</PositionX>
         <PositionY>480</PositionY>
-        <Image>:/empty.png</Image>
+        <Image>:/floor1.png</Image>
         <Type>empty</Type>
     </Tile488>
     <Tile489>
