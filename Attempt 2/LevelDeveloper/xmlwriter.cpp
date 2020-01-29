@@ -1,4 +1,5 @@
 #include "xmlwriter.h"
+#include "zlib.h"
 
 XMLWriter::XMLWriter()
 {
@@ -8,17 +9,24 @@ XMLWriter::XMLWriter()
 void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_TextureNames)
 {
     QString fileName = "Map_Data.xml";
-    QString SavePath = QFileDialog::getSaveFileName();
-;
+ // QString SavePath = QFileDialog::getSaveFileName();
+
+    QString ImageFolder = "Images/";
     QString path = "MapExport/";
     QDir dir;
+    QDir imageDir;
 
     if(!dir.exists(path))
     {
         dir.mkpath(path);
     }
 
-    QFile file(SavePath);
+    if(!imageDir.exists(path + ImageFolder))
+    {
+        dir.mkpath(path + ImageFolder);
+    }
+
+     QFile file(path + fileName);
     if(file.open(QIODevice::WriteOnly))
      {
 
@@ -34,7 +42,17 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_Textu
 
         for (int i = 0; i < t_TextureNames.size(); i++)
         {
+            QImage * image = new QImage(t_TextureNames[i]);
+
+            QString str = t_TextureNames[i];
+            str.remove(0,2);
+
+
+            image->save(path + ImageFolder + str);
+
+
             xmlWriter.writeTextElement("Texture" + QString::number(i), t_TextureNames[i]);
+
         }
 
         xmlWriter.writeEndElement();
