@@ -8,6 +8,8 @@
 #include <qfiledialog.h>
 #include <QMessageBox>
 
+#include "JlCompress.h"
+
 #include "tileitem.h"
 
 class XMLWriter : public QWidget

@@ -83,6 +83,8 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_Textu
         xmlWriter.writeEndDocument();
         file.close();
 
+        JlCompress::compressDir("ZippedGameData", path + fileName, true);
+
     }
 
     switch(QMessageBox::question(
@@ -95,18 +97,6 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_Textu
         break;
 
 }
-
-    //QDir imagePaths("Images/floor.png");
-    //if(QFile::exists("Images/floor.png"))
-    //{
-      //  qDebug() << "Image Exists";
-  //      QFile::copy("Images/floor.png","MapExport/floor.png");
-    //}
-   // else
-    //{
-      //  qDebug() << "no image in location";
-    //}
-
 
 
 }
