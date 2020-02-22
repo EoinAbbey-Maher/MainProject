@@ -34,6 +34,9 @@ private slots:
     void wheelEvent(QWheelEvent *t_event);
     void keyPressEvent(QKeyEvent * t_event);
 
+    void open();
+    void newMap();
+
 
 private: //variables
     QGraphicsScene * scene = new QGraphicsScene(this);
@@ -45,26 +48,33 @@ private: //variables
     QAction *removeTextureAction;
     QAction *undoAction;
     QAction * redoAction;
+    QAction * saveAsAct;
+    QAction * newMapAct;
 
     QUndoStack *undoStack;
 
     XMLWriter m_xmlWriter;
 
-private: //functions
-
-    QVector<TileItem> m_iconTiles;
     QVector<TileItem> m_mapTiles;
+    QVector<TileItem> m_iconTiles;
 
     QVector<QString> m_TexturePaths;
 
     QTableWidget * m_mapTable;
 
+
+private: //functions
+
+
+    void createMenus();
     void createActions();
 
     void setTextures();
     void removeTextures();
     void setupIcons();
     void setupGameGrid();
+
+    bool SaveFile();
 
 };
 #endif // MAINWINDOW_H

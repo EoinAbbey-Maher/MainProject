@@ -1,6 +1,7 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
-
+#include <QMenu>
+#include <QMenuBar>
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -9,6 +10,8 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     this->setStyleSheet("background-color: darkgrey;");
+
+    createMenus();
 
     m_TexturePaths.push_back(":/floor.png");
     m_TexturePaths.push_back(":/floor1.png");
@@ -282,6 +285,34 @@ void MainWindow::keyPressEvent(QKeyEvent *t_event)
     {
           ui->graphicsView->scale(0.8, 0.8);
     }
+}
+
+void MainWindow::open()
+{
+
+}
+
+void MainWindow::newMap()
+{
+    m_mapTable->clear();
+    setupGameGrid();
+
+
+}
+
+void MainWindow::createMenus()
+{
+    QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
+    QAction * openAct = fileMenu->addAction(tr("&Open..."), this, &MainWindow::open);
+        openAct->setShortcut(QKeySequence::Open);
+
+    saveAsAct = fileMenu->addAction(tr("&Export Map As..."), this, &MainWindow::handleExportButton);
+
+    newMapAct = fileMenu->addAction(tr("&New Map"), this,&MainWindow::newMap);
+
+
+    fileMenu->addSeparator();
+
 }
 
 

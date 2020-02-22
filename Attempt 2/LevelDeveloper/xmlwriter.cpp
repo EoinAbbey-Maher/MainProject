@@ -1,5 +1,4 @@
 #include "xmlwriter.h"
-#include "zlib.h"
 
 XMLWriter::XMLWriter()
 {
@@ -82,8 +81,6 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_Textu
 
         xmlWriter.writeEndDocument();
         file.close();
-
-        JlCompress::compressDir("ZippedGameData", path + fileName, true);
 
     }
 
