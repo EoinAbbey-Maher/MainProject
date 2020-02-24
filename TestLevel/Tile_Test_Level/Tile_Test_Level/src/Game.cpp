@@ -7,7 +7,7 @@ Game::Game() :
 	m_roombuilder{m_window},
 	m_exitGame{false} 
 {
-	m_roombuilder.loadFile("assets\\Map_Data.xml");
+	m_roombuilder.loadFile("assets\\MapExport\\Map_Data.xml");
 }
 
 Game::~Game()

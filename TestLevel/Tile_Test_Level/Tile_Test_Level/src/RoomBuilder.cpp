@@ -43,7 +43,7 @@ void RoomBuilder::loadFile(const char* t_roomName)
 
 		m_textures.push_back(sf::Texture());
 		
-		if (!m_textures[i].loadFromFile("assets\\Tiles\\" + imageString))
+		if (!m_textures[i].loadFromFile("assets\\MapExport\\Images\\" + imageString))
 		{
 			std::cout << "failed to load " << std::endl;
 		}
