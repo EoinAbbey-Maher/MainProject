@@ -300,19 +300,24 @@ void MainWindow::newMap()
 
 }
 
+void MainWindow::closeProgram()
+{
+    close();
+}
+
 void MainWindow::createMenus()
 {
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
-    QAction * openAct = fileMenu->addAction(tr("&Open..."), this, &MainWindow::open);
-        openAct->setShortcut(QKeySequence::Open);
+    OpenMapAct = fileMenu->addAction(tr("&Open..."), this, &MainWindow::open);
+    OpenMapAct->setShortcut(QKeySequence::Open);
 
     saveAsAct = fileMenu->addAction(tr("&Export Map As..."), this, &MainWindow::handleExportButton);
+    saveAsAct->setShortcut(QKeySequence::Save);
 
     newMapAct = fileMenu->addAction(tr("&New Map"), this,&MainWindow::newMap);
 
+    closeMapAction = fileMenu->addAction(tr("&Quit Program"), this, &MainWindow::closeProgram);
 
     fileMenu->addSeparator();
 
 }
-
-

@@ -14,12 +14,12 @@ QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
 
-class MainWindow : public QDialog
+class MainWindow : public QMainWindow
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
+    MainWindow(QWidget *parent = 0);
     ~MainWindow();
 
 public:
@@ -36,6 +36,7 @@ private slots:
 
     void open();
     void newMap();
+    void closeProgram();
 
 
 private: //variables
@@ -50,6 +51,8 @@ private: //variables
     QAction * redoAction;
     QAction * saveAsAct;
     QAction * newMapAct;
+    QAction * closeMapAction;
+    QAction * OpenMapAct;
 
     QUndoStack *undoStack;
 
