@@ -16,24 +16,30 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
+    LevelDesignScreen.cpp \
     commands.cpp \
     main.cpp \
     mainwindow.cpp \
     map_board.cpp \
     mygraphicsview.cpp \
+    startupscreen.cpp \
     tileitem.cpp \
     xmlwriter.cpp
 
 HEADERS += \
+    LevelDesignScreen.h \
     commands.h \
     mainwindow.h \
     map_board.h \
     mygraphicsview.h \
+    startupscreen.h \
     tileitem.h \
     xmlwriter.h
 
 FORMS += \
-    mainwindow.ui
+    LevelDesignScreen.ui \
+    mainwindow.ui \
+    startupscreen.ui
 
 # Default rules for deployment.
 qnx: target.path = /tmp/$${TARGET}/bin

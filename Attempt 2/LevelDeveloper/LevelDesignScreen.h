@@ -1,5 +1,7 @@
-#ifndef MAINWINDOW_H
-#define MAINWINDOW_H
+#ifndef LEVELDESIGNSCREEN_H
+#define LEVELDESIGNSCREEN_H
+
+
 #include "QtWidgets"
 #include <QWidget>
 #include <QMainWindow>
@@ -11,16 +13,16 @@
 #include "xmlwriter.h"
 
 QT_BEGIN_NAMESPACE
-namespace Ui { class MainWindow; }
+namespace Ui { class LevelDesignScreen; }
 QT_END_NAMESPACE
 
-class MainWindow : public QDialog
+class LevelDesignScreen : public QDialog
 {
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
-    ~MainWindow();
+    LevelDesignScreen(QWidget *parent = nullptr);
+    ~LevelDesignScreen();
 
 public:
 signals:
@@ -42,7 +44,7 @@ private: //variables
     QGraphicsScene * scene = new QGraphicsScene(this);
     QGraphicsProxyWidget * m_proxyWidget = new QGraphicsProxyWidget;
 
-    Ui::MainWindow *ui;
+    Ui::LevelDesignScreen *ui;
 
     QAction *setTextureAction;
     QAction *removeTextureAction;
