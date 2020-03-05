@@ -38,6 +38,7 @@ private slots:
     void open();
     void newMap();
     void closeProgram();
+    void openNewTile();
 
 
 private: //variables
@@ -55,6 +56,8 @@ private: //variables
     QAction * closeMapAction;
     QAction * OpenMapAct;
 
+    QAction * openTile;
+
     QUndoStack *undoStack;
 
     XMLWriter m_xmlWriter;
@@ -70,6 +73,7 @@ private: //variables
 
 private: //functions
 
+    static void initImageFileDialog(QFileDialog& t_dialog, QFileDialog::AcceptMode t_accept);
 
     void createMenus();
     void createActions();
@@ -81,6 +85,7 @@ private: //functions
     void setupGameGrid(int t_height, int t_width);
 
     bool SaveFile();
+    bool LoadFile(const QString &fileName);
 
 };
 #endif // MAINWINDOW_H
