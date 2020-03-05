@@ -20,6 +20,7 @@ SOURCES += \
     main.cpp \
     mainwindow.cpp \
     map_board.cpp \
+    maplayoutscreen.cpp \
     mygraphicsview.cpp \
     startingscreen.cpp \
     tileitem.cpp \
@@ -29,6 +30,7 @@ HEADERS += \
     commands.h \
     mainwindow.h \
     map_board.h \
+    maplayoutscreen.h \
     mygraphicsview.h \
     startingscreen.h \
     tileitem.h \
@@ -36,6 +38,7 @@ HEADERS += \
 
 FORMS += \
     mainwindow.ui \
+    maplayoutscreen.ui \
     startingscreen.ui
 
 # Default rules for deployment.

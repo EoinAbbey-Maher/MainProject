@@ -30,6 +30,35 @@ MainWindow::MainWindow(QWidget *parent)
     connect(m_mapTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
 }
 
+MainWindow::MainWindow(int t_tableHeight, int t_tableWidth, QWidget *parent) :
+    QMainWindow(parent),
+    ui(new Ui::MainWindow)
+{
+    m_gameGridSize.setX(t_tableWidth);
+    m_gameGridSize.setY(t_tableHeight);
+
+    ui->setupUi(this);
+    this->setStyleSheet("background-color: darkgrey;");
+
+    createMenus();
+
+    m_TexturePaths.push_back(":/floor.png");
+    m_TexturePaths.push_back(":/floor1.png");
+    m_TexturePaths.push_back(":/floor2.png");
+    m_TexturePaths.push_back(":/floor3.png");
+    m_TexturePaths.push_back(":/empty.png");
+
+    setupIcons();
+    setupGameGrid(m_gameGridSize.y(), m_gameGridSize.x());
+
+    connect(ui->m_applyButton, SIGNAL(released()), this,SLOT(handleApplyButton()));
+    connect(ui->m_clearCellButton, SIGNAL(released()),this,SLOT(handleClearButton()));
+    connect(ui->m_exportButton, SIGNAL(released()), this, SLOT(handleExportButton()));
+
+    connect(ui->Icon_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
+    connect(m_mapTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
+}
+
 MainWindow::~MainWindow()
 {
     delete ui;
@@ -216,8 +245,8 @@ void MainWindow::setupGameGrid()
     m_mapTable->verticalHeader()->hide();
     m_mapTable->verticalHeader()->setDefaultSectionSize(50);
 
-    m_mapTable->setRowCount(20);
-    m_mapTable->setColumnCount(32);
+    m_mapTable->setRowCount(m_gameGridSize.y());
+    m_mapTable->setColumnCount(m_gameGridSize.x());
 
         for (int r = 0; r < m_mapTable->rowCount(); r++)
            {
@@ -241,6 +270,44 @@ void MainWindow::setupGameGrid()
     m_proxyWidget = scene->addWidget( m_mapTable );
     ui->graphicsView->scale(0.5,0.5);
     ui->m_FullCameraView->scale(0.1,0.1);
+}
+
+void MainWindow::setupGameGrid(int t_height, int t_width)
+{
+    ui->graphicsView->setScene(scene);
+    ui->m_FullCameraView->setScene(scene);
+
+    m_mapTable = new QTableWidget;
+    m_mapTable->horizontalHeader()->hide();
+    m_mapTable->horizontalHeader()->setDefaultSectionSize(50);
+    m_mapTable->verticalHeader()->hide();
+    m_mapTable->verticalHeader()->setDefaultSectionSize(50);
+
+    m_mapTable->setRowCount(t_height);
+    m_mapTable->setColumnCount(t_width);
+
+        for (int r = 0; r < m_mapTable->rowCount(); r++)
+           {
+               for (int c = 0; c < m_mapTable->columnCount(); c++)
+                {
+
+                    TileItem* item = new TileItem;
+                    item->setData(Qt::UserRole, "empty.png");
+                    item->setData(Qt::UserRole+1, QString::number(c * 32));
+                    item->setData(Qt::UserRole+2, QString::number(r * 32));
+                    item->setData(Qt::UserRole+3, "empty");
+                    m_mapTable->setItem(r,c,item);
+                }
+          }
+
+    m_mapTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
+    m_mapTable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    m_mapTable->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    m_mapTable->setFixedSize(m_mapTable->horizontalHeader()->length()+m_mapTable->verticalHeader()->width(), m_mapTable->verticalHeader()->length()+m_mapTable->horizontalHeader()->height());
+    m_proxyWidget = scene->addWidget( m_mapTable );
+    ui->graphicsView->scale(0.5,0.5);
+    ui->m_FullCameraView->scale(1,1);
 }
 
 void MainWindow::wheelEvent(QWheelEvent *t_event)

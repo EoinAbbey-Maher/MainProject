@@ -21,8 +21,8 @@ StartingScreen::~StartingScreen()
 void StartingScreen::HandleNewButton()
 {
     close();
-    m_levelWindow = new MainWindow();
-    m_levelWindow->show();
+    m_LayoutScreen = new MapLayoutScreen();
+    m_LayoutScreen ->show();
 }
 
 

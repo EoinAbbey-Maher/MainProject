@@ -19,7 +19,8 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = 0);
+    MainWindow(QWidget *parent = nullptr);
+    MainWindow(int t_tableHeight = 0, int t_tableWidth = 0, QWidget *parent = nullptr);
     ~MainWindow();
 
 public:
@@ -65,6 +66,7 @@ private: //variables
 
     QTableWidget * m_mapTable;
 
+    QPoint m_gameGridSize = QPoint(32,20);
 
 private: //functions
 
@@ -76,6 +78,7 @@ private: //functions
     void removeTextures();
     void setupIcons();
     void setupGameGrid();
+    void setupGameGrid(int t_height, int t_width);
 
     bool SaveFile();
 

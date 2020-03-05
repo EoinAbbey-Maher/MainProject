@@ -8,6 +8,9 @@
 
 
 #include "mainwindow.h"
+#include "maplayoutscreen.h"
+
+class MapLayoutScreen;
 
 namespace Ui {
 class StartingScreen;
@@ -32,7 +35,8 @@ public slots:
 
 
 private:
-    MainWindow *m_levelWindow;
+    MapLayoutScreen * m_LayoutScreen;
+
 
 private:
     Ui::StartingScreen *ui;
