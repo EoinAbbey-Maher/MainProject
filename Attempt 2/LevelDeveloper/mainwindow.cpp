@@ -1,7 +1,18 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+
+
 #include <QMenu>
 #include <QMenuBar>
+#include <QClipboard>
+#include <QImageReader>
+#include <QImageWriter>
+#include <QMimeData>
+#include <QStandardPaths>
+#include <QFileDialog>
+#include <QDir>
+#include <QApplication>
+
 
 
 MainWindow::MainWindow(QWidget *parent)
@@ -209,12 +220,6 @@ void MainWindow::setupIcons()
                         break;
 
                     default:
-                        item->setTexture(img);
-                        item->setData(Qt::UserRole, m_TexturePaths[4]);
-                        item->setData(Qt::UserRole+3, "Floor");
-                        item->setData(Qt::DecorationRole, QPixmap::fromImage(*img4));
-                        item->setIndexVal(QVector2D(r,c));
-                        ui->Icon_Table ->setItem(r,c,item);
                         break;
                     }
                 }
@@ -310,6 +315,57 @@ void MainWindow::setupGameGrid(int t_height, int t_width)
     ui->m_FullCameraView->scale(1,1);
 }
 
+bool MainWindow::LoadFile(const QString &fileName)
+{
+    QImageReader reader(fileName);
+    reader.setAutoTransform(true);
+
+    QImage newImage = reader.read();
+
+    if( newImage.isNull())
+    {
+        QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
+                                 tr("Cannot load %1 : %2").arg(QDir::toNativeSeparators(fileName),
+                                                               reader.errorString()));
+    return false ;
+    }
+
+    QTableWidgetItem * widgetItem;
+    bool inserted = false;
+    for (int r = 0; r < ui->Icon_Table ->rowCount(); r++)
+    {
+        for (int c = 0; c < ui->Icon_Table ->columnCount(); c++)
+        {
+            widgetItem = ui->Icon_Table->item(r,c);
+            if(widgetItem == nullptr)
+            {
+                TileItem * tile = new TileItem;
+                tile->setTexture(&newImage);
+                tile->setData(Qt::UserRole, fileName);
+                tile->setData(Qt::UserRole +3, "Floor");
+                tile->setData(Qt::DecorationRole, QPixmap::fromImage(newImage.scaled(50,50)));
+                tile->setIndexVal(QVector2D(r,c));
+                ui->Icon_Table->setItem(r,c,tile);
+                inserted = true;
+                break;
+            }
+            if(inserted)
+            {
+                break;
+            }
+
+        }
+        if(!inserted && r == ui->Icon_Table->rowCount())
+        {
+            ui->Icon_Table->insertRow(ui->Icon_Table->rowCount());
+        }
+    }
+
+
+    return true;
+}
+
+
 void MainWindow::wheelEvent(QWheelEvent *t_event)
 {
     if(t_event->delta() > 0)
@@ -372,6 +428,44 @@ void MainWindow::closeProgram()
     close();
 }
 
+void MainWindow::openNewTile()
+{
+    QFileDialog dialog(this, tr("Add New Tile"));
+    initImageFileDialog(dialog, QFileDialog::AcceptOpen);
+
+    while(dialog.exec() == QDialog::Accepted &&  !LoadFile(dialog.selectedFiles().first())) {}
+}
+
+
+void MainWindow::initImageFileDialog(QFileDialog &t_dialog, QFileDialog::AcceptMode t_accept)
+{
+    static bool firstDialog = true;
+    if(firstDialog)
+    {
+        firstDialog = false;
+        const QStringList pictureLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
+        t_dialog.setDirectory(pictureLocations.isEmpty() ? QDir::currentPath() : pictureLocations.last());
+    }
+
+    QStringList mimeTypeFilters;
+    const QByteArrayList supportedMimeTypes = t_accept == QFileDialog::AcceptOpen
+            ? QImageReader::supportedMimeTypes() : QImageWriter::supportedMimeTypes();
+
+    for(const QByteArray &mimeTypeName : supportedMimeTypes)
+    {
+        mimeTypeFilters.append(mimeTypeName);
+    }
+    mimeTypeFilters.sort();
+    t_dialog.setMimeTypeFilters(mimeTypeFilters);
+    t_dialog.selectMimeTypeFilter("image/jpeg");
+    if(t_accept == QFileDialog::AcceptSave)
+    {
+        t_dialog.setDefaultSuffix("jpg");
+    }
+}
+
+
+
 void MainWindow::createMenus()
 {
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
@@ -387,4 +481,8 @@ void MainWindow::createMenus()
 
     fileMenu->addSeparator();
 
+    QMenu * addMenu = menuBar()->addMenu(tr("&Add"));
+    openTile = addMenu->addAction(tr("&Add New Tile"), this, &MainWindow::openNewTile);
+
+    addMenu->addSeparator();
 }
