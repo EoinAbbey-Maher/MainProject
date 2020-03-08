@@ -1,4 +1,4 @@
-#include "startingscreen.h"
+#include "include\startingscreen.h"
 #include "ui_startingscreen.h"
 
 StartingScreen::StartingScreen(QWidget *parent) :

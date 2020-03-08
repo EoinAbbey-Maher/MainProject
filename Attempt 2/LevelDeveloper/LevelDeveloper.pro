@@ -16,29 +16,32 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 SOURCES += \
-    commands.cpp \
-    main.cpp \
-    mainwindow.cpp \
-    map_board.cpp \
-    maplayoutscreen.cpp \
-    mygraphicsview.cpp \
-    startingscreen.cpp \
-    tileitem.cpp \
-    xmlwriter.cpp
+    src\commands.cpp \
+    src\main.cpp \
+    src\mainwindow.cpp \
+    src\map_board.cpp \
+    src\maplayoutscreen.cpp \
+    src\mygraphicsview.cpp \
+    src\newtilewindow.cpp \
+    src\startingscreen.cpp \
+    src\tileitem.cpp \
+    src\xmlwriter.cpp
 
 HEADERS += \
-    commands.h \
-    mainwindow.h \
-    map_board.h \
-    maplayoutscreen.h \
-    mygraphicsview.h \
-    startingscreen.h \
-    tileitem.h \
-    xmlwriter.h
+    include\commands.h \
+    include\mainwindow.h \
+    include\map_board.h \
+    include\maplayoutscreen.h \
+    include\mygraphicsview.h \
+    include\newtilewindow.h \
+    include\startingscreen.h \
+    include\tileitem.h \
+    include\xmlwriter.h
 
 FORMS += \
     mainwindow.ui \
     maplayoutscreen.ui \
+    newtilewindow.ui \
     startingscreen.ui
 
 # Default rules for deployment.

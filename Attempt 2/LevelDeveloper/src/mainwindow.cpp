@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "include\mainwindow.h"
 #include "ui_mainwindow.h"
 
 
@@ -329,6 +329,8 @@ bool MainWindow::LoadFile(const QString &fileName)
                                                                reader.errorString()));
     return false ;
     }
+
+    m_TexturePaths.push_back(fileName);
 
     QTableWidgetItem * widgetItem;
     bool inserted = false;
