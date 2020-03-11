@@ -38,6 +38,8 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_Textu
         xmlWriter.writeStartElement("Map_Values");
         xmlWriter.writeTextElement("NoOfTextures", QString::number(t_TextureNames.size()));
         xmlWriter.writeTextElement("TotalTiles", QString::number(t_table->rowCount() * t_table->columnCount()));
+        xmlWriter.writeTextElement("RowSize", QString::number(t_table->rowCount()));
+        xmlWriter.writeTextElement("ColSize", QString::number(t_table->columnCount()));
 
         for (int i = 0; i < t_TextureNames.size(); i++)
         {
