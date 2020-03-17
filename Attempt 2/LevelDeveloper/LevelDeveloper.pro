@@ -49,12 +49,20 @@ qnx: target.path = /tmp/$${TARGET}/bin
 else: unix:!android: target.path = /opt/$${TARGET}/bin
 !isEmpty(target.path): INSTALLS += target
 
+
+
 RESOURCES += \
     LevelDeveloper.qrc
+
+RC_ICONS = Images/Icon.ico
 
 OTHER_FILES += \
     Images/floor.png
     Images/floor1.png
     Images/floor2.png
     Images/floor3.png
-    Images/empty.png</
+    Images/empty.png
+    Images/Icon.png
+</
+
+

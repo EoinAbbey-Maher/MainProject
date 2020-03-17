@@ -5,6 +5,8 @@ StartingScreen::StartingScreen(QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::StartingScreen)
 {
+    this->setWindowTitle("Jigsaw Tiled Map Designer");
+
     ui->setupUi(this);
 
 
@@ -22,7 +24,7 @@ void StartingScreen::HandleNewButton()
 {
     close();
     m_LayoutScreen = new MapLayoutScreen();
-    m_LayoutScreen ->show();
+    m_LayoutScreen->show();
 }
 
 

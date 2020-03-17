@@ -10,6 +10,13 @@
 #include "mygraphicsview.h"
 #include "xmlwriter.h"
 
+#include "startingscreen.h"
+#include "newtilewindow.h"
+#include "maplayoutscreen.h"
+
+class StartingScreen;
+class MapLayoutScreen;
+
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
 QT_END_NAMESPACE
@@ -19,7 +26,6 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
-    MainWindow(QWidget *parent = nullptr);
     MainWindow(int t_tableHeight = 0, int t_tableWidth = 0, QWidget *parent = nullptr);
     ~MainWindow();
 
@@ -39,7 +45,8 @@ private slots:
     void newMap();
     void closeProgram();
     void openNewTile();
-
+    void returnToMain();
+    void saveReturnToMain();
 
 private: //variables
     QGraphicsScene * scene = new QGraphicsScene(this);
@@ -53,6 +60,8 @@ private: //variables
     QAction * redoAction;
     QAction * saveAsAct;
     QAction * newMapAct;
+    QAction * returnToMainAct;
+    QAction * saveandReturnAct;
     QAction * closeMapAction;
     QAction * OpenMapAct;
 
@@ -70,6 +79,11 @@ private: //variables
     QTableWidget * m_mapTable;
 
     QPoint m_gameGridSize = QPoint(32,20);
+
+
+    NewTileWindow* m_newTileWindow;
+    StartingScreen * m_StartScreen;
+    MapLayoutScreen * m_MapLayoutScreen;
 
 private: //functions
 

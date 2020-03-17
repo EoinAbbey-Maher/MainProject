@@ -7,6 +7,8 @@ MapLayoutScreen::MapLayoutScreen(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    this->setWindowTitle("Jigsaw Tiled Map Designer");
+
     connect(ui->m_createButton, SIGNAL(released()), this, SLOT(handleNewButton()));
     connect(ui->m_cancelButton, SIGNAL(released()), this, SLOT(cancelButton()));
 }
