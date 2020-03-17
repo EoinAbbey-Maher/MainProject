@@ -1,4 +1,4 @@
-#include "mainwindow.h"
+#include "include\mainwindow.h"
 #include "ui_mainwindow.h"
 
 
@@ -15,36 +15,15 @@
 
 
 
-MainWindow::MainWindow(QWidget *parent)
-    : QMainWindow(parent)
-    , ui(new Ui::MainWindow)
-{
-    ui->setupUi(this);
-    this->setStyleSheet("background-color: darkgrey;");
-
-    createMenus();
-
-    m_TexturePaths.push_back(":/floor.png");
-    m_TexturePaths.push_back(":/floor1.png");
-    m_TexturePaths.push_back(":/floor2.png");
-    m_TexturePaths.push_back(":/floor3.png");
-    m_TexturePaths.push_back(":/empty.png");
-
-    setupIcons();
-    setupGameGrid();
-
-    connect(ui->m_applyButton, SIGNAL(released()), this,SLOT(handleApplyButton()));
-    connect(ui->m_clearCellButton, SIGNAL(released()),this,SLOT(handleClearButton()));
-    connect(ui->m_exportButton, SIGNAL(released()), this, SLOT(handleExportButton()));
-
-    connect(ui->Icon_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
-    connect(m_mapTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
-}
-
+// ------------------------------------------------------------------------------------
+//            Constructor with Height and Width input
+// ------------------------------------------------------------------------------------
 MainWindow::MainWindow(int t_tableHeight, int t_tableWidth, QWidget *parent) :
     QMainWindow(parent),
     ui(new Ui::MainWindow)
 {
+
+    this->setWindowTitle("Jigsaw Tiled Map Designer");
     m_gameGridSize.setX(t_tableWidth);
     m_gameGridSize.setY(t_tableHeight);
 
@@ -85,6 +64,9 @@ if( m_mapTable->selectedItems().size() != 0 && ui->Icon_Table->selectedItems().s
 
 }
 
+// ------------------------------------------------------------------------------------
+//                  clear the tile
+// ------------------------------------------------------------------------------------
 void MainWindow::handleClearButton()
 {
     if(m_mapTable->selectedItems().size() != 0)
@@ -93,11 +75,17 @@ void MainWindow::handleClearButton()
     }
 }
 
+// ------------------------------------------------------------------------------------
+//                      Handle File Export
+// ------------------------------------------------------------------------------------
 void MainWindow::handleExportButton()
 {
     m_xmlWriter.WriteTilesToFile(m_mapTable, m_TexturePaths);
 }
 
+// ------------------------------------------------------------------------------------
+//            Create Action Buttons
+// ------------------------------------------------------------------------------------
 void MainWindow::createActions()
 {
     setTextureAction = new QAction(tr("&Set Texture"), this);
@@ -146,7 +134,7 @@ void MainWindow::removeTextures()
 }
 
 // ------------------------------------------------------------------------------------
-//            Assign Textures From Button Press
+//            initial setup Of Icon Table
 // ------------------------------------------------------------------------------------
 void MainWindow::setupIcons()
 {
@@ -237,7 +225,7 @@ void MainWindow::setupIcons()
 }
 
 // ------------------------------------------------------------------------------------
-//            Assign Textures From Button Press
+//            Setup of the Initial Game Grid
 // ------------------------------------------------------------------------------------
 void MainWindow::setupGameGrid()
 {       
@@ -273,10 +261,20 @@ void MainWindow::setupGameGrid()
 
     m_mapTable->setFixedSize(m_mapTable->horizontalHeader()->length()+m_mapTable->verticalHeader()->width(), m_mapTable->verticalHeader()->length()+m_mapTable->horizontalHeader()->height());
     m_proxyWidget = scene->addWidget( m_mapTable );
-    ui->graphicsView->scale(0.5,0.5);
-    ui->m_FullCameraView->scale(0.1,0.1);
+    //ui->graphicsView->scale(0.5,0.5);
+
+    QRect sceneRect;
+    sceneRect.setX(0);
+    sceneRect.setY(0);
+    sceneRect.setWidth(m_mapTable->columnCount() * 50);
+    sceneRect.setHeight(m_mapTable->rowCount()* 50);
+    ui->m_FullCameraView->setSceneRect(sceneRect);
 }
 
+
+// ------------------------------------------------------------------------------------
+//            Game Grid Setup With Give Width and height
+// ------------------------------------------------------------------------------------
 void MainWindow::setupGameGrid(int t_height, int t_width)
 {
     ui->graphicsView->setScene(scene);
@@ -311,10 +309,21 @@ void MainWindow::setupGameGrid(int t_height, int t_width)
 
     m_mapTable->setFixedSize(m_mapTable->horizontalHeader()->length()+m_mapTable->verticalHeader()->width(), m_mapTable->verticalHeader()->length()+m_mapTable->horizontalHeader()->height());
     m_proxyWidget = scene->addWidget( m_mapTable );
-    ui->graphicsView->scale(0.5,0.5);
-    ui->m_FullCameraView->scale(1,1);
+    //ui->graphicsView->scale(0.5,0.5);
+
+    double tableWidth = m_mapTable->columnCount();
+    double tableHeight = m_mapTable->rowCount();
+
+    ui->m_FullCameraView->setSceneRect(0,0,tableWidth * 50, tableHeight*50);
+    ui->m_FullCameraView->fitInView(0,0,tableWidth * 50, tableHeight* 50,Qt::KeepAspectRatio);
+
+    ui->m_FullCameraView->scale(5,5);
 }
 
+
+// ------------------------------------------------------------------------------------
+//            Load In and assign New Tile Image
+// ------------------------------------------------------------------------------------
 bool MainWindow::LoadFile(const QString &fileName)
 {
     QImageReader reader(fileName);
@@ -329,6 +338,8 @@ bool MainWindow::LoadFile(const QString &fileName)
                                                                reader.errorString()));
     return false ;
     }
+
+    m_TexturePaths.push_back(fileName);
 
     QTableWidgetItem * widgetItem;
     bool inserted = false;
@@ -366,6 +377,10 @@ bool MainWindow::LoadFile(const QString &fileName)
 }
 
 
+
+// ------------------------------------------------------------------------------------
+//            Zoom In And Out On Mouse Wheel Roll
+// ------------------------------------------------------------------------------------
 void MainWindow::wheelEvent(QWheelEvent *t_event)
 {
     if(t_event->delta() > 0)
@@ -378,6 +393,10 @@ void MainWindow::wheelEvent(QWheelEvent *t_event)
     }
 }
 
+
+// ------------------------------------------------------------------------------------
+//            Move Up Down Left And Right based on W A S D input
+// ------------------------------------------------------------------------------------
 void MainWindow::keyPressEvent(QKeyEvent *t_event)
 {
     if(t_event->key() == Qt::Key_W)
@@ -410,26 +429,46 @@ void MainWindow::keyPressEvent(QKeyEvent *t_event)
     }
 }
 
+
+// ------------------------------------------------------------------------------------
+//            Open And load Existing XML Map File
+// ------------------------------------------------------------------------------------
 void MainWindow::open()
 {
 
 }
 
+// ------------------------------------------------------------------------------------
+//                  Function to create new map
+// ------------------------------------------------------------------------------------
 void MainWindow::newMap()
 {
     m_mapTable->clear();
-    setupGameGrid();
 
+    m_MapLayoutScreen = new MapLayoutScreen;
+
+    close();
+    m_MapLayoutScreen->show();
 
 }
 
+
+// ------------------------------------------------------------------------------------
+//            Button Response to shutdown complete program
+// ------------------------------------------------------------------------------------
 void MainWindow::closeProgram()
 {
     close();
 }
 
+// ------------------------------------------------------------------------------------
+//            Open Page to make New Tile
+// ------------------------------------------------------------------------------------
 void MainWindow::openNewTile()
 {
+    m_newTileWindow = new NewTileWindow;
+    m_newTileWindow->show();
+
     QFileDialog dialog(this, tr("Add New Tile"));
     initImageFileDialog(dialog, QFileDialog::AcceptOpen);
 
@@ -437,6 +476,31 @@ void MainWindow::openNewTile()
 }
 
 
+// ------------------------------------------------------------------------------------
+//                      Return back to the Main Menu
+// ------------------------------------------------------------------------------------
+void MainWindow::returnToMain()
+{
+    m_StartScreen = new StartingScreen;
+    m_StartScreen->show();
+    close();
+
+}
+
+
+// ------------------------------------------------------------------------------------
+//              Save Map and retur to the main menu
+// ------------------------------------------------------------------------------------
+void MainWindow::saveReturnToMain()
+{
+    handleExportButton();
+    returnToMain();
+}
+
+
+// ------------------------------------------------------------------------------------
+//            Sets Up Tile Image File
+// ------------------------------------------------------------------------------------
 void MainWindow::initImageFileDialog(QFileDialog &t_dialog, QFileDialog::AcceptMode t_accept)
 {
     static bool firstDialog = true;
@@ -464,8 +528,9 @@ void MainWindow::initImageFileDialog(QFileDialog &t_dialog, QFileDialog::AcceptM
     }
 }
 
-
-
+// ------------------------------------------------------------------------------------
+//            Create MenuBar Options and Connectoins
+// ------------------------------------------------------------------------------------
 void MainWindow::createMenus()
 {
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
@@ -477,6 +542,10 @@ void MainWindow::createMenus()
 
     newMapAct = fileMenu->addAction(tr("&New Map"), this,&MainWindow::newMap);
 
+    saveandReturnAct = fileMenu->addAction(tr("&Save and Return to Main Menu"), this, &MainWindow::saveReturnToMain);
+
+    returnToMainAct = fileMenu->addAction(tr("&Return to Main Menu"), this, &MainWindow::returnToMain);
+
     closeMapAction = fileMenu->addAction(tr("&Quit Program"), this, &MainWindow::closeProgram);
 
     fileMenu->addSeparator();
@@ -485,4 +554,5 @@ void MainWindow::createMenus()
     openTile = addMenu->addAction(tr("&Add New Tile"), this, &MainWindow::openNewTile);
 
     addMenu->addSeparator();
+
 }
