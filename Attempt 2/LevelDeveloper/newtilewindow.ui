@@ -44,6 +44,9 @@
        </item>
        <item row="1" column="0">
         <widget class="QLabel" name="m_SelectFileText">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="font">
           <font>
            <pointsize>15</pointsize>
@@ -58,8 +61,13 @@
         <layout class="QHBoxLayout" name="horizontalLayout">
          <item>
           <widget class="QLabel" name="m_FileLocationText">
+           <property name="font">
+            <font>
+             <pointsize>12</pointsize>
+            </font>
+           </property>
            <property name="text">
-            <string/>
+            <string>File Location</string>
            </property>
            <property name="alignment">
             <set>Qt::AlignJustify|Qt::AlignVCenter</set>
@@ -105,19 +113,6 @@
          </property>
         </widget>
        </item>
-       <item row="4" column="1">
-        <spacer name="verticalSpacer_2">
-         <property name="orientation">
-          <enum>Qt::Vertical</enum>
-         </property>
-         <property name="sizeHint" stdset="0">
-          <size>
-           <width>20</width>
-           <height>40</height>
-          </size>
-         </property>
-        </spacer>
-       </item>
        <item row="5" column="0">
         <widget class="QLabel" name="m_TileTypeText">
          <property name="font">
@@ -131,10 +126,28 @@
         </widget>
        </item>
        <item row="5" column="1">
-        <widget class="QComboBox" name="comboBox">
+        <widget class="QComboBox" name="m_TypeSelection">
          <property name="editable">
           <bool>false</bool>
          </property>
+         <property name="currentIndex">
+          <number>0</number>
+         </property>
+         <item>
+          <property name="text">
+           <string>Floor</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string>Wall</string>
+          </property>
+         </item>
+         <item>
+          <property name="text">
+           <string/>
+          </property>
+         </item>
         </widget>
        </item>
        <item row="6" column="1">
@@ -183,6 +196,9 @@
        </item>
        <item row="3" column="1">
         <widget class="QPlainTextEdit" name="m_TileNameInput">
+         <property name="enabled">
+          <bool>true</bool>
+         </property>
          <property name="sizePolicy">
           <sizepolicy hsizetype="Minimum" vsizetype="Expanding">
            <horstretch>0</horstretch>
@@ -222,6 +238,19 @@
           <string>Insert New Tile Name</string>
          </property>
         </widget>
+       </item>
+       <item row="4" column="1">
+        <spacer name="verticalSpacer_2">
+         <property name="orientation">
+          <enum>Qt::Vertical</enum>
+         </property>
+         <property name="sizeHint" stdset="0">
+          <size>
+           <width>20</width>
+           <height>40</height>
+          </size>
+         </property>
+        </spacer>
        </item>
       </layout>
      </item>

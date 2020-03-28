@@ -469,10 +469,10 @@ void MainWindow::openNewTile()
     m_newTileWindow = new NewTileWindow;
     m_newTileWindow->show();
 
-    QFileDialog dialog(this, tr("Add New Tile"));
-    initImageFileDialog(dialog, QFileDialog::AcceptOpen);
+    //QFileDialog dialog(this, tr("Add New Tile"));
+    //initImageFileDialog(dialog, QFileDialog::AcceptOpen);
 
-    while(dialog.exec() == QDialog::Accepted &&  !LoadFile(dialog.selectedFiles().first())) {}
+    //while(dialog.exec() == QDialog::Accepted &&  !LoadFile(dialog.selectedFiles().first())) {}
 }
 
 
@@ -529,7 +529,7 @@ void MainWindow::initImageFileDialog(QFileDialog &t_dialog, QFileDialog::AcceptM
 }
 
 // ------------------------------------------------------------------------------------
-//            Create MenuBar Options and Connectoins
+//            Create MenuBar Options and Connections
 // ------------------------------------------------------------------------------------
 void MainWindow::createMenus()
 {
