@@ -5,7 +5,7 @@ XMLWriter::XMLWriter()
 
 }
 
-void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_TextureNames)
+void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QPair<QString,QString>> t_TextureNames)
 {
     QString fileName = "Map_Data.xml";
  // QString SavePath = QFileDialog::getSaveFileName();
@@ -43,16 +43,14 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QString> t_Textu
 
         for (int i = 0; i < t_TextureNames.size(); i++)
         {
-            QImage * image = new QImage(t_TextureNames[i]);
+            QImage * image = new QImage(t_TextureNames[i].first);
 
-            QString str = t_TextureNames[i];
-            str.remove(0,2);
-
+            QString str = t_TextureNames[i].second + ".png";
 
             image->save(path + ImageFolder + str);
 
 
-            xmlWriter.writeTextElement("Texture" + QString::number(i), t_TextureNames[i]);
+            xmlWriter.writeTextElement("Texture" + QString::number(i), t_TextureNames[i].second);
 
         }
 

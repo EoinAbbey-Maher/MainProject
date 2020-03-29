@@ -32,11 +32,13 @@ MainWindow::MainWindow(int t_tableHeight, int t_tableWidth, QWidget *parent) :
 
     createMenus();
 
-    m_TexturePaths.push_back(":/floor.png");
-    m_TexturePaths.push_back(":/floor1.png");
-    m_TexturePaths.push_back(":/floor2.png");
-    m_TexturePaths.push_back(":/floor3.png");
-    m_TexturePaths.push_back(":/empty.png");
+
+
+    m_texturePair.push_back(QPair<QString,QString>(":/floor.png", "floor"));
+    m_texturePair.push_back(QPair<QString,QString>(":/floor1.png", "floor1"));
+    m_texturePair.push_back(QPair<QString,QString>(":/floor2.png", "floor2"));
+    m_texturePair.push_back(QPair<QString,QString>(":/floor3.png", "floor3"));
+    m_texturePair.push_back(QPair<QString,QString>(":/floor4.png", "floor4"));
 
     setupIcons();
     setupGameGrid(m_gameGridSize.y(), m_gameGridSize.x());
@@ -80,7 +82,7 @@ void MainWindow::handleClearButton()
 // ------------------------------------------------------------------------------------
 void MainWindow::handleExportButton()
 {
-    m_xmlWriter.WriteTilesToFile(m_mapTable, m_TexturePaths);
+    m_xmlWriter.WriteTilesToFile(m_mapTable, m_texturePair);
 }
 
 // ------------------------------------------------------------------------------------
@@ -128,7 +130,7 @@ void MainWindow::removeTextures()
     for (int i = 0; i <  m_mapTable->selectedItems().count(); i++)
     {
         m_mapTable->selectedItems().at(i)->setData(Qt::DecorationRole, QPixmap::fromImage(*emptyImg));
-        m_mapTable->selectedItems().at(i)->setData(Qt::UserRole, m_TexturePaths[4]);
+        m_mapTable->selectedItems().at(i)->setData(Qt::UserRole, m_texturePair[4].second);
    }
 
 }
@@ -140,24 +142,24 @@ void MainWindow::setupIcons()
 {
 
     QImage *img = new QImage();
-    bool loaded = img->load(m_TexturePaths[0]);
+    bool loaded = img->load(m_texturePair[0].first);
     img->scaled(50,50, Qt::KeepAspectRatio);
 
     QImage *img1= new QImage();
-    img1->load(m_TexturePaths[1]);
+    img1->load(m_texturePair[1].first);
     img1->scaled(50,50, Qt::KeepAspectRatio);
 
     QImage *img2= new QImage();
-    img2->load(m_TexturePaths[2]);
+    img2->load(m_texturePair[2].first);
 
     img2->scaled(50,50, Qt::KeepAspectRatio);
 
     QImage *img3= new QImage();
-    img3->load(m_TexturePaths[3]);
+    img3->load(m_texturePair[3].first);
     img3->scaled(50,50, Qt::KeepAspectRatio);
 
     QImage *img4= new QImage();
-    img4->load(m_TexturePaths[4]);
+    img4->load(m_texturePair[4].first);
     img4->scaled(50,50, Qt::KeepAspectRatio);
 
     if(loaded)
@@ -173,14 +175,14 @@ void MainWindow::setupIcons()
                         switch(c){
                         case 0:
                                 item->setTexture(img);
-                                item->setData(Qt::UserRole,m_TexturePaths[0]);
+                                item->setData(Qt::UserRole,m_texturePair[0].second);
                                 item->setData(Qt::UserRole+3, "Floor");
                                 item->setIndexVal(QVector2D(r,c));
                                 ui->Icon_Table->setItem(r,c,item);
                                     break;
                         case 1:
                                 item->setTexture(img1);
-                                item->setData(Qt::UserRole,m_TexturePaths[1]);
+                                item->setData(Qt::UserRole,m_texturePair[1].second);
                                 item->setData(Qt::UserRole+3, "Floor");
                                 item->setData(Qt::DecorationRole, QPixmap::fromImage(*img1));
                                 item->setIndexVal(QVector2D(r,c));
@@ -190,7 +192,7 @@ void MainWindow::setupIcons()
                                 item->setTexture(img2);
                                 item->setData(Qt::DecorationRole, QPixmap::fromImage(*img2));
                                 item->setData(Qt::UserRole+3, "Floor");
-                                item->setData(Qt::UserRole, m_TexturePaths[2]);
+                                item->setData(Qt::UserRole, m_texturePair[2].second);
                                 item->setIndexVal(QVector2D(r,c));
                                 ui->Icon_Table ->setItem(r,c,item);
                                     break;
@@ -198,7 +200,7 @@ void MainWindow::setupIcons()
                                 item->setTexture(img3);
                                 item->setData(Qt::DecorationRole, QPixmap::fromImage(*img3));
                                 item->setData(Qt::UserRole+3, "Floor");
-                                item->setData(Qt::UserRole,m_TexturePaths[3]);
+                                item->setData(Qt::UserRole,m_texturePair[3].second);
                                 item->setIndexVal(QVector2D(r,c));
                                 ui->Icon_Table ->setItem(r,c,item);
                                     break;
@@ -225,57 +227,9 @@ void MainWindow::setupIcons()
 }
 
 // ------------------------------------------------------------------------------------
-//            Setup of the Initial Game Grid
-// ------------------------------------------------------------------------------------
-void MainWindow::setupGameGrid()
-{       
-    ui->graphicsView->setScene(scene);
-    ui->m_FullCameraView->setScene(scene);
-
-    m_mapTable = new QTableWidget;
-    m_mapTable->horizontalHeader()->hide();
-    m_mapTable->horizontalHeader()->setDefaultSectionSize(50);
-    m_mapTable->verticalHeader()->hide();
-    m_mapTable->verticalHeader()->setDefaultSectionSize(50);
-
-    m_mapTable->setRowCount(m_gameGridSize.y());
-    m_mapTable->setColumnCount(m_gameGridSize.x());
-
-        for (int r = 0; r < m_mapTable->rowCount(); r++)
-           {
-               for (int c = 0; c < m_mapTable->columnCount(); c++)
-                {
-
-                    TileItem* item = new TileItem;
-                    item->setData(Qt::UserRole, "empty.png");
-                    item->setData(Qt::UserRole+1, QString::number(c * 32));
-                    item->setData(Qt::UserRole+2, QString::number(r * 32));
-                    item->setData(Qt::UserRole+3, "empty");
-                    m_mapTable->setItem(r,c,item);
-                }
-          }
-
-    m_mapTable->setEditTriggers(QAbstractItemView::NoEditTriggers);
-    m_mapTable->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-    m_mapTable->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
-
-    m_mapTable->setFixedSize(m_mapTable->horizontalHeader()->length()+m_mapTable->verticalHeader()->width(), m_mapTable->verticalHeader()->length()+m_mapTable->horizontalHeader()->height());
-    m_proxyWidget = scene->addWidget( m_mapTable );
-    //ui->graphicsView->scale(0.5,0.5);
-
-    QRect sceneRect;
-    sceneRect.setX(0);
-    sceneRect.setY(0);
-    sceneRect.setWidth(m_mapTable->columnCount() * 50);
-    sceneRect.setHeight(m_mapTable->rowCount()* 50);
-    ui->m_FullCameraView->setSceneRect(sceneRect);
-}
-
-
-// ------------------------------------------------------------------------------------
 //            Game Grid Setup With Give Width and height
 // ------------------------------------------------------------------------------------
-void MainWindow::setupGameGrid(int t_height, int t_width)
+void MainWindow::setupGameGrid(int t_height = 10, int t_width = 10)
 {
     ui->graphicsView->setScene(scene);
     ui->m_FullCameraView->setScene(scene);
@@ -318,62 +272,6 @@ void MainWindow::setupGameGrid(int t_height, int t_width)
     ui->m_FullCameraView->fitInView(0,0,tableWidth * 50, tableHeight* 50,Qt::KeepAspectRatio);
 
     ui->m_FullCameraView->scale(5,5);
-}
-
-
-// ------------------------------------------------------------------------------------
-//            Load In and assign New Tile Image
-// ------------------------------------------------------------------------------------
-bool MainWindow::LoadFile(const QString &fileName)
-{
-    QImageReader reader(fileName);
-    reader.setAutoTransform(true);
-
-    QImage newImage = reader.read();
-
-    if( newImage.isNull())
-    {
-        QMessageBox::information(this, QGuiApplication::applicationDisplayName(),
-                                 tr("Cannot load %1 : %2").arg(QDir::toNativeSeparators(fileName),
-                                                               reader.errorString()));
-    return false ;
-    }
-
-    m_TexturePaths.push_back(fileName);
-
-    QTableWidgetItem * widgetItem;
-    bool inserted = false;
-    for (int r = 0; r < ui->Icon_Table ->rowCount(); r++)
-    {
-        for (int c = 0; c < ui->Icon_Table ->columnCount(); c++)
-        {
-            widgetItem = ui->Icon_Table->item(r,c);
-            if(widgetItem == nullptr)
-            {
-                TileItem * tile = new TileItem;
-                tile->setTexture(&newImage);
-                tile->setData(Qt::UserRole, fileName);
-                tile->setData(Qt::UserRole +3, "Floor");
-                tile->setData(Qt::DecorationRole, QPixmap::fromImage(newImage.scaled(50,50)));
-                tile->setIndexVal(QVector2D(r,c));
-                ui->Icon_Table->setItem(r,c,tile);
-                inserted = true;
-                break;
-            }
-            if(inserted)
-            {
-                break;
-            }
-
-        }
-        if(!inserted && r == ui->Icon_Table->rowCount())
-        {
-            ui->Icon_Table->insertRow(ui->Icon_Table->rowCount());
-        }
-    }
-
-
-    return true;
 }
 
 
@@ -452,7 +350,6 @@ void MainWindow::newMap()
 
 }
 
-
 // ------------------------------------------------------------------------------------
 //            Button Response to shutdown complete program
 // ------------------------------------------------------------------------------------
@@ -466,15 +363,12 @@ void MainWindow::closeProgram()
 // ------------------------------------------------------------------------------------
 void MainWindow::openNewTile()
 {
-    m_newTileWindow = new NewTileWindow;
+    m_newTileWindow = new NewTileWindow(m_texturePair, *ui->Icon_Table);
+
     m_newTileWindow->show();
-
-    //QFileDialog dialog(this, tr("Add New Tile"));
-    //initImageFileDialog(dialog, QFileDialog::AcceptOpen);
-
-    //while(dialog.exec() == QDialog::Accepted &&  !LoadFile(dialog.selectedFiles().first())) {}
+    m_newTileWindow->activateWindow();
+    m_newTileWindow->raise();
 }
-
 
 // ------------------------------------------------------------------------------------
 //                      Return back to the Main Menu
@@ -487,7 +381,6 @@ void MainWindow::returnToMain()
 
 }
 
-
 // ------------------------------------------------------------------------------------
 //              Save Map and retur to the main menu
 // ------------------------------------------------------------------------------------
@@ -495,37 +388,6 @@ void MainWindow::saveReturnToMain()
 {
     handleExportButton();
     returnToMain();
-}
-
-
-// ------------------------------------------------------------------------------------
-//            Sets Up Tile Image File
-// ------------------------------------------------------------------------------------
-void MainWindow::initImageFileDialog(QFileDialog &t_dialog, QFileDialog::AcceptMode t_accept)
-{
-    static bool firstDialog = true;
-    if(firstDialog)
-    {
-        firstDialog = false;
-        const QStringList pictureLocations = QStandardPaths::standardLocations(QStandardPaths::PicturesLocation);
-        t_dialog.setDirectory(pictureLocations.isEmpty() ? QDir::currentPath() : pictureLocations.last());
-    }
-
-    QStringList mimeTypeFilters;
-    const QByteArrayList supportedMimeTypes = t_accept == QFileDialog::AcceptOpen
-            ? QImageReader::supportedMimeTypes() : QImageWriter::supportedMimeTypes();
-
-    for(const QByteArray &mimeTypeName : supportedMimeTypes)
-    {
-        mimeTypeFilters.append(mimeTypeName);
-    }
-    mimeTypeFilters.sort();
-    t_dialog.setMimeTypeFilters(mimeTypeFilters);
-    t_dialog.selectMimeTypeFilter("image/jpeg");
-    if(t_accept == QFileDialog::AcceptSave)
-    {
-        t_dialog.setDefaultSuffix("jpg");
-    }
 }
 
 // ------------------------------------------------------------------------------------

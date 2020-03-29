@@ -23,7 +23,7 @@ class NewTileWindow : public QMainWindow
 
 public:
     explicit NewTileWindow(QWidget *parent = nullptr);
-    NewTileWindow(QVector<QString> & t_textures , QTableWidget& t_table, QWidget *parent = nullptr);
+    NewTileWindow(QVector<QPair<QString, QString>> & t_textures , QTableWidget& t_table, QWidget *parent = nullptr);
     ~NewTileWindow();
 
 private slots:
@@ -33,7 +33,7 @@ private slots:
 
 private:
     Ui::NewTileWindow *ui;
-    QVector<QString>* m_textures;
+    QVector<QPair<QString, QString>>* m_textures;
     QTableWidget* m_table;
 
     QString m_tempLocation;

@@ -11,13 +11,17 @@ NewTileWindow::NewTileWindow(QWidget *parent) :
 
 }
 
-NewTileWindow::NewTileWindow(QVector<QString> &t_textures, QTableWidget &t_table, QWidget *parent):
+NewTileWindow::NewTileWindow(QVector<QPair<QString, QString>> &t_textures, QTableWidget &t_table, QWidget *parent):
+    QMainWindow(parent),
+    ui(new Ui::NewTileWindow),
     m_table(&t_table),
-    m_textures(&t_textures),
-    ui(new Ui::NewTileWindow)
+    m_textures(&t_textures)
+
 {
     ui->setupUi(this);
     this->setWindowTitle("Jigsaw Tiled Map Designer | Add New Tile");
+
+    setWindowFlag(Qt::Popup);
 
     connect(ui->m_SelectFileButton, SIGNAL(released()), this, SLOT(handleLocationButton()));
     connect(ui->m_CancelButton, SIGNAL(released()), this, SLOT(handleCancelButton()));
@@ -39,7 +43,7 @@ void NewTileWindow::handleConfirmButton()
 
     QImage newImage = reader.read();
 
-    m_textures->push_back(m_tempLocation);
+    m_textures->push_back(QPair<QString, QString>(m_tempLocation,ui->m_TileNameInput->toPlainText()));
 
     QTableWidgetItem * widgetItem;
     bool inserted = false;
@@ -52,8 +56,8 @@ void NewTileWindow::handleConfirmButton()
             {
                 TileItem * tile = new TileItem;
                 tile->setTexture(&newImage);
-                tile->setData(Qt::UserRole, m_tempLocation);
-                tile->setData(Qt::UserRole +3, "Floor");
+                tile->setData(Qt::UserRole, ui->m_TileNameInput->toPlainText());
+                tile->setData(Qt::UserRole +3, ui->m_TileTypeText->text());
                 tile->setData(Qt::DecorationRole, QPixmap::fromImage(newImage.scaled(50,50)));
                 tile->setIndexVal(QVector2D(r,c));
                 m_table->setItem(r,c,tile);
@@ -72,17 +76,20 @@ void NewTileWindow::handleConfirmButton()
         }
     }
 
+    close();
 
 }
 
 void NewTileWindow::handleCancelButton()
 {
-
+    close();
 }
 
 void NewTileWindow::handleLocationButton()
 {
-
-
-
+    qDebug() << "Location Button Pressed";
+    m_tempLocation = QFileDialog::getOpenFileName(this, tr("Open Image"));
+    ui->m_FileLocationText->setText(m_tempLocation);
+    show();
 }
+

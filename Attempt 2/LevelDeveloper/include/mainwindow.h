@@ -76,6 +76,8 @@ private: //variables
 
     QVector<QString> m_TexturePaths;
 
+    QVector<QPair<QString, QString>> m_texturePair;
+
     QTableWidget * m_mapTable;
 
     QPoint m_gameGridSize = QPoint(32,20);
@@ -95,11 +97,9 @@ private: //functions
     void setTextures();
     void removeTextures();
     void setupIcons();
-    void setupGameGrid();
     void setupGameGrid(int t_height, int t_width);
 
     bool SaveFile();
-    bool LoadFile(const QString &fileName);
 
 };
 #endif // MAINWINDOW_H

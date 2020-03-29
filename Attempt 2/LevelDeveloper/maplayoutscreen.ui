@@ -60,6 +60,9 @@
         <property name="minimum">
          <number>1</number>
         </property>
+        <property name="value">
+         <number>10</number>
+        </property>
        </widget>
       </item>
       <item row="1" column="0">
@@ -110,6 +113,9 @@
         </property>
         <property name="minimum">
          <number>1</number>
+        </property>
+        <property name="value">
+         <number>10</number>
         </property>
        </widget>
       </item>
@@ -163,7 +169,7 @@
      <x>0</x>
      <y>0</y>
      <width>616</width>
-     <height>26</height>
+     <height>20</height>
     </rect>
    </property>
   </widget>
