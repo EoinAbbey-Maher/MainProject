@@ -24,7 +24,6 @@ private: //Functions
 	void update(sf::Time t_deltaTime);
 	void render();
 	
-	void setupSprite();
 	RoomBuilder m_roombuilder;
 
 private: //Variables

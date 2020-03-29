@@ -22,11 +22,14 @@ void RoomBuilder::loadFile(const char* t_roomName)
 
 	XMLText * NoOfTextures = doc.FirstChildElement("Map_Values")->FirstChildElement("NoOfTextures")->FirstChild()->ToText();
 	XMLText* TotalTilesXml= doc.FirstChildElement("Map_Values")->FirstChildElement("TotalTiles")->FirstChild()->ToText();
+	XMLText* mapHeightXml = doc.FirstChildElement("Map_Values")->FirstChildElement("RowSize")->FirstChild()->ToText();
+	XMLText* mapWidthXml = doc.FirstChildElement("Map_Values")->FirstChildElement("ColSize")->FirstChild()->ToText();
 	
 
 	int noOfTextureInt = std::stoi(NoOfTextures->Value());
 	int TotalTilesInt= std::stoi(TotalTilesXml->Value());
-	
+	int mapHeightInt = std::stoi(mapHeightXml->Value());
+	int mapWidthInt = std::stoi(mapWidthXml->Value());
 
 	for (int i = 0; i < noOfTextureInt; i++)
 	{
@@ -36,27 +39,25 @@ void RoomBuilder::loadFile(const char* t_roomName)
 		strcpy_s(texturearr, str.c_str());
 
 		XMLText* ImageLink = doc.FirstChildElement("Map_Values")->FirstChildElement(texturearr)->FirstChild()->ToText();
-		std::string imageString = ImageLink->Value();
-		imageString = imageString.erase(0, 2);
 
-		m_textureAddresses.push_back(imageString);
+		m_textureAddresses.push_back(ImageLink->Value());
 
 		m_textures.push_back(sf::Texture());
 		
-		if (!m_textures[i].loadFromFile("assets\\MapExport\\Images\\" + imageString))
+		if (!m_textures[i].loadFromFile("assets\\MapExport\\Images\\" + m_textureAddresses[i] + ".png"))
 		{
 			std::cout << "failed to load " << std::endl;
 		}
 
 
-		m_textureDict[imageString] = m_textures[i];
+		m_textureDict[m_textureAddresses[i]] = m_textures[i];
 	}
 	
 	int t = 0;
 
-	for (int i = 0; i < M_TOTALHEIGHT; i++)
+	for (int i = 0; i < mapHeightInt; i++)
 	{
-		for (int j = 0; j < M_TOTALWIDTH; j++)
+		for (int j = 0; j < mapWidthInt; j++)
 		{
 			
 			std::string str = "Tile" + std::to_string(t);
@@ -73,15 +74,13 @@ void RoomBuilder::loadFile(const char* t_roomName)
 
 			XMLText* ImageURL = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("Image")->FirstChild()->ToText();
 			
-			std::string imgStr =ImageURL->Value();
-			imgStr = imgStr.erase(0, 2);
+			std::string imgStr = ImageURL->Value();
 
 			m_tiles[i][j].indexPosition = sf::Vector2i(std::stoi(indexX->Value()), std::stoi(indexY->Value()));
 			m_tiles[i][j].m_position = sf::Vector2f(std::stof(PositionX->Value()), std::stof(PositionY->Value()));
 			m_tiles[i][j].m_ImgAddress = imgStr;
 
 			m_tiles[i][j].init(m_textureDict);
-
 
 			t++;
 		} // !for j

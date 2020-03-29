@@ -43,7 +43,7 @@ void NewTileWindow::handleConfirmButton()
 
     QImage newImage = reader.read();
 
-    m_textures->push_back(QPair<QString, QString>(m_tempLocation,ui->m_TileNameInput->toPlainText()));
+    m_textures->push_back(QPair<QString, QString>(m_tempLocation,ui->m_TileNameInput->toPlainText().simplified()));
 
     QTableWidgetItem * widgetItem;
     bool inserted = false;
@@ -51,12 +51,14 @@ void NewTileWindow::handleConfirmButton()
     {
         for (int c = 0; c < m_table->columnCount(); c++)
         {
-            widgetItem = m_table->item(r,c);
+            if(!inserted)
+            {
+                widgetItem = m_table->item(r,c);
             if(widgetItem == nullptr)
             {
                 TileItem * tile = new TileItem;
                 tile->setTexture(&newImage);
-                tile->setData(Qt::UserRole, ui->m_TileNameInput->toPlainText());
+                tile->setData(Qt::UserRole, ui->m_TileNameInput->toPlainText().simplified());
                 tile->setData(Qt::UserRole +3, ui->m_TileTypeText->text());
                 tile->setData(Qt::DecorationRole, QPixmap::fromImage(newImage.scaled(50,50)));
                 tile->setIndexVal(QVector2D(r,c));
@@ -64,11 +66,12 @@ void NewTileWindow::handleConfirmButton()
                 inserted = true;
                 break;
             }
-            if(inserted)
+
+            }
+            else
             {
                 break;
             }
-
         }
         if(!inserted && r == m_table->rowCount())
         {
