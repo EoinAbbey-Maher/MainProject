@@ -1,4 +1,4 @@
-#include "include\mygraphicsview.h"
+#include "include/mygraphicsview.h"
 
 MyGraphicsView::MyGraphicsView(QWidget *parent):
     QGraphicsView(parent)

@@ -1,4 +1,4 @@
-#include "include\newtilewindow.h"
+#include "include/newtilewindow.h"
 #include "ui_newtilewindow.h"
 
 NewTileWindow::NewTileWindow(QWidget *parent) :
