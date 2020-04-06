@@ -3,7 +3,7 @@
 #include <iostream>
 
 Game::Game() :
-	m_window{ sf::VideoMode{ GlobalSettings::s_width, GlobalSettings::s_height, 32U }, "SFML Game" },
+	m_window{ sf::VideoMode{ GlobalSettings::s_width, GlobalSettings::s_height, 32U }, "SFML Game", sf::Style::Default },
 	m_roombuilder{m_window},
 	m_exitGame{false} 
 {
