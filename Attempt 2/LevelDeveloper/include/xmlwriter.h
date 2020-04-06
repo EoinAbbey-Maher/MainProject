@@ -7,6 +7,10 @@
 #include <qtablewidget.h>
 #include <qfiledialog.h>
 #include <QMessageBox>
+#include <QFile>
+#include <QtXml>
+
+#include <iostream>
 
 #include "tileitem.h"
 
@@ -17,7 +21,14 @@ public:
     XMLWriter();
 
     void WriteTilesToFile(QTableWidget * t_table, QVector<QPair<QString,QString>> t_TextureNames);
+
+    void ReadExistingFile(QTableWidget * t_table, QVector<QPair<QString,QString>>& t_TextureNames);
 signals:
+
+
+private:
+    QString m_XML_Name = "Map_Data.xml";
+
 
 public slots:
 };
