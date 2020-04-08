@@ -1,5 +1,7 @@
 #include "include/startingscreen.h"
+#include "include/xmlwriter.h"
 #include "ui_startingscreen.h"
+
 
 StartingScreen::StartingScreen(QWidget *parent) :
     QMainWindow(parent),
@@ -35,6 +37,8 @@ void StartingScreen::HandleCloseButton()
 
 void StartingScreen::HandleLoadButton()
 {
+    XMLWriter xml;
 
+    xml.ReadExistingFile();
 }
 

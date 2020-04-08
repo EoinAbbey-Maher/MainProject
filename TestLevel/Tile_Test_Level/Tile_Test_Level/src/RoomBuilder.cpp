@@ -20,10 +20,10 @@ void RoomBuilder::loadFile(const char* t_roomName)
 	XMLDocument doc;
 	doc.LoadFile(t_roomName);
 
-	XMLText * NoOfTextures = doc.FirstChildElement("Map_Values")->FirstChildElement("NoOfTextures")->FirstChild()->ToText();
-	XMLText* TotalTilesXml= doc.FirstChildElement("Map_Values")->FirstChildElement("TotalTiles")->FirstChild()->ToText();
-	XMLText* mapHeightXml = doc.FirstChildElement("Map_Values")->FirstChildElement("RowSize")->FirstChild()->ToText();
-	XMLText* mapWidthXml = doc.FirstChildElement("Map_Values")->FirstChildElement("ColSize")->FirstChild()->ToText();
+	XMLText * NoOfTextures = doc.FirstChildElement("Map_Export")->FirstChildElement("Map_Values")->FirstChildElement("NoOfTextures")->FirstChild()->ToText();
+	XMLText* TotalTilesXml= doc.FirstChildElement("Map_Export")->FirstChildElement("Map_Values")->FirstChildElement("TotalTiles")->FirstChild()->ToText();
+	XMLText* mapHeightXml = doc.FirstChildElement("Map_Export")->FirstChildElement("Map_Values")->FirstChildElement("RowSize")->FirstChild()->ToText();
+	XMLText* mapWidthXml = doc.FirstChildElement("Map_Export")->FirstChildElement("Map_Values")->FirstChildElement("ColSize")->FirstChild()->ToText();
 	
 
 	int noOfTextureInt = std::stoi(NoOfTextures->Value());
@@ -38,7 +38,7 @@ void RoomBuilder::loadFile(const char* t_roomName)
 
 		strcpy_s(texturearr, str.c_str());
 
-		XMLText* ImageLink = doc.FirstChildElement("Map_Values")->FirstChildElement(texturearr)->FirstChild()->ToText();
+		XMLText* ImageLink = doc.FirstChildElement("Map_Export")->FirstChildElement("Map_Values")->FirstChildElement(texturearr)->FirstChild()->ToText();
 
 		m_textureAddresses.push_back(ImageLink->Value());
 
@@ -66,13 +66,13 @@ void RoomBuilder::loadFile(const char* t_roomName)
 			strcpy_s(tilearr, str.c_str());
 			
 
-			XMLText* indexX = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("IndexX")->FirstChild()->ToText();
-			XMLText* indexY = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("IndexY")->FirstChild()->ToText();
-			XMLText* PositionX = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("PositionX")->FirstChild()->ToText();
-			XMLText* PositionY = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("PositionY")->FirstChild()->ToText();
-			XMLText* TypeXML = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("PositionY")->FirstChild()->ToText();
+			XMLText* indexX = doc.FirstChildElement("Map_Export")->FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("IndexX")->FirstChild()->ToText();
+			XMLText* indexY = doc.FirstChildElement("Map_Export")->FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("IndexY")->FirstChild()->ToText();
+			XMLText* PositionX = doc.FirstChildElement("Map_Export")->FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("PositionX")->FirstChild()->ToText();
+			XMLText* PositionY = doc.FirstChildElement("Map_Export")->FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("PositionY")->FirstChild()->ToText();
+			XMLText* TypeXML = doc.FirstChildElement("Map_Export")->FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("PositionY")->FirstChild()->ToText();
 
-			XMLText* ImageURL = doc.FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("Image")->FirstChild()->ToText();
+			XMLText* ImageURL = doc.FirstChildElement("Map_Export")->FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("Image")->FirstChild()->ToText();
 			
 			std::string imgStr = ImageURL->Value();
 

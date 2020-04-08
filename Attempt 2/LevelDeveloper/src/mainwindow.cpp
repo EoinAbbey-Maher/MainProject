@@ -38,7 +38,7 @@ MainWindow::MainWindow(int t_tableHeight, int t_tableWidth, QWidget *parent) :
     m_texturePair.push_back(QPair<QString,QString>(":/floor1.png", "floor1"));
     m_texturePair.push_back(QPair<QString,QString>(":/floor2.png", "floor2"));
     m_texturePair.push_back(QPair<QString,QString>(":/floor3.png", "floor3"));
-    m_texturePair.push_back(QPair<QString,QString>(":/floor4.png", "floor4"));
+    m_texturePair.push_back(QPair<QString,QString>(":/empty.png", "empty"));
 
     setupIcons();
     setupGameGrid(m_gameGridSize.y(), m_gameGridSize.x());
@@ -82,7 +82,7 @@ void MainWindow::handleClearButton()
 // ------------------------------------------------------------------------------------
 void MainWindow::handleExportButton()
 {
-    m_xmlWriter.WriteTilesToFile(m_mapTable, m_texturePair);
+    m_xmlWriter->WriteTilesToFile(m_mapTable, m_texturePair);
 }
 
 // ------------------------------------------------------------------------------------
@@ -327,13 +327,33 @@ void MainWindow::keyPressEvent(QKeyEvent *t_event)
     }
 }
 
+// ------------------------------------------------------------------------------------
+//              Add New Row To The Table
+// ------------------------------------------------------------------------------------
+void MainWindow::addRow()
+{
+    m_mapTable->insertRow(1);
+    m_gameGridSize.ry()++;
+}
+
+// ------------------------------------------------------------------------------------
+//              Add New Column To The Table
+// ------------------------------------------------------------------------------------
+void MainWindow::addColumn()
+{
+    m_mapTable->insertColumn(1);
+    m_gameGridSize.rx()++;
+}
+
+
 
 // ------------------------------------------------------------------------------------
 //            Open And load Existing XML Map File
 // ------------------------------------------------------------------------------------
 void MainWindow::open()
 {
-
+    close();
+    m_xmlWriter->ReadExistingFile();
 }
 
 // ------------------------------------------------------------------------------------
@@ -396,10 +416,10 @@ void MainWindow::saveReturnToMain()
 void MainWindow::createMenus()
 {
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
-    OpenMapAct = fileMenu->addAction(tr("&Open..."), this, &MainWindow::open);
+    OpenMapAct = fileMenu->addAction(tr("&Open existing Project"), this, &MainWindow::open);
     OpenMapAct->setShortcut(QKeySequence::Open);
 
-    saveAsAct = fileMenu->addAction(tr("&Export Map As..."), this, &MainWindow::handleExportButton);
+    saveAsAct = fileMenu->addAction(tr("&Export Map"), this, &MainWindow::handleExportButton);
     saveAsAct->setShortcut(QKeySequence::Save);
 
     newMapAct = fileMenu->addAction(tr("&New Map"), this,&MainWindow::newMap);
@@ -415,6 +435,8 @@ void MainWindow::createMenus()
     QMenu * addMenu = menuBar()->addMenu(tr("&Add"));
     openTile = addMenu->addAction(tr("&Add New Tile"), this, &MainWindow::openNewTile);
 
+    addColAct = addMenu->addAction(tr("&Add A Column"), this, &MainWindow::addColumn);
+    addRowAct = addMenu->addAction(tr("Add Column"), this, &MainWindow::addRow);
     addMenu->addSeparator();
 
 }

@@ -10,7 +10,9 @@
 #include "mainwindow.h"
 #include "maplayoutscreen.h"
 
+
 class MapLayoutScreen;
+class XMLWriter;
 
 namespace Ui {
 class StartingScreen;

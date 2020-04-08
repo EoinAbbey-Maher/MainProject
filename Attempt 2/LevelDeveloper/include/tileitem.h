@@ -7,6 +7,7 @@
 #include <QVector2D>
 #include <QPixmap>
 
+class XMLWriter;
 
 class TileItem : public QTableWidgetItem
 {

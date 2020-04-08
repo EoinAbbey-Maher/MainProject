@@ -16,6 +16,7 @@
 
 class StartingScreen;
 class MapLayoutScreen;
+class XMLWriter;
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -30,9 +31,11 @@ public:
     ~MainWindow();
 
 public:
+    Ui::MainWindow *ui;
+    QTableWidget * m_mapTable;
+    QVector<QPair<QString, QString>> m_texturePair;
+
 signals:
-
-
 
 private slots:
     void handleApplyButton();
@@ -41,6 +44,8 @@ private slots:
     void wheelEvent(QWheelEvent *t_event);
     void keyPressEvent(QKeyEvent * t_event);
 
+    void addRow();
+    void addColumn();
     void open();
     void newMap();
     void closeProgram();
@@ -48,11 +53,10 @@ private slots:
     void returnToMain();
     void saveReturnToMain();
 
+
 private: //variables
     QGraphicsScene * scene = new QGraphicsScene(this);
     QGraphicsProxyWidget * m_proxyWidget = new QGraphicsProxyWidget;
-
-    Ui::MainWindow *ui;
 
     QAction *setTextureAction;
     QAction *removeTextureAction;
@@ -64,24 +68,21 @@ private: //variables
     QAction * saveandReturnAct;
     QAction * closeMapAction;
     QAction * OpenMapAct;
-
     QAction * openTile;
+
+    QAction * addColAct;
+    QAction * addRowAct;
 
     QUndoStack *undoStack;
 
-    XMLWriter m_xmlWriter;
+    XMLWriter* m_xmlWriter = new XMLWriter;
 
     QVector<TileItem> m_mapTiles;
     QVector<TileItem> m_iconTiles;
 
     QVector<QString> m_TexturePaths;
 
-    QVector<QPair<QString, QString>> m_texturePair;
-
-    QTableWidget * m_mapTable;
-
     QPoint m_gameGridSize = QPoint(32,20);
-
 
     NewTileWindow* m_newTileWindow;
     StartingScreen * m_StartScreen;

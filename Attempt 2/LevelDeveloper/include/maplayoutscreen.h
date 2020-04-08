@@ -6,7 +6,9 @@
 #include "startingscreen.h"
 
 class StartingScreen;
+class XMLWriter;
 class MainWindow;
+
 
 namespace Ui {
 class MapLayoutScreen;

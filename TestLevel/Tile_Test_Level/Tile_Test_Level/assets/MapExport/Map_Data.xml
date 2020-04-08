@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Map_Values>
-    <NoOfTextures>6</NoOfTextures>
+    <NoOfTextures>5</NoOfTextures>
     <TotalTiles>225</TotalTiles>
     <RowSize>15</RowSize>
     <ColSize>15</ColSize>
@@ -8,8 +8,7 @@
     <Texture1>floor1</Texture1>
     <Texture2>floor2</Texture2>
     <Texture3>floor3</Texture3>
-    <Texture4>floor4</Texture4>
-    <Texture5>diagonal</Texture5>
+    <Texture4>diagonal</Texture4>
 </Map_Values>
 <Tiles>
     <Tile0>
@@ -145,7 +144,7 @@
         <IndexY>1</IndexY>
         <PositionX>32</PositionX>
         <PositionY>32</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile16>
     <Tile17>
@@ -153,7 +152,7 @@
         <IndexY>1</IndexY>
         <PositionX>64</PositionX>
         <PositionY>32</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile17>
     <Tile18>
@@ -161,7 +160,7 @@
         <IndexY>1</IndexY>
         <PositionX>96</PositionX>
         <PositionY>32</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile18>
     <Tile19>
@@ -169,7 +168,7 @@
         <IndexY>1</IndexY>
         <PositionX>128</PositionX>
         <PositionY>32</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile19>
     <Tile20>
@@ -177,7 +176,7 @@
         <IndexY>1</IndexY>
         <PositionX>160</PositionX>
         <PositionY>32</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile20>
     <Tile21>
@@ -185,7 +184,7 @@
         <IndexY>1</IndexY>
         <PositionX>192</PositionX>
         <PositionY>32</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile21>
     <Tile22>
@@ -193,7 +192,7 @@
         <IndexY>1</IndexY>
         <PositionX>224</PositionX>
         <PositionY>32</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile22>
     <Tile23>
@@ -201,7 +200,7 @@
         <IndexY>1</IndexY>
         <PositionX>256</PositionX>
         <PositionY>32</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile23>
     <Tile24>
@@ -209,7 +208,7 @@
         <IndexY>1</IndexY>
         <PositionX>288</PositionX>
         <PositionY>32</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile24>
     <Tile25>
@@ -217,7 +216,7 @@
         <IndexY>1</IndexY>
         <PositionX>320</PositionX>
         <PositionY>32</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile25>
     <Tile26>
@@ -225,7 +224,7 @@
         <IndexY>1</IndexY>
         <PositionX>352</PositionX>
         <PositionY>32</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile26>
     <Tile27>
@@ -233,7 +232,7 @@
         <IndexY>1</IndexY>
         <PositionX>384</PositionX>
         <PositionY>32</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile27>
     <Tile28>
@@ -265,7 +264,7 @@
         <IndexY>2</IndexY>
         <PositionX>32</PositionX>
         <PositionY>64</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile31>
     <Tile32>
@@ -273,7 +272,7 @@
         <IndexY>2</IndexY>
         <PositionX>64</PositionX>
         <PositionY>64</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile32>
     <Tile33>
@@ -281,7 +280,7 @@
         <IndexY>2</IndexY>
         <PositionX>96</PositionX>
         <PositionY>64</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile33>
     <Tile34>
@@ -289,7 +288,7 @@
         <IndexY>2</IndexY>
         <PositionX>128</PositionX>
         <PositionY>64</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile34>
     <Tile35>
@@ -297,7 +296,7 @@
         <IndexY>2</IndexY>
         <PositionX>160</PositionX>
         <PositionY>64</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile35>
     <Tile36>
@@ -305,7 +304,7 @@
         <IndexY>2</IndexY>
         <PositionX>192</PositionX>
         <PositionY>64</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile36>
     <Tile37>
@@ -313,7 +312,7 @@
         <IndexY>2</IndexY>
         <PositionX>224</PositionX>
         <PositionY>64</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile37>
     <Tile38>
@@ -321,7 +320,7 @@
         <IndexY>2</IndexY>
         <PositionX>256</PositionX>
         <PositionY>64</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile38>
     <Tile39>
@@ -329,7 +328,7 @@
         <IndexY>2</IndexY>
         <PositionX>288</PositionX>
         <PositionY>64</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile39>
     <Tile40>
@@ -337,7 +336,7 @@
         <IndexY>2</IndexY>
         <PositionX>320</PositionX>
         <PositionY>64</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile40>
     <Tile41>
@@ -345,7 +344,7 @@
         <IndexY>2</IndexY>
         <PositionX>352</PositionX>
         <PositionY>64</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile41>
     <Tile42>
@@ -353,7 +352,7 @@
         <IndexY>2</IndexY>
         <PositionX>384</PositionX>
         <PositionY>64</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile42>
     <Tile43>
@@ -385,7 +384,7 @@
         <IndexY>3</IndexY>
         <PositionX>32</PositionX>
         <PositionY>96</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile46>
     <Tile47>
@@ -393,7 +392,7 @@
         <IndexY>3</IndexY>
         <PositionX>64</PositionX>
         <PositionY>96</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile47>
     <Tile48>
@@ -473,7 +472,7 @@
         <IndexY>3</IndexY>
         <PositionX>384</PositionX>
         <PositionY>96</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile57>
     <Tile58>
@@ -505,7 +504,7 @@
         <IndexY>4</IndexY>
         <PositionX>32</PositionX>
         <PositionY>128</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile61>
     <Tile62>
@@ -513,7 +512,7 @@
         <IndexY>4</IndexY>
         <PositionX>64</PositionX>
         <PositionY>128</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile62>
     <Tile63>
@@ -593,7 +592,7 @@
         <IndexY>4</IndexY>
         <PositionX>384</PositionX>
         <PositionY>128</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile72>
     <Tile73>
@@ -625,7 +624,7 @@
         <IndexY>5</IndexY>
         <PositionX>32</PositionX>
         <PositionY>160</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile76>
     <Tile77>
@@ -633,7 +632,7 @@
         <IndexY>5</IndexY>
         <PositionX>64</PositionX>
         <PositionY>160</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile77>
     <Tile78>
@@ -713,7 +712,7 @@
         <IndexY>5</IndexY>
         <PositionX>384</PositionX>
         <PositionY>160</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile87>
     <Tile88>
@@ -721,7 +720,7 @@
         <IndexY>5</IndexY>
         <PositionX>416</PositionX>
         <PositionY>160</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile88>
     <Tile89>
@@ -745,7 +744,7 @@
         <IndexY>6</IndexY>
         <PositionX>32</PositionX>
         <PositionY>192</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile91>
     <Tile92>
@@ -753,7 +752,7 @@
         <IndexY>6</IndexY>
         <PositionX>64</PositionX>
         <PositionY>192</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile92>
     <Tile93>
@@ -833,7 +832,7 @@
         <IndexY>6</IndexY>
         <PositionX>384</PositionX>
         <PositionY>192</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile102>
     <Tile103>
@@ -841,7 +840,7 @@
         <IndexY>6</IndexY>
         <PositionX>416</PositionX>
         <PositionY>192</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile103>
     <Tile104>
@@ -865,7 +864,7 @@
         <IndexY>7</IndexY>
         <PositionX>32</PositionX>
         <PositionY>224</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile106>
     <Tile107>
@@ -873,7 +872,7 @@
         <IndexY>7</IndexY>
         <PositionX>64</PositionX>
         <PositionY>224</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile107>
     <Tile108>
@@ -953,7 +952,7 @@
         <IndexY>7</IndexY>
         <PositionX>384</PositionX>
         <PositionY>224</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile117>
     <Tile118>
@@ -961,7 +960,7 @@
         <IndexY>7</IndexY>
         <PositionX>416</PositionX>
         <PositionY>224</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile118>
     <Tile119>
@@ -985,7 +984,7 @@
         <IndexY>8</IndexY>
         <PositionX>32</PositionX>
         <PositionY>256</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile121>
     <Tile122>
@@ -993,7 +992,7 @@
         <IndexY>8</IndexY>
         <PositionX>64</PositionX>
         <PositionY>256</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile122>
     <Tile123>
@@ -1073,7 +1072,7 @@
         <IndexY>8</IndexY>
         <PositionX>384</PositionX>
         <PositionY>256</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile132>
     <Tile133>
@@ -1081,7 +1080,7 @@
         <IndexY>8</IndexY>
         <PositionX>416</PositionX>
         <PositionY>256</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile133>
     <Tile134>
@@ -1105,7 +1104,7 @@
         <IndexY>9</IndexY>
         <PositionX>32</PositionX>
         <PositionY>288</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile136>
     <Tile137>
@@ -1113,7 +1112,7 @@
         <IndexY>9</IndexY>
         <PositionX>64</PositionX>
         <PositionY>288</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile137>
     <Tile138>
@@ -1193,7 +1192,7 @@
         <IndexY>9</IndexY>
         <PositionX>384</PositionX>
         <PositionY>288</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile147>
     <Tile148>
@@ -1201,7 +1200,7 @@
         <IndexY>9</IndexY>
         <PositionX>416</PositionX>
         <PositionY>288</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile148>
     <Tile149>
@@ -1225,7 +1224,7 @@
         <IndexY>10</IndexY>
         <PositionX>32</PositionX>
         <PositionY>320</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile151>
     <Tile152>
@@ -1233,7 +1232,7 @@
         <IndexY>10</IndexY>
         <PositionX>64</PositionX>
         <PositionY>320</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile152>
     <Tile153>
@@ -1313,7 +1312,7 @@
         <IndexY>10</IndexY>
         <PositionX>384</PositionX>
         <PositionY>320</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile162>
     <Tile163>
@@ -1321,7 +1320,7 @@
         <IndexY>10</IndexY>
         <PositionX>416</PositionX>
         <PositionY>320</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile163>
     <Tile164>
@@ -1345,7 +1344,7 @@
         <IndexY>11</IndexY>
         <PositionX>32</PositionX>
         <PositionY>352</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile166>
     <Tile167>
@@ -1353,7 +1352,7 @@
         <IndexY>11</IndexY>
         <PositionX>64</PositionX>
         <PositionY>352</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile167>
     <Tile168>
@@ -1433,7 +1432,7 @@
         <IndexY>11</IndexY>
         <PositionX>384</PositionX>
         <PositionY>352</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile177>
     <Tile178>
@@ -1441,7 +1440,7 @@
         <IndexY>11</IndexY>
         <PositionX>416</PositionX>
         <PositionY>352</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile178>
     <Tile179>
@@ -1465,7 +1464,7 @@
         <IndexY>12</IndexY>
         <PositionX>32</PositionX>
         <PositionY>384</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile181>
     <Tile182>
@@ -1473,7 +1472,7 @@
         <IndexY>12</IndexY>
         <PositionX>64</PositionX>
         <PositionY>384</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile182>
     <Tile183>
@@ -1481,7 +1480,7 @@
         <IndexY>12</IndexY>
         <PositionX>96</PositionX>
         <PositionY>384</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile183>
     <Tile184>
@@ -1489,7 +1488,7 @@
         <IndexY>12</IndexY>
         <PositionX>128</PositionX>
         <PositionY>384</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile184>
     <Tile185>
@@ -1497,7 +1496,7 @@
         <IndexY>12</IndexY>
         <PositionX>160</PositionX>
         <PositionY>384</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile185>
     <Tile186>
@@ -1505,7 +1504,7 @@
         <IndexY>12</IndexY>
         <PositionX>192</PositionX>
         <PositionY>384</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile186>
     <Tile187>
@@ -1513,7 +1512,7 @@
         <IndexY>12</IndexY>
         <PositionX>224</PositionX>
         <PositionY>384</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile187>
     <Tile188>
@@ -1521,7 +1520,7 @@
         <IndexY>12</IndexY>
         <PositionX>256</PositionX>
         <PositionY>384</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile188>
     <Tile189>
@@ -1529,7 +1528,7 @@
         <IndexY>12</IndexY>
         <PositionX>288</PositionX>
         <PositionY>384</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile189>
     <Tile190>
@@ -1537,7 +1536,7 @@
         <IndexY>12</IndexY>
         <PositionX>320</PositionX>
         <PositionY>384</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile190>
     <Tile191>
@@ -1545,7 +1544,7 @@
         <IndexY>12</IndexY>
         <PositionX>352</PositionX>
         <PositionY>384</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile191>
     <Tile192>
@@ -1553,7 +1552,7 @@
         <IndexY>12</IndexY>
         <PositionX>384</PositionX>
         <PositionY>384</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile192>
     <Tile193>
@@ -1561,7 +1560,7 @@
         <IndexY>12</IndexY>
         <PositionX>416</PositionX>
         <PositionY>384</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile193>
     <Tile194>
@@ -1585,7 +1584,7 @@
         <IndexY>13</IndexY>
         <PositionX>32</PositionX>
         <PositionY>416</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile196>
     <Tile197>
@@ -1593,7 +1592,7 @@
         <IndexY>13</IndexY>
         <PositionX>64</PositionX>
         <PositionY>416</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile197>
     <Tile198>
@@ -1601,7 +1600,7 @@
         <IndexY>13</IndexY>
         <PositionX>96</PositionX>
         <PositionY>416</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile198>
     <Tile199>
@@ -1609,7 +1608,7 @@
         <IndexY>13</IndexY>
         <PositionX>128</PositionX>
         <PositionY>416</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile199>
     <Tile200>
@@ -1617,7 +1616,7 @@
         <IndexY>13</IndexY>
         <PositionX>160</PositionX>
         <PositionY>416</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile200>
     <Tile201>
@@ -1625,7 +1624,7 @@
         <IndexY>13</IndexY>
         <PositionX>192</PositionX>
         <PositionY>416</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile201>
     <Tile202>
@@ -1633,7 +1632,7 @@
         <IndexY>13</IndexY>
         <PositionX>224</PositionX>
         <PositionY>416</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile202>
     <Tile203>
@@ -1641,7 +1640,7 @@
         <IndexY>13</IndexY>
         <PositionX>256</PositionX>
         <PositionY>416</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile203>
     <Tile204>
@@ -1649,7 +1648,7 @@
         <IndexY>13</IndexY>
         <PositionX>288</PositionX>
         <PositionY>416</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile204>
     <Tile205>
@@ -1657,7 +1656,7 @@
         <IndexY>13</IndexY>
         <PositionX>320</PositionX>
         <PositionY>416</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile205>
     <Tile206>
@@ -1665,7 +1664,7 @@
         <IndexY>13</IndexY>
         <PositionX>352</PositionX>
         <PositionY>416</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile206>
     <Tile207>
@@ -1673,7 +1672,7 @@
         <IndexY>13</IndexY>
         <PositionX>384</PositionX>
         <PositionY>416</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile207>
     <Tile208>
@@ -1681,7 +1680,7 @@
         <IndexY>13</IndexY>
         <PositionX>416</PositionX>
         <PositionY>416</PositionY>
-        <Image>empty.png</Image>
+        <Image>empty</Image>
         <Type>empty</Type>
     </Tile208>
     <Tile209>
