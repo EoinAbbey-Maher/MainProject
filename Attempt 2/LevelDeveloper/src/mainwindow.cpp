@@ -436,7 +436,7 @@ void MainWindow::createMenus()
     openTile = addMenu->addAction(tr("&Add New Tile"), this, &MainWindow::openNewTile);
 
     addColAct = addMenu->addAction(tr("&Add A Column"), this, &MainWindow::addColumn);
-    addRowAct = addMenu->addAction(tr("Add Column"), this, &MainWindow::addRow);
+    addRowAct = addMenu->addAction(tr("Add A Row"), this, &MainWindow::addRow);
     addMenu->addSeparator();
 
 }
