@@ -47,14 +47,16 @@ MainWindow::MainWindow(int t_tableHeight, int t_tableWidth, QWidget *parent) :
     setupGameGrid(m_gameGridSize.y(), m_gameGridSize.x());
 
     m_activeTable = m_mapTable;
+    m_activeTable->raise();
+    m_NodeTable->setVisible(false);
 
     connect(ui->m_applyButton, SIGNAL(released()), this,SLOT(handleApplyButton()));
     connect(ui->m_clearCellButton, SIGNAL(released()),this,SLOT(handleClearButton()));
     connect(ui->m_exportButton, SIGNAL(released()), this, SLOT(handleExportButton()));
 
     connect(ui->Icon_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
-    connect(m_mapTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
-    connect(m_NodeTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
+    //connect(m_mapTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
+    //connect(m_NodeTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
     connect(m_activeTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
 
     connect(ui->m_layerCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(handleTableChange()));
@@ -72,11 +74,10 @@ MainWindow::~MainWindow()
 void MainWindow::handleApplyButton()
 {
     //ui->m_applyButton->setText("Pressed");
-if( m_mapTable->selectedItems().size() != 0 && ui->Icon_Table->selectedItems().size() != 0)
-{
-    setTextures();
-}
-
+    if( m_activeTable->selectedItems().size() != 0 && ui->Icon_Table->selectedItems().size() != 0)
+    {
+        setTextures();
+    }
 }
 
 // ------------------------------------------------------------------------------------
@@ -95,15 +96,15 @@ void MainWindow::handleClearButton()
 // ------------------------------------------------------------------------------------
 void MainWindow::handleExportButton()
 {
-    m_xmlWriter->WriteTilesToFile(m_mapTable, m_texturePair);
+    m_xmlWriter->WriteTilesToFile(m_mapTable,m_NodeTable, m_texturePair);
 }
-
 
 // ------------------------------------------------------------------------------------
 //                      Handle layer Change
 // ------------------------------------------------------------------------------------
 void MainWindow::handleTableChange()
 {
+    m_activeTable->setVisible(false);
     switch(ui->m_layerCombo->currentIndex())
     {
     case 0:
@@ -117,8 +118,10 @@ void MainWindow::handleTableChange()
     default:
         break;
     }
-    m_activeTable->setFocus();
+    m_activeTable->setVisible(true);
+
 }
+
 
 // ------------------------------------------------------------------------------------
 //            Create Action Buttons
@@ -380,7 +383,7 @@ void MainWindow::setupGameGrid(int t_height = 10, int t_width = 10)
     ui->m_FullCameraView->setSceneRect(0,0,tableWidth * m_tileSize.x(), tableHeight*m_tileSize.y());
     ui->m_FullCameraView->fitInView(0,0,tableWidth * m_tileSize.x(), tableHeight* m_tileSize.y(),Qt::KeepAspectRatio);
 
-    ui->m_FullCameraView->scale(5,5);
+    ui->m_FullCameraView->scale(7,7);
 }
 
 
@@ -442,7 +445,12 @@ void MainWindow::keyPressEvent(QKeyEvent *t_event)
 void MainWindow::addRow()
 {
     m_mapTable->insertRow(1);
+    m_NodeTable->insertRow(1);
     m_gameGridSize.ry()++;
+
+    ui->m_FullCameraView->setSceneRect(0,0,m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
+    ui->m_FullCameraView->fitInView(0,0,m_mapTable->columnCount()  * m_tileSize.x(), m_mapTable->rowCount()* m_tileSize.y(),Qt::KeepAspectRatio);
+
 }
 
 // ------------------------------------------------------------------------------------
@@ -451,7 +459,12 @@ void MainWindow::addRow()
 void MainWindow::addColumn()
 {
     m_mapTable->insertColumn(1);
+    m_NodeTable->insertColumn(1);
     m_gameGridSize.rx()++;
+
+    ui->m_FullCameraView->setSceneRect(0,0,m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
+    ui->m_FullCameraView->fitInView(0,0,m_mapTable->columnCount()  * m_tileSize.x(), m_mapTable->rowCount()* m_tileSize.y(),Qt::KeepAspectRatio);
+
 }
 
 

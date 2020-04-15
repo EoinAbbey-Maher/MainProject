@@ -25,9 +25,13 @@ public: // variables
 
 	std::map<std::string, sf::Texture> m_textureDict;
 
+	int m_mapHeight = 0;
+	int m_mapWidth = 0;
+
 	static const int M_TOTALHEIGHT = 20;
 	static const int M_TOTALWIDTH = 32;
 
+	int m_maxTiles;
 	Tile m_tiles[M_TOTALHEIGHT][M_TOTALWIDTH];
 	
 private: //variables
@@ -35,6 +39,11 @@ private: //variables
 	int m_tileValue[M_TOTALHEIGHT][M_TOTALWIDTH];
 	std::vector<sf::Texture> m_textures;
 	std::vector<sf::String> m_textureAddresses;
+
+
+
+	sf::Vector2f m_playerPos;
+	std::vector<sf::Vector2f> m_NPCPositions;
 
 	sf::RenderWindow & m_window;
 

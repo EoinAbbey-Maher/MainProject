@@ -21,7 +21,7 @@ class XMLWriter : public QWidget
 public:
     XMLWriter();
 
-    void WriteTilesToFile(QTableWidget * t_table, QVector<QPair<QString,QString>> t_TextureNames);
+    void WriteTilesToFile(QTableWidget * t_mapTable,QTableWidget * t_nodeTable, QVector<QPair<QString,QString>> t_TextureNames);
 
     void ReadExistingFile();
 signals:

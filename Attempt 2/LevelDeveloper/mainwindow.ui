@@ -9,8 +9,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>800</width>
-    <height>599</height>
+    <width>766</width>
+    <height>611</height>
    </rect>
   </property>
   <property name="windowTitle">
@@ -19,9 +19,13 @@
   <widget class="QWidget" name="centralwidget">
    <layout class="QVBoxLayout" name="verticalLayout_2" stretch="2,0,1">
     <item>
-     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,0">
+     <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="0,0,0">
       <item>
-       <widget class="QGraphicsView" name="m_FullCameraView"/>
+       <widget class="QSlider" name="m_zoomSlider">
+        <property name="orientation">
+         <enum>Qt::Vertical</enum>
+        </property>
+       </widget>
       </item>
       <item>
        <widget class="QGraphicsView" name="graphicsView">
@@ -35,6 +39,9 @@
          <bool>true</bool>
         </property>
        </widget>
+      </item>
+      <item>
+       <widget class="QGraphicsView" name="m_FullCameraView"/>
       </item>
      </layout>
     </item>
@@ -178,7 +185,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>800</width>
+     <width>766</width>
      <height>20</height>
     </rect>
    </property>

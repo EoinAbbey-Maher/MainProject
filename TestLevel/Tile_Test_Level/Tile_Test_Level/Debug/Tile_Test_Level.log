@@ -1,2 +1,11 @@
-﻿  Game.cpp
+﻿  Player.cpp
+D:\Desktop\4th year\Main_Project\MainProject\TestLevel\Tile_Test_Level\Tile_Test_Level\include\Player.h(11,43): warning C4305: 'initializing': truncation from 'double' to 'float'
+D:\Desktop\4th year\Main_Project\MainProject\TestLevel\Tile_Test_Level\Tile_Test_Level\include\Player.h(11,43): warning C4305: 'initializing': truncation from 'double' to 'const float'
+D:\Desktop\4th year\Main_Project\MainProject\TestLevel\Tile_Test_Level\Tile_Test_Level\src\Player.cpp(33,10): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Desktop\4th year\Main_Project\MainProject\TestLevel\Tile_Test_Level\Tile_Test_Level\src\Player.cpp(37,11): warning C4305: 'argument': truncation from 'double' to 'float'
+D:\Desktop\4th year\Main_Project\MainProject\TestLevel\Tile_Test_Level\Tile_Test_Level\src\Player.cpp(118,48): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  RoomBuilder.cpp
+  tinyxml2.cpp
+  Generating Code...
+D:\Desktop\4th year\Main_Project\MainProject\TestLevel\Tile_Test_Level\Tile_Test_Level\src\Player.cpp(118,33): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
   Tile_Test_Level.vcxproj -> D:\Desktop\4th year\Main_Project\MainProject\TestLevel\Tile_Test_Level\Debug\Tile_Test_Level.exe

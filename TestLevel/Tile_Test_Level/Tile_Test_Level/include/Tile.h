@@ -7,7 +7,7 @@ enum class TileType
 {
 	FLOOR,
 	WALL,
-	DOOR,
+	NODE,
 	EMPTY
 };
 
@@ -24,7 +24,6 @@ public: //functions
 
 private: //functions
 
-
 public: //variables
 	float const m_size{ 64 };
 
@@ -33,12 +32,11 @@ public: //variables
 
 	sf::Vector2i indexPosition;
 	sf::Vector2f m_position{ 0,0 };
+
+	TileType m_type;
 private: //variables 
 	
 	sf::IntRect m_textureRect;
-	
-
-	
 };
 
 #endif // !TILE

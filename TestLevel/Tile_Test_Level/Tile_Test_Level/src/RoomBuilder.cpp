@@ -15,6 +15,12 @@ RoomBuilder::~RoomBuilder()
 /// <param name="t_roomName">file name</param>
 void RoomBuilder::loadFile(const char* t_roomName)
 {
+
+	/// ------------------------------------------------------------------------------
+	/// 
+	///									Build Main Room
+	/// 
+	/// ------------------------------------------------------------------------------
 	emptyRoom();
 
 	XMLDocument doc;
@@ -28,8 +34,10 @@ void RoomBuilder::loadFile(const char* t_roomName)
 
 	int noOfTextureInt = std::stoi(NoOfTextures->Value());
 	int TotalTilesInt= std::stoi(TotalTilesXml->Value());
-	int mapHeightInt = std::stoi(mapHeightXml->Value());
-	int mapWidthInt = std::stoi(mapWidthXml->Value());
+	m_mapHeight = std::stoi(mapHeightXml->Value());
+	m_mapWidth = std::stoi(mapWidthXml->Value());
+
+	m_maxTiles = TotalTilesInt;
 
 	for (int i = 0; i < noOfTextureInt; i++)
 	{
@@ -55,9 +63,9 @@ void RoomBuilder::loadFile(const char* t_roomName)
 	
 	int t = 0;
 
-	for (int i = 0; i < mapHeightInt; i++)
+	for (int i = 0; i < m_mapHeight; i++)
 	{
-		for (int j = 0; j < mapWidthInt; j++)
+		for (int j = 0; j < m_mapWidth; j++)
 		{
 			
 			std::string str = "Tile" + std::to_string(t);
@@ -70,11 +78,30 @@ void RoomBuilder::loadFile(const char* t_roomName)
 			XMLText* indexY = doc.FirstChildElement("Map_Export")->FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("IndexY")->FirstChild()->ToText();
 			XMLText* PositionX = doc.FirstChildElement("Map_Export")->FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("PositionX")->FirstChild()->ToText();
 			XMLText* PositionY = doc.FirstChildElement("Map_Export")->FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("PositionY")->FirstChild()->ToText();
-			XMLText* TypeXML = doc.FirstChildElement("Map_Export")->FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("PositionY")->FirstChild()->ToText();
+			XMLText* TypeXML = doc.FirstChildElement("Map_Export")->FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("Type")->FirstChild()->ToText();
 
 			XMLText* ImageURL = doc.FirstChildElement("Map_Export")->FirstChildElement("Tiles")->FirstChildElement(tilearr)->FirstChildElement("Image")->FirstChild()->ToText();
 			
 			std::string imgStr = ImageURL->Value();
+			std::string typeStr = TypeXML->Value();
+			
+			if (typeStr == "Node")
+			{
+				m_tiles[i][j].m_type = TileType::NODE;
+			}
+			else if (typeStr == "Wall")
+			{
+				m_tiles[i][j].m_type = TileType::WALL;
+			}
+			else if (typeStr == "Floor")
+			{
+				m_tiles[i][j].m_type = TileType::FLOOR;
+			}
+			else if (typeStr == "empty")
+			{
+				m_tiles[i][j].m_type = TileType::EMPTY;
+			}
+
 
 			m_tiles[i][j].indexPosition = sf::Vector2i(std::stoi(indexX->Value()), std::stoi(indexY->Value()));
 			m_tiles[i][j].m_position = sf::Vector2f(std::stof(PositionX->Value()), std::stof(PositionY->Value()));
@@ -86,6 +113,62 @@ void RoomBuilder::loadFile(const char* t_roomName)
 		} // !for j
 
 	} // !for i
+
+	/// ------------------------------------------------------------------------------
+	/// 
+	///							Insert NPC Nodes and Player
+	/// 
+	/// ------------------------------------------------------------------------------
+
+	
+	XMLText* NoOfNodesXML = doc.FirstChildElement("Map_Export")->FirstChildElement("Nodes")->FirstChildElement("NoOfNodes")->FirstChild()->ToText();
+	int NoOfNodesInt = std::stoi(NoOfNodesXML->Value());
+
+	for (int n = 0; n < NoOfNodesInt; n++)
+	{
+		std::string str = "Node" + std::to_string(t);
+		char nodearr[10] = {};
+
+		strcpy_s(nodearr, str.c_str());
+
+		XMLText* indexX = doc.FirstChildElement("Map_Export")->FirstChildElement("Nodes")->FirstChildElement(nodearr)->FirstChildElement("IndexX")->FirstChild()->ToText();
+		XMLText* indexY = doc.FirstChildElement("Map_Export")->FirstChildElement("Nodes")->FirstChildElement(nodearr)->FirstChildElement("IndexY")->FirstChild()->ToText();
+		XMLText* PositionX = doc.FirstChildElement("Map_Export")->FirstChildElement("Nodes")->FirstChildElement(nodearr)->FirstChildElement("PositionX")->FirstChild()->ToText();
+		XMLText* PositionY = doc.FirstChildElement("Map_Export")->FirstChildElement("Nodes")->FirstChildElement(nodearr)->FirstChildElement("PositionY")->FirstChild()->ToText();
+		XMLText* TypeXML = doc.FirstChildElement("Map_Export")->FirstChildElement("Nodes")->FirstChildElement(nodearr)->FirstChildElement("Type")->FirstChild()->ToText();
+
+		XMLText* ImageURL = doc.FirstChildElement("Map_Export")->FirstChildElement("Nodes")->FirstChildElement(nodearr)->FirstChildElement("Image")->FirstChild()->ToText();
+
+
+		std::string imgStr = ImageURL->Value();
+		std::string typeStr = TypeXML->Value();
+
+		if (typeStr == "Node")
+		{
+
+		}
+		else if (typeStr == "Wall")
+		{
+			m_tiles[i][j].m_type = TileType::WALL;
+		}
+		else if (typeStr == "Floor")
+		{
+			m_tiles[i][j].m_type = TileType::FLOOR;
+		}
+		else if (typeStr == "empty")
+		{
+			m_tiles[i][j].m_type = TileType::EMPTY;
+		}
+
+
+		m_tiles[i][j].indexPosition = sf::Vector2i(std::stoi(indexX->Value()), std::stoi(indexY->Value()));
+		m_tiles[i][j].m_position = sf::Vector2f(std::stof(PositionX->Value()), std::stof(PositionY->Value()));
+		m_tiles[i][j].m_ImgAddress = imgStr;
+
+		m_tiles[i][j].init(m_textureDict);
+
+		t++;
+	}
 
 	std::cout << "builder" << std::endl;
 
