@@ -33,10 +33,10 @@
     <ClInclude Include="include\Player.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Sweeper.h">
+    <ClInclude Include="include\Node.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="include\Node.h">
+    <ClInclude Include="include\Enemy.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
@@ -59,10 +59,10 @@
     <ClCompile Include="src\Player.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Sweeper.cpp">
+    <ClCompile Include="src\Node.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="src\Node.cpp">
+    <ClCompile Include="src\Enemy.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

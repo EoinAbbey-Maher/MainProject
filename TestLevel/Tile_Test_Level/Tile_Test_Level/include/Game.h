@@ -26,6 +26,9 @@ private: //Functions
 	
 	RoomBuilder m_roombuilder;
 
+	std::vector<Enemy> m_enemies;
+	Player m_Player;
+
 private: //Variables
 
 	sf::RenderWindow m_window; // main SFML window

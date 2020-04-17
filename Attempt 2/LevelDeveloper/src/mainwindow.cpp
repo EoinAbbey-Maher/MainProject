@@ -154,6 +154,7 @@ void MainWindow::setTextures()
         {
             m_mapTable->selectedItems().at(i)->setData(Qt::DecorationRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::DecorationRole).value<QPixmap>());
             m_mapTable->selectedItems().at(i)->setData(Qt::UserRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole));
+            m_mapTable->selectedItems().at(i)->setData(Qt::UserRole+3, ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole+3));
         }
     }
     else
@@ -162,6 +163,7 @@ void MainWindow::setTextures()
         {
             m_NodeTable->selectedItems().at(i)->setData(Qt::DecorationRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::DecorationRole).value<QPixmap>());
             m_NodeTable->selectedItems().at(i)->setData(Qt::UserRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole));
+            m_NodeTable->selectedItems().at(i)->setData(Qt::UserRole+3, ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole+3));
         }
     }
     qDebug() << "setup Textures";
@@ -238,12 +240,13 @@ void MainWindow::setupIcons()
                         case 1:
                                 item->setTexture(img1);
                                 item->setData(Qt::UserRole,m_texturePair[1].second);
-                                item->setData(Qt::UserRole+3, "Floor");
+                                item->setData(Qt::UserRole+3, "Wall");
                                 item->setData(Qt::DecorationRole, QPixmap::fromImage(*img1));
                                 item->setIndexVal(QVector2D(r,c));
-                                item->setToolTip("Name: " + m_texturePair[1].second + "\nType: Floor");
+                                item->setToolTip("Name: " + m_texturePair[1].second + "\nType: Wall");
                                 ui->Icon_Table ->setItem(r,c,item);
-                                    break;
+                                break;
+
                         case 2:
                                 item->setTexture(img2);
                                 item->setData(Qt::DecorationRole, QPixmap::fromImage(*img2));
@@ -252,14 +255,15 @@ void MainWindow::setupIcons()
                                 item->setIndexVal(QVector2D(r,c));
                                 item->setToolTip("Name: " + m_texturePair[2].second + "\nType: Floor");
                                 ui->Icon_Table ->setItem(r,c,item);
-                                    break;
+                                break;
+
                         case 3:
                                 item->setTexture(img3);
                                 item->setData(Qt::DecorationRole, QPixmap::fromImage(*img3));
-                                item->setData(Qt::UserRole+3, "Floor");
+                                item->setData(Qt::UserRole+3, "Wall");
                                 item->setData(Qt::UserRole,m_texturePair[3].second);
                                 item->setIndexVal(QVector2D(r,c));
-                                item->setToolTip("Name: " + m_texturePair[3].second + "\nType: Floor");
+                                item->setToolTip("Name: " + m_texturePair[3].second + "\nType: Wall");
                                 ui->Icon_Table ->setItem(r,c,item);
                                 break;
 

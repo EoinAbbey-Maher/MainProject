@@ -4,6 +4,9 @@ Player::Player(sf::RenderWindow& t_window) :
 	m_window(t_window)
 {
 	setupBody();
+
+	m_velocity.x = std::cos(m_orientation * RADIANSVAL) * m_acceleration;
+	m_velocity.y = std::sin(m_orientation * RADIANSVAL) * m_acceleration;
 }
 
 Player::~Player()

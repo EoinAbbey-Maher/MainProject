@@ -25,7 +25,7 @@ public: //functions
 private: //functions
 
 public: //variables
-	float const m_size{ 64 };
+	float const m_size{ 50 };
 
 	sf::RectangleShape m_bodySquare;
 	std::string m_ImgAddress;

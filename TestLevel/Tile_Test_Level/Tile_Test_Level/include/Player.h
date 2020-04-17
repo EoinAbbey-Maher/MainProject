@@ -8,6 +8,9 @@
 #include "RoomBuilder.h"
 #include "Global.h"
 
+
+class RoomBuilder;
+
 static const float RADIANSVAL{ 3.14 / 180 };
 static const float MAXPLAYERVELOCITY{ 5 };
 
