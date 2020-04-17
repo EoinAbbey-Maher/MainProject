@@ -8,7 +8,7 @@ XMLWriter::XMLWriter()
 
 }
 
-void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QPair<QString,QString>> t_TextureNames)
+void XMLWriter::WriteTilesToFile(QTableWidget *t_table,QTableWidget * t_nodeTable, QVector<QPair<QString,QString>> t_TextureNames)
 {
     QString fileName = m_XML_Name;
 
@@ -80,6 +80,33 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QPair<QString,QS
                 }
         }
 
+         xmlWriter.writeEndElement();
+
+         xmlWriter.writeStartElement("Nodes");
+        int nodeCount = 0;
+        for (int r = 0; r < t_table ->rowCount(); r++)
+           {
+               for (int c = 0; c < t_table ->columnCount(); c++)
+                {
+                   QTableWidgetItem* item = t_nodeTable->item(r,c);
+
+                   if(item->data(Qt::UserRole) != "empty")
+                   {
+                    xmlWriter.writeStartElement("Node" + QString::number(nodeCount));
+                    xmlWriter.writeTextElement("IndexX", QString::number(c));
+                    xmlWriter.writeTextElement("IndexY", QString::number(r));
+                    xmlWriter.writeTextElement("PositionX",item->data(Qt::UserRole+1).toString());
+                    xmlWriter.writeTextElement("PositionY",item->data(Qt::UserRole+2).toString());
+                    xmlWriter.writeTextElement("Image", item->data(Qt::UserRole).toString());
+                    xmlWriter.writeTextElement("Type", item->data(Qt::UserRole+3).toString());
+                    xmlWriter.writeEndElement();
+                    nodeCount++;
+
+                   }
+                }
+        }
+
+        xmlWriter.writeTextElement("NoOfNodes", QString::number(nodeCount));
         xmlWriter.writeEndElement();
         xmlWriter.writeEndDocument();
         file.close();
@@ -99,8 +126,9 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table, QVector<QPair<QString,QS
 
 
 }
-
-/// ------------------------------------------------------- Load In Existing File -------------------------------------
+/// -------------------------------------------------------------------------------------------------------------------
+///                                                  Load In Existing File
+/// -------------------------------------------------------------------------------------------------------------------
 void XMLWriter::ReadExistingFile()
 {
     QString folderPath = QFileDialog::getExistingDirectory(this,tr("Image Folder"));
@@ -182,7 +210,6 @@ void XMLWriter::ReadExistingFile()
     QTableWidget * table = mainWindow->m_mapTable;
     int  t = 0;
 
-
     QDomElement tilesRoot = root.firstChildElement("Tiles");
 
     for (int r = 0; r < mapHeightInt; r++) {
@@ -212,6 +239,41 @@ void XMLWriter::ReadExistingFile()
             t++;
         }
     }
+
+
+     QTableWidget * nodetable = mainWindow->m_NodeTable;
+
+    QDomElement NodesRoot = root.firstChildElement("Nodes");
+    int n = 0;
+    int noOfNodes = NodesRoot.firstChildElement("NoOfNodes").firstChild().nodeValue().toInt();
+            for(int i = 0; i <  noOfNodes; i++)
+            {
+            QString nodestr = "Node" + QString::number(i);
+
+            QString ImageTagString = NodesRoot.firstChildElement(nodestr).firstChildElement("Image").firstChild().nodeValue();
+            int IndexXInt = NodesRoot.firstChildElement(nodestr).firstChildElement("IndexX").firstChild().nodeValue().toInt();
+            int IndexYInt = NodesRoot.firstChildElement(nodestr).firstChildElement("IndexY").firstChild().nodeValue().toInt();
+            int PositionXInt = NodesRoot.firstChildElement(nodestr).firstChildElement("PositionX").firstChild().nodeValue().toInt();
+            int PositionYInt = NodesRoot.firstChildElement(nodestr).firstChildElement("PositionY").firstChild().nodeValue().toInt();
+            QString TypeTagString = NodesRoot.firstChildElement(nodestr).firstChildElement("Type").firstChild().nodeValue();
+
+            TileItem* item = new TileItem;
+            for (int i= 0; i< name_ImagePair.size(); i++) {
+                if(name_ImagePair[i].first == ImageTagString)
+                {
+                    item->setData(Qt::DecorationRole, QPixmap::fromImage(*name_ImagePair[i].second).scaled(50,50));
+                    break;
+                }
+            }
+            item->setData(Qt::UserRole, ImageTagString);
+            item->setData(Qt::UserRole+1, PositionXInt);
+            item->setData(Qt::UserRole+2, PositionYInt);
+            item->setData(Qt::UserRole+3, TypeTagString);
+            nodetable->setItem(IndexYInt,IndexXInt,item);
+
+            n++;
+            }
+
     close();
     mainWindow->show();
 }

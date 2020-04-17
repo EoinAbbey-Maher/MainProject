@@ -6,5 +6,7 @@
     <file alias="floor2.png">Images/floor2.png</file>
     <file alias="floor3.png">Images/floor3.png</file>
     <file alias="empty.png">Images/empty.png</file>
+    <file alias="playerNode.png">Images/PlayerNode.png</file>
+    <file alias="NPCNode.png">Images/NPCNode.png</file>
   </qresource>
 </RCC>

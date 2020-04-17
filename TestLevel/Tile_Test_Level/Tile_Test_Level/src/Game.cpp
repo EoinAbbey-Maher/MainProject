@@ -3,11 +3,12 @@
 #include <iostream>
 
 Game::Game() :
-	m_window{ sf::VideoMode{ GlobalSettings::s_width, GlobalSettings::s_height, 32U }, "SFML Game", sf::Style::Default },
+	m_window{ sf::VideoMode{ GlobalSettings::s_width, GlobalSettings::s_height, 32U }, "Jigsaw Level Builder Demo", sf::Style::Default },
 	m_roombuilder{m_window},
-	m_exitGame{false} 
+	m_exitGame{false},
+	m_Player(m_window)
 {
-	m_roombuilder.loadFile("assets\\MapExport\\Map_Data.xml");
+	m_roombuilder.loadFile("assets\\MapExport\\Map_Data.xml", m_enemies, m_Player);
 }
 
 Game::~Game()
@@ -53,6 +54,7 @@ void Game::processEvents()
 
 void Game::processKeys(sf::Event t_event)
 {
+	m_Player.processGameEvents(t_event);
 	if (sf::Keyboard::Escape == t_event.key.code)
 	{
 		m_exitGame = true;
@@ -61,6 +63,7 @@ void Game::processKeys(sf::Event t_event)
 
 void Game::update(sf::Time t_deltaTime)
 {
+	m_Player.update(t_deltaTime, m_roombuilder);
 	if (m_exitGame)
 	{
 		m_window.close();
@@ -71,6 +74,10 @@ void Game::render()
 {
 	m_window.clear(sf::Color::Black);
 	m_roombuilder.render();
-	
+	m_Player.render();
+	for (int i = 0; i < m_enemies.size(); i++)
+	{
+		m_enemies[i].render(m_window);
+	}
 	m_window.display();
 }

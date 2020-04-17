@@ -33,7 +33,10 @@ public:
 public:
     Ui::MainWindow *ui;
     QTableWidget * m_mapTable;
+    QTableWidget * m_NodeTable;
     QVector<QPair<QString, QString>> m_texturePair;
+
+    QTableWidget * m_activeTable;
 
 signals:
 
@@ -41,6 +44,7 @@ private slots:
     void handleApplyButton();
     void handleClearButton();
     void handleExportButton();
+    void handleTableChange();
     void wheelEvent(QWheelEvent *t_event);
     void keyPressEvent(QKeyEvent * t_event);
 
@@ -81,6 +85,8 @@ private: //variables
     QVector<TileItem> m_iconTiles;
 
     QVector<QString> m_TexturePaths;
+
+    QPoint m_tileSize = QPoint(50,50);
 
     QPoint m_gameGridSize = QPoint(32,20);
 
