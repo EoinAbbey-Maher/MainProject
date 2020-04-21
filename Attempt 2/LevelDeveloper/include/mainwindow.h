@@ -48,8 +48,8 @@ private slots:
     void wheelEvent(QWheelEvent *t_event);
     void keyPressEvent(QKeyEvent * t_event);
 
-    void addRow();
-    void addColumn();
+   // void addRow();
+   // void addColumn();
     void open();
     void newMap();
     void closeProgram();

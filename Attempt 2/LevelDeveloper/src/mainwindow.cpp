@@ -1,7 +1,6 @@
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 
-
 #include <QMenu>
 #include <QMenuBar>
 #include <QClipboard>
@@ -37,8 +36,8 @@ MainWindow::MainWindow(int t_tableHeight, int t_tableWidth, QWidget *parent) :
 
     m_texturePair.push_back(QPair<QString,QString>(":/floor.png", "floor"));
     m_texturePair.push_back(QPair<QString,QString>(":/floor1.png", "floor1"));
-    m_texturePair.push_back(QPair<QString,QString>(":/floor2.png", "floor2"));
-    m_texturePair.push_back(QPair<QString,QString>(":/floor3.png", "floor3"));
+    m_texturePair.push_back(QPair<QString,QString>(":/wall.png", "wall"));
+    m_texturePair.push_back(QPair<QString,QString>(":/wall1.png", "wall1"));
     m_texturePair.push_back(QPair<QString,QString>(":/empty.png", "empty"));
     m_texturePair.push_back(QPair<QString,QString>(":/playerNode", "playerNode"));
     m_texturePair.push_back(QPair<QString,QString>(":/NPCNode", "NPCNode"));
@@ -159,6 +158,32 @@ void MainWindow::setTextures()
     }
     else
     {
+        //If the Node is a Player Node erase the preexisting Player node if there is one
+        if(ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole) == "playerNode")
+        {
+            QImage *empty= new QImage();
+            empty->load(m_texturePair[4].first);
+            empty->scaled(m_tileSize.x(),m_tileSize.y(), Qt::KeepAspectRatio);
+            for (int r = 0; r < m_NodeTable->rowCount(); r++)
+            {
+                for (int c = 0; c < m_NodeTable->columnCount(); c++)
+                {
+
+                    QTableWidgetItem* item = m_NodeTable->item(r,c);
+
+                    if(item->data(Qt::UserRole) == "playerNode")
+                    {
+                        m_NodeTable->item(r,c)->setData(Qt::DecorationRole,QPixmap::fromImage(*empty));
+                        m_NodeTable->item(r,c)->setData(Qt::UserRole, "empty");
+                        m_NodeTable->item(r,c)->setData(Qt::UserRole+3, "empty");
+
+                    }
+                }
+
+            }
+        }
+
+        // Set The new node
         for (int i = 0; i <  m_NodeTable->selectedItems().count(); i++)
         {
             m_NodeTable->selectedItems().at(i)->setData(Qt::DecorationRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::DecorationRole).value<QPixmap>());
@@ -166,7 +191,7 @@ void MainWindow::setTextures()
             m_NodeTable->selectedItems().at(i)->setData(Qt::UserRole+3, ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole+3));
         }
     }
-    qDebug() << "setup Textures";
+   // qDebug() << "setup Textures";
 }
 
 // ------------------------------------------------------------------------------------
@@ -240,20 +265,20 @@ void MainWindow::setupIcons()
                         case 1:
                                 item->setTexture(img1);
                                 item->setData(Qt::UserRole,m_texturePair[1].second);
-                                item->setData(Qt::UserRole+3, "Wall");
+                                item->setData(Qt::UserRole+3, "Floor");
                                 item->setData(Qt::DecorationRole, QPixmap::fromImage(*img1));
                                 item->setIndexVal(QVector2D(r,c));
-                                item->setToolTip("Name: " + m_texturePair[1].second + "\nType: Wall");
+                                item->setToolTip("Name: " + m_texturePair[1].second + "\nType: Floor");
                                 ui->Icon_Table ->setItem(r,c,item);
                                 break;
 
                         case 2:
                                 item->setTexture(img2);
                                 item->setData(Qt::DecorationRole, QPixmap::fromImage(*img2));
-                                item->setData(Qt::UserRole+3, "Floor");
+                                item->setData(Qt::UserRole+3, "Wall");
                                 item->setData(Qt::UserRole, m_texturePair[2].second);
                                 item->setIndexVal(QVector2D(r,c));
-                                item->setToolTip("Name: " + m_texturePair[2].second + "\nType: Floor");
+                                item->setToolTip("Name: " + m_texturePair[2].second + "\nType: Wall");
                                 ui->Icon_Table ->setItem(r,c,item);
                                 break;
 
@@ -336,6 +361,7 @@ void MainWindow::setupGameGrid(int t_height = 10, int t_width = 10)
                     item->setData(Qt::UserRole+1, QString::number(c * m_tileSize.x()));
                     item->setData(Qt::UserRole+2, QString::number(r * m_tileSize.y()));
                     item->setData(Qt::UserRole+3, "empty");
+
                     m_mapTable->setItem(r,c,item);
                 }
           }
@@ -357,8 +383,6 @@ void MainWindow::setupGameGrid(int t_height = 10, int t_width = 10)
     m_NodeTable->setRowCount(t_height);
     m_NodeTable->setColumnCount(t_width);
 
-
-
     for (int r = 0; r < m_NodeTable->rowCount(); r++)
        {
            for (int c = 0; c < m_NodeTable->columnCount(); c++)
@@ -379,7 +403,7 @@ void MainWindow::setupGameGrid(int t_height = 10, int t_width = 10)
 
     m_NodeTable->setFixedSize(m_NodeTable->horizontalHeader()->length()+m_NodeTable->verticalHeader()->width(), m_NodeTable->verticalHeader()->length()+m_NodeTable->horizontalHeader()->height());
 
-     m_proxyWidget = scene->addWidget( m_NodeTable );
+    m_proxyWidget = scene->addWidget( m_NodeTable );
 
     double tableWidth = m_mapTable->columnCount();
     double tableHeight = m_mapTable->rowCount();
@@ -441,35 +465,82 @@ void MainWindow::keyPressEvent(QKeyEvent *t_event)
     {
           ui->graphicsView->scale(0.8, 0.8);
     }
+    if(t_event->key() == Qt::Key_Delete)
+    {
+          removeTextures();
+    }
 }
+
+
+/// -----------------------------------------------------------------------------------
+///
+///                 The Following Code was to be used for adding
+///           and removing Rows and Columns, Unfortunately Due to Time
+///                     constraints it wasn't completed in Time
+///
+/// -----------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------
 //              Add New Row To The Table
 // ------------------------------------------------------------------------------------
-void MainWindow::addRow()
-{
-    m_mapTable->insertRow(1);
-    m_NodeTable->insertRow(1);
-    m_gameGridSize.ry()++;
+//void MainWindow::addRow()
+//{
+//    m_mapTable->horizontalHeader()->setDefaultSectionSize(m_tileSize.x());
+//    m_NodeTable->verticalHeader()->setDefaultSectionSize(m_tileSize.y());
 
-    ui->m_FullCameraView->setSceneRect(0,0,m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
-    ui->m_FullCameraView->fitInView(0,0,m_mapTable->columnCount()  * m_tileSize.x(), m_mapTable->rowCount()* m_tileSize.y(),Qt::KeepAspectRatio);
+//    int row = m_mapTable->rowCount(); // current row count
+//    m_mapTable->setRowCount(row+1); // add one row
+//    m_NodeTable->setRowCount(row+1);
 
-}
 
-// ------------------------------------------------------------------------------------
-//              Add New Column To The Table
-// ------------------------------------------------------------------------------------
-void MainWindow::addColumn()
-{
-    m_mapTable->insertColumn(1);
-    m_NodeTable->insertColumn(1);
-    m_gameGridSize.rx()++;
+//    // create items in all added cells
+//    for (int col = 0; col < m_mapTable->columnCount(); ++col)
+//    {
+//        QTableWidgetItem* newItem = new QTableWidgetItem();
+//        m_mapTable->setItem(row, col, newItem);
+//        m_NodeTable->setItem(row, col, newItem);
+//    }
 
-    ui->m_FullCameraView->setSceneRect(0,0,m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
-    ui->m_FullCameraView->fitInView(0,0,m_mapTable->columnCount()  * m_tileSize.x(), m_mapTable->rowCount()* m_tileSize.y(),Qt::KeepAspectRatio);
+//    m_gameGridSize.setY(row);
 
-}
+//    m_proxyWidget->setGeometry(QRect(0,0,m_mapTable->columnCount() * m_tileSize.x(), m_gameGridSize.y() *m_tileSize.y()));
+
+//    //m_NodeTable->setFixedSize(m_NodeTable->horizontalHeader()->length() + m_NodeTable->verticalHeader()->width(), m_NodeTable->verticalHeader()->length() + m_NodeTable->horizontalHeader()->height());
+//    //m_mapTable->setFixedSize(m_mapTable->horizontalHeader()->length() + m_mapTable->verticalHeader()->width(), m_mapTable->verticalHeader()->length() + m_mapTable->horizontalHeader()->height());
+//    //m_activeTable->setFixedSize(m_NodeTable->horizontalHeader()->length() + m_NodeTable->verticalHeader()->width(), m_NodeTable->verticalHeader()->length() + m_NodeTable->horizontalHeader()->height());
+
+//    ui->m_FullCameraView->setSceneRect(0,0,m_mapTable->columnCount() * m_tileSize.x(), m_gameGridSize.y() *m_tileSize.y());
+//    ui->m_FullCameraView->fitInView(0,0,m_mapTable->columnCount() * m_tileSize.x(), m_gameGridSize.y() * m_tileSize.y(),Qt::KeepAspectRatio);
+//}
+
+//// ------------------------------------------------------------------------------------
+////              Add New Column To The Table
+//// ------------------------------------------------------------------------------------
+//void MainWindow::addColumn()
+//{
+//    m_mapTable->insertColumn(m_mapTable->columnCount());
+//    m_NodeTable->insertColumn(m_mapTable->columnCount());
+//    m_gameGridSize.rx()++;
+
+//    for (int r = 0; r < m_NodeTable->rowCount(); r++)
+//     {
+
+//         TileItem* item = new TileItem;
+//         item->setData(Qt::UserRole, "empty");
+//         item->setData(Qt::UserRole+1, QString::number(m_NodeTable->columnCount()  * m_tileSize.x()));
+//         item->setData(Qt::UserRole+2, QString::number(r * m_tileSize.y()));
+//         item->setData(Qt::UserRole+3, "empty");
+//         m_NodeTable->setItem(r, m_NodeTable->columnCount(),item);
+//         m_mapTable->setItem(r, m_mapTable->columnCount(),item);
+//     }
+
+//    m_NodeTable->setFixedSize(m_NodeTable->horizontalHeader()->length() + m_NodeTable->verticalHeader()->width(), m_NodeTable->verticalHeader()->length() + m_NodeTable->horizontalHeader()->height());
+//    m_mapTable->setFixedSize(m_mapTable->horizontalHeader()->length() + m_mapTable->verticalHeader()->width(), m_mapTable->verticalHeader()->length() + m_mapTable->horizontalHeader()->height());
+
+//    ui->m_FullCameraView->setSceneRect(0,0,m_activeTable->columnCount() * m_tileSize.x(), m_activeTable->rowCount() *m_tileSize.y());
+//    ui->m_FullCameraView->fitInView(0,0,m_activeTable->columnCount() * m_tileSize.x(), m_activeTable->rowCount()* m_tileSize.y(),Qt::KeepAspectRatio);
+
+//}
 
 
 
@@ -478,8 +549,8 @@ void MainWindow::addColumn()
 // ------------------------------------------------------------------------------------
 void MainWindow::open()
 {
-    close();
     m_xmlWriter->ReadExistingFile();
+    close();
 }
 
 // ------------------------------------------------------------------------------------
@@ -561,8 +632,8 @@ void MainWindow::createMenus()
     QMenu * addMenu = menuBar()->addMenu(tr("&Add"));
     openTile = addMenu->addAction(tr("&Add New Tile"), this, &MainWindow::openNewTile);
 
-    addColAct = addMenu->addAction(tr("&Add A Column"), this, &MainWindow::addColumn);
-    addRowAct = addMenu->addAction(tr("Add A Row"), this, &MainWindow::addRow);
+    //addColAct = addMenu->addAction(tr("&Add A Column"), this, &MainWindow::addColumn);
+    //addRowAct = addMenu->addAction(tr("Add A Row"), this, &MainWindow::addRow);
     addMenu->addSeparator();
 
 }

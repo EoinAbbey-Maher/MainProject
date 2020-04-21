@@ -274,6 +274,6 @@ void XMLWriter::ReadExistingFile()
             n++;
             }
 
-    close();
+    //close();
     mainWindow->show();
 }

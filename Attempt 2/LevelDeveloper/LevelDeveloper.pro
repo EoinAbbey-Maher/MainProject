@@ -60,8 +60,8 @@ RC_ICONS = Images/Icon.ico
 OTHER_FILES += \
     Images/floor.png
     Images/floor1.png
-    Images/floor2.png
-    Images/floor3.png
+    Images/wall.png
+    Images/wall1.png
     Images/empty.png
     Images/Icon.png
 </
