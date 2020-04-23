@@ -46,8 +46,9 @@ MainWindow::MainWindow(int t_tableHeight, int t_tableWidth, QWidget *parent) :
     setupGameGrid(m_gameGridSize.y(), m_gameGridSize.x());
 
     m_activeTable = m_mapTable;
-    m_activeTable->raise();
-    m_NodeTable->setVisible(false);
+   // m_NodeTable->setVisible(false);
+    m_NodeTable->setStyleSheet("background-color: rgba(0,0,0,0)");
+    m_NodeTable->setWindowFlag(Qt::WindowTransparentForInput);
 
     connect(ui->m_applyButton, SIGNAL(released()), this,SLOT(handleApplyButton()));
     connect(ui->m_clearCellButton, SIGNAL(released()),this,SLOT(handleClearButton()));
@@ -102,22 +103,30 @@ void MainWindow::handleExportButton()
 // ------------------------------------------------------------------------------------
 void MainWindow::handleTableChange()
 {
-    m_activeTable->setVisible(false);
+    //m_activeTable->setVisible(false);
     switch(ui->m_layerCombo->currentIndex())
     {
     case 0:
         m_activeTable = m_mapTable;
+        m_mapTable->setWindowFlag(Qt::WindowTransparentForInput, false);
+        m_NodeTable->setVisible(false);
         break;
+
 
     case 1:
         m_activeTable = m_NodeTable;
+        m_NodeTable->setVisible(true);
+        m_NodeTable->setWindowFlag(Qt::WindowTransparentForInput,false);
+
+        m_mapTable->setWindowFlag(Qt::WindowTransparentForInput);
         break;
 
     default:
         break;
     }
-    m_activeTable->setVisible(true);
-
+    //m_activeTable->setVisible(true);
+    m_activeTable->raise();
+    m_mapTable->show();
 }
 
 
@@ -185,15 +194,10 @@ void MainWindow::setTextures()
         // Set The new node
         for (int i = 0; i <  m_NodeTable->selectedItems().count(); i++)
         {
-            QTableWidgetItem* item = ui->Icon_Table->selectedItems().at(0);
 
             m_NodeTable->selectedItems().at(i)->setData(Qt::DecorationRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::DecorationRole).value<QPixmap>());
             m_NodeTable->selectedItems().at(i)->setData(Qt::UserRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole));
             m_NodeTable->selectedItems().at(i)->setData(Qt::UserRole+3, ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole+3));
-
-            QTableWidgetItem* Nodeitem = m_NodeTable->selectedItems().at(i);
-
-             QTableWidgetItem* item2 = ui->Icon_Table->selectedItems().at(0);
         }
     }
    // qDebug() << "setup Textures";
