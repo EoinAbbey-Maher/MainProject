@@ -17,7 +17,7 @@ public: // functions
 	~Enemy() {};
 
 	void init(sf::Texture * t_texture, sf::Vector2f m_position);
-	
+	void setTexture(sf::Texture* t_texture);
 	void update(RoomBuilder& m_room, Player& t_player);
 	void render(sf::RenderWindow & t_window);
 
@@ -31,6 +31,7 @@ private: // variables
 	sf::Vector2f m_lastPosition;
 	sf::Vector2f m_size{ 40,40};
 
+	sf::Texture m_texture;
 	sf::RectangleShape m_body;
 	
 };

@@ -21,7 +21,6 @@ public: // functions
 	void loadFile(const char* t_roomName);
 	void loadFile(const char* t_roomName, std::vector<Enemy> & t_enemies, Player & t_player);
 
-	void loadAssets();
 	void render();
 
 private: // functions

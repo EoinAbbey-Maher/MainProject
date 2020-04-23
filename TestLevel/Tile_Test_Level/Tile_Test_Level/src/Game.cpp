@@ -9,6 +9,19 @@ Game::Game() :
 	m_Player(m_window)
 {
 	m_roombuilder.loadFile("assets\\MapExport\\Map_Data.xml", m_enemies, m_Player);
+	
+	
+	sf::Texture	enemyTexture;
+	if (!enemyTexture.loadFromFile("assets\\IMAGES\\invader.png"))
+	{
+		std::cout << "failed to load " << std::endl;
+	}
+
+	for (int i = 0; i < m_enemies.size(); i++)
+	{
+		m_enemies[i].setTexture(&enemyTexture);
+	}
+
 }
 
 Game::~Game()
@@ -64,6 +77,12 @@ void Game::processKeys(sf::Event t_event)
 void Game::update(sf::Time t_deltaTime)
 {
 	m_Player.update(t_deltaTime, m_roombuilder);
+
+
+	for (int i = 0; i < m_enemies.size(); i++)
+	{
+		m_enemies[i].update(m_roombuilder, m_Player);
+	}
 	if (m_exitGame)
 	{
 		m_window.close();

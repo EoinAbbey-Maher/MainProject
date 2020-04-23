@@ -1,0 +1,12 @@
+<RCC>
+  <qresource>
+    <file>Images/Icon.png</file>
+    <file alias="floor.png">Images/floor.png</file>
+    <file alias="floor1.png">Images/floor1.png</file>
+    <file alias="wall.png">Images/wall.png</file>
+    <file alias="wall1.png">Images/wall1.png</file>
+    <file alias="empty.png">Images/empty.png</file>
+    <file alias="playerNode.png">Images/PlayerNode.png</file>
+    <file alias="NPCNode.png">Images/NPCNode.png</file>
+  </qresource>
+</RCC>
