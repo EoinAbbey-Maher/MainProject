@@ -86,29 +86,34 @@ void RoomBuilder::loadFile(const char* t_roomName)
 			std::string imgStr = ImageURL->Value();
 			std::string typeStr = TypeXML->Value();
 
+			Tile tile;
+
+
 			if (typeStr == "Node")
 			{
-				m_tiles[i][j].m_type = TileType::NODE;
+				tile.m_type = TileType::NODE;
 			}
 			else if (typeStr == "Wall")
 			{
-				m_tiles[i][j].m_type = TileType::WALL;
+				tile.m_type = TileType::WALL;
 			}
 			else if (typeStr == "Floor")
 			{
-				m_tiles[i][j].m_type = TileType::FLOOR;
+				tile.m_type = TileType::FLOOR;
 			}
 			else if (typeStr == "empty")
 			{
-				m_tiles[i][j].m_type = TileType::EMPTY;
+				tile.m_type = TileType::EMPTY;
 			}
 
 
-			m_tiles[i][j].indexPosition = sf::Vector2i(std::stoi(indexX->Value()), std::stoi(indexY->Value()));
-			m_tiles[i][j].m_position = sf::Vector2f(std::stof(PositionX->Value()), std::stof(PositionY->Value()));
-			m_tiles[i][j].m_ImgAddress = imgStr;
+			tile.indexPosition = sf::Vector2i(std::stoi(indexX->Value()), std::stoi(indexY->Value()));
+			tile.m_position = sf::Vector2f(std::stof(PositionX->Value()), std::stof(PositionY->Value()));
+			tile.m_ImgAddress = imgStr;
 
-			m_tiles[i][j].init(m_textureDict);
+			tile.init(m_textureDict);
+
+			m_tiles.push_back(tile);
 
 			t++;
 		} // !for j
@@ -193,29 +198,34 @@ void RoomBuilder::loadFile(const char* t_roomName, std::vector<Enemy>& t_enemies
 			std::string imgStr = ImageURL->Value();
 			std::string typeStr = TypeXML->Value();
 
+			Tile tile;
+
+
 			if (typeStr == "Node")
 			{
-				m_tiles[i][j].m_type = TileType::NODE;
+				tile.m_type = TileType::NODE;
 			}
 			else if (typeStr == "Wall")
 			{
-				m_tiles[i][j].m_type = TileType::WALL;
+				tile.m_type = TileType::WALL;
 			}
 			else if (typeStr == "Floor")
 			{
-				m_tiles[i][j].m_type = TileType::FLOOR;
+				tile.m_type = TileType::FLOOR;
 			}
 			else if (typeStr == "empty")
 			{
-				m_tiles[i][j].m_type = TileType::EMPTY;
+				tile.m_type = TileType::EMPTY;
 			}
 
 
-			m_tiles[i][j].indexPosition = sf::Vector2i(std::stoi(indexX->Value()), std::stoi(indexY->Value()));
-			m_tiles[i][j].m_position = sf::Vector2f(std::stof(PositionX->Value()), std::stof(PositionY->Value()));
-			m_tiles[i][j].m_ImgAddress = imgStr;
+			tile.indexPosition = sf::Vector2i(std::stoi(indexX->Value()), std::stoi(indexY->Value()));
+			tile.m_position = sf::Vector2f(std::stof(PositionX->Value()), std::stof(PositionY->Value()));
+			tile.m_ImgAddress = imgStr;
 
-			m_tiles[i][j].init(m_textureDict);
+			tile.init(m_textureDict);
+
+			m_tiles.push_back(tile);
 
 			t++;
 		} // !for j
@@ -261,7 +271,7 @@ void RoomBuilder::loadFile(const char* t_roomName, std::vector<Enemy>& t_enemies
 		{
 			Enemy* enem = new Enemy;
 
-			enem->init(new sf::Texture(), sf::Vector2f(std::stof(PositionX->Value()), std::stof(PositionY->Value())));
+			enem->init(new sf::Texture(), sf::Vector2f(std::stof(PositionX->Value() ) +20, std::stof(PositionY->Value()) + 20));
 			t_enemies.push_back(*enem);
 		}
 
@@ -288,8 +298,7 @@ void RoomBuilder::emptyRoom()
 	{
 		for (int j = 0; j < M_TOTALWIDTH; j++)
 		{
-
-			m_tileValue[i][j] = 0;
+			m_tiles.clear();
 		} // !for j
 	
 	} // !for i
@@ -298,11 +307,13 @@ void RoomBuilder::emptyRoom()
 
 void RoomBuilder::render()
 {
+	int t = 0;
 	for (int i = 0; i < m_mapHeight; i++)
 	{
 		for (int j = 0; j < m_mapWidth; j++)
 		{
-			m_tiles[i][j].render(m_window);
+			m_tiles[t].render(m_window);
+			t++;
 		} // !for j
 
 	} // !for i

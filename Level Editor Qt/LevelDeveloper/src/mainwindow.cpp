@@ -417,7 +417,7 @@ void MainWindow::setupGameGrid(int t_height = 10, int t_width = 10)
     ui->graphicsView->setScene(scene);
     ui->m_FullCameraView->setScene(scene);
 
-    resizeTables();
+    ui->m_FullCameraView->scale(.2,.2);
 }
 
 void MainWindow::resizeTables()
@@ -587,6 +587,57 @@ void MainWindow::addColumn()
     ui->m_FullCameraView->fitInView(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(),(m_mapTable->rowCount() +1) * m_tileSize.y(),Qt::KeepAspectRatio);
 }
 
+// ------------------------------------------------------------------------------------
+//              Remove A Row From The Table
+// ------------------------------------------------------------------------------------
+void MainWindow::removeRow()
+{
+    int row = m_mapTable->rowCount(); // current row count
+    int noderow = m_NodeTable->rowCount();
+
+    if(row > 1)
+    {
+        m_mapTable->setRowCount(row -1);
+        m_NodeTable->setRowCount(noderow -1);
+
+        int newRow =  m_mapTable->rowCount();
+
+        m_gameGridSize.setY(newRow);
+
+        m_NodeTable->resize(m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
+        m_mapTable->resize(m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
+
+        ui->m_FullCameraView->setSceneRect(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(), (m_mapTable->rowCount() +1)  *m_tileSize.y());
+        ui->m_FullCameraView->fitInView(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(),(m_mapTable->rowCount() +1) * m_tileSize.y(),Qt::KeepAspectRatio);
+    }
+}
+
+// ------------------------------------------------------------------------------------
+//              Remove A Column From The Table
+// ------------------------------------------------------------------------------------
+void MainWindow::removeCol()
+{
+    int col = m_mapTable->columnCount(); // current row count
+    int nodecol = m_NodeTable->columnCount();
+
+    if(col > 1)
+    {
+        m_mapTable->setColumnCount(col -1);
+        m_NodeTable->setColumnCount(nodecol-1);
+
+        int newCol =  m_mapTable->rowCount();
+
+        m_gameGridSize.setY(newCol);
+
+        m_NodeTable->resize(m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
+        m_mapTable->resize(m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
+
+        ui->m_FullCameraView->setSceneRect(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(), (m_mapTable->rowCount() +1)  *m_tileSize.y());
+        ui->m_FullCameraView->fitInView(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(),(m_mapTable->rowCount() +1) * m_tileSize.y(),Qt::KeepAspectRatio);
+    }
+
+}
+
 
 
 // ------------------------------------------------------------------------------------
@@ -680,5 +731,10 @@ void MainWindow::createMenus()
     addColAct = addMenu->addAction(tr("&Add A Column"), this, &MainWindow::addColumn);
     addRowAct = addMenu->addAction(tr("Add A Row"), this, &MainWindow::addRow);
     addMenu->addSeparator();
+
+    QMenu * removeMenu = menuBar()->addMenu(tr("Remove"));
+    RemoveColAct = removeMenu->addAction(tr("&Remove Column"), this, &MainWindow::removeCol);
+    RemoveRowAct = removeMenu->addAction(tr("&Remove Row"), this, &MainWindow::removeRow);
+
 
 }

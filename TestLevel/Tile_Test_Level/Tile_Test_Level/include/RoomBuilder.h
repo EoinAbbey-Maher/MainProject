@@ -36,8 +36,10 @@ public: // variables
 	static const int M_TOTALHEIGHT = 20;
 	static const int M_TOTALWIDTH = 32;
 
+	std::vector<Tile> m_tiles;
+
 	int m_maxTiles;
-	Tile m_tiles[M_TOTALHEIGHT][M_TOTALWIDTH];
+	//Tile m_tiles[M_TOTALHEIGHT][M_TOTALWIDTH];
 	sf::Vector2i m_tileSize = sf::Vector2i(50, 50);
 private: //variables
 	const int MAX_TEXTURES{ 6 };

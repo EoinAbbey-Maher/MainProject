@@ -20,6 +20,7 @@ public: // functions
 	void setTexture(sf::Texture* t_texture);
 	void update(RoomBuilder& m_room, Player& t_player);
 	void render(sf::RenderWindow & t_window);
+	sf::Vector2f m_size{ 40,40 };
 
 public: // variables
 
@@ -29,7 +30,7 @@ private: // variables
 
 	sf::Vector2f m_position;
 	sf::Vector2f m_lastPosition;
-	sf::Vector2f m_size{ 40,40};
+	
 
 	sf::Texture m_texture;
 	sf::RectangleShape m_body;

@@ -93,15 +93,17 @@ void Player::turn(float t_accel)
 
 void Player::checkBoundaries(RoomBuilder& t_roombuilder)
 {
+	int t = 0;
 	for (int r = 0; r < t_roombuilder.m_mapHeight; r++)
 	{
 		for (int c = 0; c < t_roombuilder.m_mapWidth; c++)
 		{
-			if (m_bodyShape.getGlobalBounds().intersects(t_roombuilder.m_tiles[r][c].m_bodySquare.getGlobalBounds()) && t_roombuilder.m_tiles[r][c].m_type == TileType::WALL)
+			if (m_bodyShape.getGlobalBounds().intersects(t_roombuilder.m_tiles[t].m_bodySquare.getGlobalBounds()) && t_roombuilder.m_tiles[t].m_type == TileType::WALL)
 			{
 				m_position = m_lastPosition;
 				m_bodyShape.setPosition(m_position);
 			}
+			t++;
 		}
 	}
 }

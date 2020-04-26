@@ -210,7 +210,6 @@ void XMLWriter::ReadExistingFile()
     QDomText mapWidthXML = mapValues.firstChildElement("ColSize").firstChild().toText();
 
     int noOFTexturesInt = noOfTexturesXML.data().toInt();
-    int TotalTilesInt = TotalTilesXML.data().toInt();
     int mapHeightInt = mapheightXML.data().toInt();
     int mapWidthInt = mapWidthXML.data().toInt();
 

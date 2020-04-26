@@ -50,6 +50,9 @@ private slots:
 
     void addRow();
     void addColumn();
+    void removeRow();
+    void removeCol();
+
     void open();
     void newMap();
     void closeProgram();
@@ -76,6 +79,8 @@ private: //variables
 
     QAction * addColAct;
     QAction * addRowAct;
+    QAction * RemoveRowAct;
+    QAction * RemoveColAct;
 
     QUndoStack *undoStack;
 
