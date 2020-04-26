@@ -1,8 +1,0 @@
-﻿  Player.cpp
-D:\Desktop\4th year\Main_Project\MainProject\TestLevel\Tile_Test_Level\Tile_Test_Level\include\Player.h(14,43): warning C4305: 'initializing': truncation from 'double' to 'float'
-D:\Desktop\4th year\Main_Project\MainProject\TestLevel\Tile_Test_Level\Tile_Test_Level\include\Player.h(14,43): warning C4305: 'initializing': truncation from 'double' to 'const float'
-D:\Desktop\4th year\Main_Project\MainProject\TestLevel\Tile_Test_Level\Tile_Test_Level\src\Player.cpp(36,10): warning C4305: 'argument': truncation from 'double' to 'float'
-D:\Desktop\4th year\Main_Project\MainProject\TestLevel\Tile_Test_Level\Tile_Test_Level\src\Player.cpp(40,11): warning C4305: 'argument': truncation from 'double' to 'float'
-D:\Desktop\4th year\Main_Project\MainProject\TestLevel\Tile_Test_Level\Tile_Test_Level\src\Player.cpp(123,48): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-D:\Desktop\4th year\Main_Project\MainProject\TestLevel\Tile_Test_Level\Tile_Test_Level\src\Player.cpp(123,33): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
-  Tile_Test_Level.vcxproj -> D:\Desktop\4th year\Main_Project\MainProject\TestLevel\Tile_Test_Level\Debug\Tile_Test_Level.exe
