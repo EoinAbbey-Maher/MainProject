@@ -59,7 +59,7 @@ void NewTileWindow::handleConfirmButton()
                 TileItem * tile = new TileItem;
                 tile->setTexture(&newImage);
                 tile->setData(Qt::UserRole, ui->m_TileNameInput->toPlainText().simplified());
-                tile->setData(Qt::UserRole +3, ui->m_TileTypeText->text());
+                tile->setData(Qt::UserRole +3, ui->m_TypeSelection->currentText());
                 tile->setData(Qt::DecorationRole, QPixmap::fromImage(newImage.scaled(50,50)));
                 tile->setToolTip("Name: " + ui->m_TileNameInput->toPlainText().simplified() + "\nType: " + ui->m_TileTypeText->text());
                 tile->setIndexVal(QVector2D(r,c));
