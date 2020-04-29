@@ -1,3 +1,9 @@
+/**
+*    xmlwriter.cpp
+*    @author Eoin Abbey-Maher
+*    @brief XML Writer and Reader for exporting and loading in levels
+*/
+
 #include "include/xmlwriter.h"
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
@@ -8,12 +14,12 @@ XMLWriter::XMLWriter()
 
 }
 
-/// -------------------------------------------------------------------------------------------------------------------
-///
-///                                         Writing Data into new XML File
-///
-/// -------------------------------------------------------------------------------------------------------------------
-
+/**
+ * @brief XMLWriter::WriteTilesToFile
+ * @param t_table Game Table Grid with tiles
+ * @param t_nodeTable Node grid with Player and NPC Node Data
+ * @param t_TextureNames vector holding all the tile textures
+ */
 void XMLWriter::WriteTilesToFile(QTableWidget *t_table,QTableWidget * t_nodeTable, QVector<QPair<QString,QString>> t_TextureNames)
 {
 
@@ -157,11 +163,9 @@ void XMLWriter::WriteTilesToFile(QTableWidget *t_table,QTableWidget * t_nodeTabl
 
 }
 
-/// -------------------------------------------------------------------------------------------------------------------
-///
-///                                                  Load In Existing File
-///
-/// -------------------------------------------------------------------------------------------------------------------
+/**
+ * @brief XMLWriter::ReadExistingFile Open existing folder folder and load in existing map xml and Tiles
+ */
 void XMLWriter::ReadExistingFile()
 {
     QString folderPath = QFileDialog::getExistingDirectory(this,tr("Image Folder"));

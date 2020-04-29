@@ -1,3 +1,9 @@
+/**
+*    mainWindow.cpp
+*    @author Eoin Abbey-Maher
+*    @brief Setup and Variables of the main Application window where tiles can be set
+*/
+
 #include "include/mainwindow.h"
 #include "ui_mainwindow.h"
 
@@ -12,12 +18,14 @@
 #include <QDir>
 #include <QApplication>
 
-// ------------------------------------------------------------------------------------
-//            Constructor with Height and Width input
-// ------------------------------------------------------------------------------------
+/**
+ * @brief Constructor for the MainWindow
+ * @param t_tableHeight Custom Height parameter for the table
+ * @param t_tableWidth Custom Width parameter for the table
+ */
 MainWindow::MainWindow(int t_tableHeight, int t_tableWidth, QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::MainWindow)
+    m_ui(new Ui::MainWindow)
 {
     this->setStyleSheet("QTableWidget {background-color: transparent;}"
                   "QHeaderView::section {background-color: transparent;}"
@@ -30,7 +38,7 @@ MainWindow::MainWindow(int t_tableHeight, int t_tableWidth, QWidget *parent) :
     m_gameGridSize.setX(t_tableWidth);
     m_gameGridSize.setY(t_tableHeight);
 
-    ui->setupUi(this);
+    m_ui->setupUi(this);
 
     createMenus();
 
@@ -50,20 +58,20 @@ MainWindow::MainWindow(int t_tableHeight, int t_tableWidth, QWidget *parent) :
     m_NodeTable->setStyleSheet("background-color: rgba(0,0,0,0)");
     m_NodeTable->setWindowFlag(Qt::WindowTransparentForInput);
 
-    connect(ui->m_applyButton, SIGNAL(released()), this,SLOT(handleApplyButton()));
-    connect(ui->m_clearCellButton, SIGNAL(released()),this,SLOT(handleClearButton()));
-    connect(ui->m_exportButton, SIGNAL(released()), this, SLOT(handleExportButton()));
+    connect(m_ui->m_applyButton, SIGNAL(released()), this,SLOT(handleApplyButton()));
+    connect(m_ui->m_clearCellButton, SIGNAL(released()),this,SLOT(handleClearButton()));
+    connect(m_ui->m_exportButton, SIGNAL(released()), this, SLOT(handleExportButton()));
 
-    connect(ui->Icon_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
+    connect(m_ui->m_icon_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
     connect(m_mapTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
     connect(m_NodeTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
 
-    connect(ui->m_layerCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(handleTableChange()));
+    connect(m_ui->m_layerCombo, SIGNAL(currentIndexChanged(int)), this, SLOT(handleTableChange()));
 }
 
 MainWindow::~MainWindow()
 {
-    delete ui;
+    delete m_ui;
 }
 
 
@@ -73,7 +81,7 @@ MainWindow::~MainWindow()
 void MainWindow::handleApplyButton()
 {
     //ui->m_applyButton->setText("Pressed");
-    if( m_activeTable->selectedItems().size() != 0 && ui->Icon_Table->selectedItems().size() != 0)
+    if( m_activeTable->selectedItems().size() != 0 && m_ui->m_icon_Table->selectedItems().size() != 0)
     {
         setTextures();
     }
@@ -104,7 +112,7 @@ void MainWindow::handleExportButton()
 void MainWindow::handleTableChange()
 {
     //m_activeTable->setVisible(false);
-    switch(ui->m_layerCombo->currentIndex())
+    switch(m_ui->m_layerCombo->currentIndex())
     {
     case 0:
         m_activeTable = m_mapTable;
@@ -135,19 +143,13 @@ void MainWindow::handleTableChange()
 // ------------------------------------------------------------------------------------
 void MainWindow::createActions()
 {
-    setTextureAction = new QAction(tr("&Set Texture"), this);
-    connect(ui->Icon_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
+    m_setTextureAct = new QAction(tr("&Set Texture"), this);
+    connect(m_ui->m_icon_Table, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
     connect( m_mapTable, SIGNAL(cellDoubleClicked(int,int)), this,SLOT(handleApplyButton()));
-    connect(ui->m_applyButton, SIGNAL(released()), this,SLOT(handleApplyButton()));
+    connect(m_ui->m_applyButton, SIGNAL(released()), this,SLOT(handleApplyButton()));
 
-    removeTextureAction = new QAction(tr("&Remove Textures"), this);
-    connect(ui->m_clearCellButton, SIGNAL(released()),this,SLOT(handleClearButton()));
-
-    undoAction = undoStack->createUndoAction(this, tr("&Undo"));
-    undoAction->setShortcut(QKeySequence::Undo);
-
-    redoAction = undoStack->createRedoAction(this,tr("&Redo"));
-    undoAction->setShortcut(QKeySequence::Redo);
+    m_removeTextureAct = new QAction(tr("&Remove Textures"), this);
+    connect(m_ui->m_clearCellButton, SIGNAL(released()),this,SLOT(handleClearButton()));
 }
 
 // ------------------------------------------------------------------------------------
@@ -155,19 +157,19 @@ void MainWindow::createActions()
 // ------------------------------------------------------------------------------------
 void MainWindow::setTextures()
 {
-    if( ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole+3) != "Node")
+    if( m_ui->m_icon_Table->selectedItems().at(0)->data(Qt::UserRole+3) != "Node")
     {
         for (int i = 0; i <  m_mapTable->selectedItems().count(); i++)
         {
-            m_mapTable->selectedItems().at(i)->setData(Qt::DecorationRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::DecorationRole).value<QPixmap>());
-            m_mapTable->selectedItems().at(i)->setData(Qt::UserRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole));
-            m_mapTable->selectedItems().at(i)->setData(Qt::UserRole+3, ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole+3));
+            m_mapTable->selectedItems().at(i)->setData(Qt::DecorationRole, m_ui->m_icon_Table->selectedItems().at(0)->data(Qt::DecorationRole).value<QPixmap>());
+            m_mapTable->selectedItems().at(i)->setData(Qt::UserRole, m_ui->m_icon_Table->selectedItems().at(0)->data(Qt::UserRole));
+            m_mapTable->selectedItems().at(i)->setData(Qt::UserRole+3, m_ui->m_icon_Table->selectedItems().at(0)->data(Qt::UserRole+3));
         }
     }
     else
     {
         //If the Node is a Player Node erase the preexisting Player node if there is one
-        if(ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole) == "playerNode")
+        if(m_ui->m_icon_Table ->selectedItems().at(0)->data(Qt::UserRole) == "playerNode")
         {
             QImage *empty= new QImage();
             empty->load(m_texturePair[4].first);
@@ -195,9 +197,9 @@ void MainWindow::setTextures()
         for (int i = 0; i <  m_NodeTable->selectedItems().count(); i++)
         {
 
-            m_NodeTable->selectedItems().at(i)->setData(Qt::DecorationRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::DecorationRole).value<QPixmap>());
-            m_NodeTable->selectedItems().at(i)->setData(Qt::UserRole, ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole));
-            m_NodeTable->selectedItems().at(i)->setData(Qt::UserRole+3, ui->Icon_Table->selectedItems().at(0)->data(Qt::UserRole+3));
+            m_NodeTable->selectedItems().at(i)->setData(Qt::DecorationRole, m_ui->m_icon_Table->selectedItems().at(0)->data(Qt::DecorationRole).value<QPixmap>());
+            m_NodeTable->selectedItems().at(i)->setData(Qt::UserRole, m_ui->m_icon_Table->selectedItems().at(0)->data(Qt::UserRole));
+            m_NodeTable->selectedItems().at(i)->setData(Qt::UserRole+3, m_ui->m_icon_Table->selectedItems().at(0)->data(Qt::UserRole+3));
         }
     }
    // qDebug() << "setup Textures";
@@ -255,9 +257,9 @@ void MainWindow::setupIcons()
     if(loaded)
     {
 
-        for (int r = 0; r < ui->Icon_Table ->rowCount(); r++)
+        for (int r = 0; r < m_ui->m_icon_Table ->rowCount(); r++)
            {
-               for (int c = 0; c < ui->Icon_Table ->columnCount(); c++)
+               for (int c = 0; c < m_ui->m_icon_Table ->columnCount(); c++)
                 {
                     TileItem * item = new TileItem;
                     switch(r){
@@ -269,7 +271,7 @@ void MainWindow::setupIcons()
                                 item->setData(Qt::UserRole+3, "Floor");
                                 item->setIndexVal(QVector2D(r,c));
                                 item->setToolTip("Name: " + m_texturePair[0].second + "\nType: Floor");
-                                ui->Icon_Table->setItem(r,c,item);
+                                m_ui->m_icon_Table->setItem(r,c,item);
                                     break;
                         case 1:
                                 item->setTexture(img1);
@@ -278,7 +280,7 @@ void MainWindow::setupIcons()
                                 item->setData(Qt::DecorationRole, QPixmap::fromImage(*img1));
                                 item->setIndexVal(QVector2D(r,c));
                                 item->setToolTip("Name: " + m_texturePair[1].second + "\nType: Floor");
-                                ui->Icon_Table ->setItem(r,c,item);
+                                m_ui->m_icon_Table ->setItem(r,c,item);
                                 break;
 
                         case 2:
@@ -288,7 +290,7 @@ void MainWindow::setupIcons()
                                 item->setData(Qt::UserRole, m_texturePair[2].second);
                                 item->setIndexVal(QVector2D(r,c));
                                 item->setToolTip("Name: " + m_texturePair[2].second + "\nType: Wall");
-                                ui->Icon_Table ->setItem(r,c,item);
+                                m_ui->m_icon_Table ->setItem(r,c,item);
                                 break;
 
                         case 3:
@@ -298,7 +300,7 @@ void MainWindow::setupIcons()
                                 item->setData(Qt::UserRole,m_texturePair[3].second);
                                 item->setIndexVal(QVector2D(r,c));
                                 item->setToolTip("Name: " + m_texturePair[3].second + "\nType: Wall");
-                                ui->Icon_Table ->setItem(r,c,item);
+                                m_ui->m_icon_Table ->setItem(r,c,item);
                                 break;
 
                         case 4:
@@ -308,7 +310,7 @@ void MainWindow::setupIcons()
                             item->setData(Qt::UserRole,m_texturePair[5].second);
                             item->setIndexVal(QVector2D(r,c));
                             item->setToolTip("Name: " + m_texturePair[5].second + "\nType: Node");
-                            ui->Icon_Table ->setItem(r,c,item);
+                            m_ui->m_icon_Table ->setItem(r,c,item);
                             break;
 
                         case 5:
@@ -318,7 +320,7 @@ void MainWindow::setupIcons()
                             item->setData(Qt::UserRole,m_texturePair[6].second);
                             item->setIndexVal(QVector2D(r,c));
                             item->setToolTip("Name: " + m_texturePair[6].second + "\nType: Node");
-                            ui->Icon_Table ->setItem(r,c,item);
+                            m_ui->m_icon_Table ->setItem(r,c,item);
                             break;
 
                         default: break;
@@ -337,9 +339,9 @@ void MainWindow::setupIcons()
 
     }
 
-        ui->Icon_Table->setSelectionMode(QAbstractItemView::SingleSelection);
-        ui->Icon_Table->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        ui->Icon_Table->show();
+        m_ui->m_icon_Table->setSelectionMode(QAbstractItemView::SingleSelection);
+        m_ui->m_icon_Table->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        m_ui->m_icon_Table->show();
 }
 
 // ------------------------------------------------------------------------------------
@@ -378,7 +380,7 @@ void MainWindow::setupGameGrid(int t_height = 10, int t_width = 10)
 
     m_mapTable->resize(m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
 
-    m_proxyWidget = scene->addWidget( m_mapTable );
+    m_proxyWidget = m_scene->addWidget( m_mapTable );
 
 
     //Setup Node Table;
@@ -411,13 +413,13 @@ void MainWindow::setupGameGrid(int t_height = 10, int t_width = 10)
 
     m_NodeTable->resize(m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
 
-    m_proxyWidget = scene->addWidget( m_NodeTable );
+    m_proxyWidget = m_scene->addWidget( m_NodeTable );
 
 
-    ui->graphicsView->setScene(scene);
-    ui->m_FullCameraView->setScene(scene);
+    m_ui->m_graphicsView->setScene(m_scene);
+    m_ui->m_fullCameraView->setScene(m_scene);
 
-    ui->m_FullCameraView->scale(.2,.2);
+    m_ui->m_fullCameraView->scale(.2,.2);
 }
 
 void MainWindow::resizeTables()
@@ -432,8 +434,8 @@ void MainWindow::resizeTables()
     m_NodeTable->resize(col * m_tileSize.x(), row *m_tileSize.y());
     m_mapTable->resize(col * m_tileSize.x(), row *m_tileSize.y());
 
-    ui->m_FullCameraView->setSceneRect(0,0,(col +1) * m_tileSize.x(), (row +1)  * m_tileSize.y());
-    ui->m_FullCameraView->fitInView(0,0,(col+1) * m_tileSize.x(),(row+1) * m_tileSize.y(),Qt::KeepAspectRatio);
+    m_ui->m_fullCameraView->setSceneRect(0,0,(col +1) * m_tileSize.x(), (row +1)  * m_tileSize.y());
+    m_ui->m_fullCameraView->fitInView(0,0,(col+1) * m_tileSize.x(),(row+1) * m_tileSize.y(),Qt::KeepAspectRatio);
 
 }
 
@@ -446,11 +448,11 @@ void MainWindow::wheelEvent(QWheelEvent *t_event)
 {
     if(t_event->delta() > 0)
     {
-         ui->graphicsView->scale(1.25, 1.25);
+         m_ui->m_graphicsView->scale(1.25, 1.25);
     }
           else
     {
-          ui->graphicsView->scale(0.8, 0.8);
+          m_ui->m_graphicsView->scale(0.8, 0.8);
     }
 }
 
@@ -482,11 +484,11 @@ void MainWindow::keyPressEvent(QKeyEvent *t_event)
 
     if(t_event->key() == Qt::Key_Q)
     {
-         ui->graphicsView->scale(1.25, 1.25);
+         m_ui->m_graphicsView->scale(1.25, 1.25);
     }
     if(t_event->key() == Qt::Key_E)
     {
-          ui->graphicsView->scale(0.8, 0.8);
+          m_ui->m_graphicsView->scale(0.8, 0.8);
     }
     if(t_event->key() == Qt::Key_Delete)
     {
@@ -498,14 +500,6 @@ void MainWindow::keyPressEvent(QKeyEvent *t_event)
     }
 }
 
-
-/// -----------------------------------------------------------------------------------
-///
-///                 The Following Code was to be used for adding
-///           and removing Rows and Columns, Unfortunately Due to Time
-///                     constraints it wasn't completed in Time
-///
-/// -----------------------------------------------------------------------------------
 
 // ------------------------------------------------------------------------------------
 //             Add New Row To The Table
@@ -544,8 +538,8 @@ void MainWindow::addRow()
     m_NodeTable->resize(m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
     m_mapTable->resize(m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
 
-    ui->m_FullCameraView->setSceneRect(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(), (m_mapTable->rowCount() +1)  *m_tileSize.y());
-    ui->m_FullCameraView->fitInView(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(),(m_mapTable->rowCount() +1) * m_tileSize.y(),Qt::KeepAspectRatio);
+    m_ui->m_fullCameraView->setSceneRect(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(), (m_mapTable->rowCount() +1)  *m_tileSize.y());
+    m_ui->m_fullCameraView->fitInView(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(),(m_mapTable->rowCount() +1) * m_tileSize.y(),Qt::KeepAspectRatio);
 }
 
 // ------------------------------------------------------------------------------------
@@ -583,8 +577,8 @@ void MainWindow::addColumn()
     m_NodeTable->resize(m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
     m_mapTable->resize(m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
 
-    ui->m_FullCameraView->setSceneRect(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(), (m_mapTable->rowCount() +1)  *m_tileSize.y());
-    ui->m_FullCameraView->fitInView(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(),(m_mapTable->rowCount() +1) * m_tileSize.y(),Qt::KeepAspectRatio);
+    m_ui->m_fullCameraView->setSceneRect(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(), (m_mapTable->rowCount() +1)  *m_tileSize.y());
+    m_ui->m_fullCameraView->fitInView(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(),(m_mapTable->rowCount() +1) * m_tileSize.y(),Qt::KeepAspectRatio);
 }
 
 // ------------------------------------------------------------------------------------
@@ -607,8 +601,8 @@ void MainWindow::removeRow()
         m_NodeTable->resize(m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
         m_mapTable->resize(m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
 
-        ui->m_FullCameraView->setSceneRect(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(), (m_mapTable->rowCount() +1)  *m_tileSize.y());
-        ui->m_FullCameraView->fitInView(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(),(m_mapTable->rowCount() +1) * m_tileSize.y(),Qt::KeepAspectRatio);
+        m_ui->m_fullCameraView->setSceneRect(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(), (m_mapTable->rowCount() +1)  *m_tileSize.y());
+        m_ui->m_fullCameraView->fitInView(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(),(m_mapTable->rowCount() +1) * m_tileSize.y(),Qt::KeepAspectRatio);
     }
 }
 
@@ -632,8 +626,8 @@ void MainWindow::removeCol()
         m_NodeTable->resize(m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
         m_mapTable->resize(m_mapTable->columnCount() * m_tileSize.x(), m_mapTable->rowCount() *m_tileSize.y());
 
-        ui->m_FullCameraView->setSceneRect(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(), (m_mapTable->rowCount() +1)  *m_tileSize.y());
-        ui->m_FullCameraView->fitInView(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(),(m_mapTable->rowCount() +1) * m_tileSize.y(),Qt::KeepAspectRatio);
+        m_ui->m_fullCameraView->setSceneRect(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(), (m_mapTable->rowCount() +1)  *m_tileSize.y());
+        m_ui->m_fullCameraView->fitInView(0,0,(m_mapTable->columnCount() +1) * m_tileSize.x(),(m_mapTable->rowCount() +1) * m_tileSize.y(),Qt::KeepAspectRatio);
     }
 
 }
@@ -676,7 +670,7 @@ void MainWindow::closeProgram()
 // ------------------------------------------------------------------------------------
 void MainWindow::openNewTile()
 {
-    m_newTileWindow = new NewTileWindow(m_texturePair, *ui->Icon_Table);
+    m_newTileWindow = new NewTileWindow(m_texturePair, *m_ui->m_icon_Table);
 
     m_newTileWindow->show();
     m_newTileWindow->activateWindow();
@@ -709,32 +703,32 @@ void MainWindow::saveReturnToMain()
 void MainWindow::createMenus()
 {
     QMenu *fileMenu = menuBar()->addMenu(tr("&File"));
-    OpenMapAct = fileMenu->addAction(tr("&Open existing Project"), this, &MainWindow::open);
-    OpenMapAct->setShortcut(QKeySequence::Open);
+    m_openMapAct = fileMenu->addAction(tr("&Open existing Project"), this, &MainWindow::open);
+    m_openMapAct->setShortcut(QKeySequence::Open);
 
-    saveAsAct = fileMenu->addAction(tr("&Export Map"), this, &MainWindow::handleExportButton);
-    saveAsAct->setShortcut(QKeySequence::Save);
+    m_saveAsAct = fileMenu->addAction(tr("&Export Map"), this, &MainWindow::handleExportButton);
+    m_saveAsAct->setShortcut(QKeySequence::Save);
 
-    newMapAct = fileMenu->addAction(tr("&New Map"), this,&MainWindow::newMap);
+    m_newMapAct = fileMenu->addAction(tr("&New Map"), this,&MainWindow::newMap);
 
-    saveandReturnAct = fileMenu->addAction(tr("&Save and Return to Main Menu"), this, &MainWindow::saveReturnToMain);
+    m_saveandReturnAct = fileMenu->addAction(tr("&Save and Return to Main Menu"), this, &MainWindow::saveReturnToMain);
 
-    returnToMainAct = fileMenu->addAction(tr("&Return to Main Menu"), this, &MainWindow::returnToMain);
+    m_returnToMainAct = fileMenu->addAction(tr("&Return to Main Menu"), this, &MainWindow::returnToMain);
 
-    closeMapAction = fileMenu->addAction(tr("&Quit Program"), this, &MainWindow::closeProgram);
+    m_closeMapAction = fileMenu->addAction(tr("&Quit Program"), this, &MainWindow::closeProgram);
 
     fileMenu->addSeparator();
 
     QMenu * addMenu = menuBar()->addMenu(tr("&Add"));
-    openTile = addMenu->addAction(tr("&Add New Tile"), this, &MainWindow::openNewTile);
+    m_openTileAct = addMenu->addAction(tr("&Add New Tile"), this, &MainWindow::openNewTile);
 
-    addColAct = addMenu->addAction(tr("&Add A Column"), this, &MainWindow::addColumn);
-    addRowAct = addMenu->addAction(tr("Add A Row"), this, &MainWindow::addRow);
+    m_addColAct = addMenu->addAction(tr("&Add A Column"), this, &MainWindow::addColumn);
+    m_addRowAct = addMenu->addAction(tr("Add A Row"), this, &MainWindow::addRow);
     addMenu->addSeparator();
 
     QMenu * removeMenu = menuBar()->addMenu(tr("Remove"));
-    RemoveColAct = removeMenu->addAction(tr("&Remove Column"), this, &MainWindow::removeCol);
-    RemoveRowAct = removeMenu->addAction(tr("&Remove Row"), this, &MainWindow::removeRow);
+    m_removeColAct = removeMenu->addAction(tr("&Remove Column"), this, &MainWindow::removeCol);
+    m_removeRowAct = removeMenu->addAction(tr("&Remove Row"), this, &MainWindow::removeRow);
 
 
 }

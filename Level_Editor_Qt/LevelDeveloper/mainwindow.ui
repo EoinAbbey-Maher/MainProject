@@ -21,7 +21,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="1,1">
       <item>
-       <widget class="QGraphicsView" name="graphicsView">
+       <widget class="QGraphicsView" name="m_graphicsView">
         <property name="maximumSize">
          <size>
           <width>10000</width>
@@ -34,7 +34,7 @@
        </widget>
       </item>
       <item>
-       <widget class="QGraphicsView" name="m_FullCameraView"/>
+       <widget class="QGraphicsView" name="m_fullCameraView"/>
       </item>
      </layout>
     </item>
@@ -87,7 +87,7 @@
     <item>
      <layout class="QHBoxLayout" name="horizontalLayout">
       <item>
-       <widget class="QTableWidget" name="Icon_Table">
+       <widget class="QTableWidget" name="m_icon_Table">
         <property name="rowCount">
          <number>2</number>
         </property>

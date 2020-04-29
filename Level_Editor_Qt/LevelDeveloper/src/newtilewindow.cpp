@@ -1,11 +1,17 @@
+/**
+*    newtilewindow.cpp
+*    @author Eoin Abbey-Maher
+*    @brief Setup and Variables of the new tile window where New Custom uaer tiles are added
+*/
+
 #include "include/newtilewindow.h"
 #include "ui_newtilewindow.h"
 
 NewTileWindow::NewTileWindow(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::NewTileWindow)
+    m_ui(new Ui::NewTileWindow)
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
     this->setWindowTitle("Jigsaw Tiled Map Designer");
 
 
@@ -13,19 +19,19 @@ NewTileWindow::NewTileWindow(QWidget *parent) :
 
 NewTileWindow::NewTileWindow(QVector<QPair<QString, QString>> &t_textures, QTableWidget &t_table, QWidget *parent):
     QMainWindow(parent),
-    ui(new Ui::NewTileWindow),
+    m_ui(new Ui::NewTileWindow),
     m_table(&t_table),
     m_textures(&t_textures)
 
 {
-    ui->setupUi(this);
+    m_ui->setupUi(this);
     this->setWindowTitle("Jigsaw Tiled Map Designer | Add New Tile");
 
     setWindowFlag(Qt::Popup);
 
-    connect(ui->m_SelectFileButton, SIGNAL(released()), this, SLOT(handleLocationButton()));
-    connect(ui->m_CancelButton, SIGNAL(released()), this, SLOT(handleCancelButton()));
-    connect(ui->m_AddButton, SIGNAL(released()), this, SLOT(handleConfirmButton()));
+    connect(m_ui->m_SelectFileButton, SIGNAL(released()), this, SLOT(handleLocationButton()));
+    connect(m_ui->m_CancelButton, SIGNAL(released()), this, SLOT(handleCancelButton()));
+    connect(m_ui->m_AddButton, SIGNAL(released()), this, SLOT(handleConfirmButton()));
 
 }
 
@@ -33,7 +39,7 @@ NewTileWindow::NewTileWindow(QVector<QPair<QString, QString>> &t_textures, QTabl
 
 NewTileWindow::~NewTileWindow()
 {
-    delete ui;
+    delete m_ui;
 }
 
 void NewTileWindow::handleConfirmButton()
@@ -43,7 +49,7 @@ void NewTileWindow::handleConfirmButton()
 
     QImage newImage = reader.read();
 
-    m_textures->push_back(QPair<QString, QString>(m_tempLocation,ui->m_TileNameInput->toPlainText().simplified()));
+    m_textures->push_back(QPair<QString, QString>(m_tempLocation,m_ui->m_TileNameInput->toPlainText().simplified()));
 
     QTableWidgetItem * widgetItem;
     bool inserted = false;
@@ -58,10 +64,10 @@ void NewTileWindow::handleConfirmButton()
             {
                 TileItem * tile = new TileItem;
                 tile->setTexture(&newImage);
-                tile->setData(Qt::UserRole, ui->m_TileNameInput->toPlainText().simplified());
-                tile->setData(Qt::UserRole +3, ui->m_TypeSelection->currentText());
+                tile->setData(Qt::UserRole, m_ui->m_TileNameInput->toPlainText().simplified());
+                tile->setData(Qt::UserRole +3, m_ui->m_TypeSelection->currentText());
                 tile->setData(Qt::DecorationRole, QPixmap::fromImage(newImage.scaled(50,50)));
-                tile->setToolTip("Name: " + ui->m_TileNameInput->toPlainText().simplified() + "\nType: " + ui->m_TileTypeText->text());
+                tile->setToolTip("Name: " + m_ui->m_TileNameInput->toPlainText().simplified() + "\nType: " + m_ui->m_TileTypeText->text());
                 tile->setIndexVal(QVector2D(r,c));
                 m_table->setItem(r,c,tile);
                 inserted = true;
@@ -94,7 +100,7 @@ void NewTileWindow::handleLocationButton()
 {
     qDebug() << "Location Button Pressed";
     m_tempLocation = QFileDialog::getOpenFileName(this, tr("Open Image"));
-    ui->m_FileLocationText->setText(m_tempLocation);
+    m_ui->m_FileLocationText->setText(m_tempLocation);
     show();
 }
 

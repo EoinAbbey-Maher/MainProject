@@ -1,3 +1,9 @@
+/**
+*    maplayoutscreen.h
+*    @brief Setup and Variables of the Map Setup Screen
+*    @author Eoin Abbey-Maher
+*/
+
 #ifndef MAPLAYOUTSCREEN_H
 #define MAPLAYOUTSCREEN_H
 
@@ -28,11 +34,10 @@ public slots:
     void handleNewButton();
     void cancelButton();
 
-private:
-    Ui::MapLayoutScreen *ui;
+private: //Variables
+    Ui::MapLayoutScreen * m_ui;
     MainWindow * m_mainWindow;
     StartingScreen * m_startScreen;
-
 };
 
 

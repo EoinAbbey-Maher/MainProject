@@ -1,3 +1,9 @@
+/**
+*    newtilewindow.h
+*    @author Eoin Abbey-Maher
+*    @brief Setup and Variables of the new tile window where New custom user tiles are added
+*/
+
 #ifndef NEWTILEWINDOW_H
 #define NEWTILEWINDOW_H
 
@@ -31,13 +37,14 @@ private slots:
     void handleCancelButton();
     void handleLocationButton();
 
-private:
-    Ui::NewTileWindow *ui;
+private: //variables
+    Ui::NewTileWindow *m_ui;
     QVector<QPair<QString, QString>>* m_textures;
     QTableWidget* m_table;
 
     QString m_tempLocation;
 
+private: // Functions
 
     void selectPath();
     void retrieveName();

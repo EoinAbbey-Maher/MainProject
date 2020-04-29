@@ -1,3 +1,10 @@
+/**
+*    xmlwriter.h
+*    @author Eoin Abbey-Maher
+*    @brief XML Writer and Reader for exporting and loading in levels
+*/
+
+
 #ifndef XMLWRITER_H
 #define XMLWRITER_H
 

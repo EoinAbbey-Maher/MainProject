@@ -1,3 +1,10 @@
+/**
+*    tileItem.cpp
+*    @author Eoin Abbey-Maher
+*    @brief Tile Item to hold the values for if tiles are collidable and positions ||
+*           Was created early in development but didn't get used
+*/
+
 #include "include/tileitem.h"
 
 TileItem::TileItem()

@@ -1,3 +1,9 @@
+/**
+*    startingscreen.h
+*    @author Eoin Abbey-Maher
+*    @brief Introduction Screen when the program is first launched, allows for User to select to make a new level or load an existing one
+*/
+
 #ifndef STARTINGSCREEN_H
 #define STARTINGSCREEN_H
 
@@ -31,17 +37,14 @@ signals:
 
 
 public slots:
-    void HandleNewButton();
-    void HandleCloseButton();
-    void HandleLoadButton();
+    void handleNewButton();
+    void handleCloseButton();
+    void handleLoadButton();
 
 
-private:
+private: //variables
     MapLayoutScreen * m_LayoutScreen;
-
-
-private:
-    Ui::StartingScreen *ui;
+    Ui::StartingScreen *m_ui;
 };
 
 #endif // STARTINGSCREEN_H

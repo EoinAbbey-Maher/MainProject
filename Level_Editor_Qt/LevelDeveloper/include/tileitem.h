@@ -1,3 +1,10 @@
+/**
+*    tileItem.h
+*    @author Eoin Abbey-Maher
+*    @brief Tile Item to hold the values for if tiles are collidable and positions ||
+*           Was created early in development but didn't get used
+*/
+
 #ifndef TILEITEM_H
 #define TILEITEM_H
 

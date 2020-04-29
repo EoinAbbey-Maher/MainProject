@@ -1,3 +1,9 @@
+/**
+*    mainWindow.h
+*    @author Eoin Abbey-Maher
+*    @brief Setup and Variables of the main Application window where tiles can be set
+*/
+
 #ifndef MAINWINDOW_H
 #define MAINWINDOW_H
 #include "QtWidgets"
@@ -26,11 +32,16 @@ class MainWindow : public QMainWindow
     Q_OBJECT
 
 public:
+    /**
+     * @brief Constructor for the MainWindow
+     * @param t_tableHeight Custom Height parameter for the table
+     * @param t_tableWidth Custom Width parameter for the table
+     */
     MainWindow(int t_tableHeight = 0, int t_tableWidth = 0, QWidget *parent = nullptr);
     ~MainWindow();
 
 public:
-    Ui::MainWindow *ui;
+    Ui::MainWindow *m_ui;
 
     QTableWidget * m_mapTable;
     QTableWidget * m_NodeTable;
@@ -62,46 +73,40 @@ private slots:
 
 
 private: //variables
-    QGraphicsScene * scene = new QGraphicsScene(this);
+    QGraphicsScene * m_scene= new QGraphicsScene(this);
     QGraphicsProxyWidget * m_proxyWidget = new QGraphicsProxyWidget;
 
-    QAction *setTextureAction;
-    QAction *removeTextureAction;
-    QAction *undoAction;
-    QAction * redoAction;
-    QAction * saveAsAct;
-    QAction * newMapAct;
-    QAction * returnToMainAct;
-    QAction * saveandReturnAct;
-    QAction * closeMapAction;
-    QAction * OpenMapAct;
-    QAction * openTile;
+    QAction * m_setTextureAct;
+    QAction * m_removeTextureAct;
+    QAction * m_saveAsAct;
+    QAction * m_newMapAct;
+    QAction * m_returnToMainAct;
+    QAction * m_saveandReturnAct;
+    QAction * m_closeMapAction;
+    QAction * m_openMapAct;
+    QAction * m_openTileAct;
 
-    QAction * addColAct;
-    QAction * addRowAct;
-    QAction * RemoveRowAct;
-    QAction * RemoveColAct;
-
-    QUndoStack *undoStack;
+    QAction * m_addColAct;
+    QAction * m_addRowAct;
+    QAction * m_removeRowAct;
+    QAction * m_removeColAct;
 
     XMLWriter* m_xmlWriter = new XMLWriter;
 
     QVector<TileItem> m_mapTiles;
     QVector<TileItem> m_iconTiles;
 
-    QVector<QString> m_TexturePaths;
+    QVector<QString> m_texturePaths;
 
     QPoint m_tileSize = QPoint(50,50);
 
     QPoint m_gameGridSize = QPoint(32,20);
 
-    NewTileWindow* m_newTileWindow;
+    NewTileWindow * m_newTileWindow;
     StartingScreen * m_StartScreen;
     MapLayoutScreen * m_MapLayoutScreen;
 
 private: //functions
-
-    static void initImageFileDialog(QFileDialog& t_dialog, QFileDialog::AcceptMode t_accept);
 
     void createMenus();
     void createActions();
@@ -111,7 +116,7 @@ private: //functions
     void setupIcons();
     void setupGameGrid(int t_height, int t_width);
 
-    bool SaveFile();
+    bool saveFile();
 
     void resizeTables();
 

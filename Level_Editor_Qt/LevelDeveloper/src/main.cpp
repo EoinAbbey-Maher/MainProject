@@ -1,3 +1,9 @@
+/**
+*    main.cpp
+*    @author Eoin Abbey-Maher
+*    @brief Entry Point for Application
+*/
+
 #include "include/mainwindow.h"
 #include "include/startingscreen.h"
 

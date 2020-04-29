@@ -1,3 +1,10 @@
+/**
+*    startingscreen.cpp
+*    @author Eoin Abbey-Maher
+*    @brief Introduction Screen when the program is first launched, allows for User to select to make a new level or load an existing one
+*/
+
+
 #include "include/startingscreen.h"
 #include "include/xmlwriter.h"
 #include "ui_startingscreen.h"
@@ -5,24 +12,24 @@
 
 StartingScreen::StartingScreen(QWidget *parent) :
     QMainWindow(parent),
-    ui(new Ui::StartingScreen)
+    m_ui(new Ui::StartingScreen)
 {
     this->setWindowTitle("Jigsaw Tiled Map Designer");
 
-    ui->setupUi(this);
+    m_ui->setupUi(this);
 
 
-    connect(ui->m_NewLevelBut, SIGNAL(released()), this, SLOT(HandleNewButton()));
-    connect(ui->m_LoadLevelButton, SIGNAL(released()), this, SLOT(HandleLoadButton()));
-    connect(ui->m_quitButton, SIGNAL(released()), this, SLOT(HandleCloseButton()));
+    connect(m_ui->m_NewLevelBut, SIGNAL(released()), this, SLOT(handleNewButton()));
+    connect(m_ui->m_LoadLevelButton, SIGNAL(released()), this, SLOT(handleLoadButton()));
+    connect(m_ui->m_quitButton, SIGNAL(released()), this, SLOT(handleCloseButton()));
 }
 
 StartingScreen::~StartingScreen()
 {
-    delete ui;
+    delete m_ui;
 }
 
-void StartingScreen::HandleNewButton()
+void StartingScreen::handleNewButton()
 {
     close();
     m_LayoutScreen = new MapLayoutScreen();
@@ -30,12 +37,12 @@ void StartingScreen::HandleNewButton()
 }
 
 
-void StartingScreen::HandleCloseButton()
+void StartingScreen::handleCloseButton()
 {
     close();
 }
 
-void StartingScreen::HandleLoadButton()
+void StartingScreen::handleLoadButton()
 {
     XMLWriter xml;
 
